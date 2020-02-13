@@ -24,3 +24,13 @@ Backend အပိုင်းဖြစ်တဲ့ အတွက်ဒီနေ�
 
 ## [Restaurant Client](https://github.com/minlwin/the-restaurant/tree/master/restaurant-client)
 
+ဒါကတေော့ API ကိုအသုံးပြုဖို့အတွက် Client Library Project တစ်ခုဖြစ်ပါတယ်။ GUI Application မှာက Java ကို အသုံးပြုပြီး Android Application မှာတော့ Kotlin ကို အသုံးပြုပါမယ်။ Kotlin လို့ပြောပေမဲ့လဲ JVM ပေါ်မှာ အလုပ်လုပ်တဲ့ Kotlin ကို အသုံးပြုသွားမှာဖြစ်တဲ့ အတွက် Java နဲ့ ရေးသားထားတဲ့ Library ကို အသုံးပြုနိုင်မှာ ဖြစ်ပါတယ်။
+
+ဒါကြောင့် ဒီပရိုဂျက်ကို Maven Base Library Project အနေနဲ့ ရေးသားသွားပြီး GUI Application မှာကော Android Application မှာပါ Dependency အနေနဲ့ အသုံးပြုသွားမှာ ဖြစ်ပါတယ်။
+
+ဒီ ပရိုဂျက်မှာ အသုံးပြုသွားမှာကတော့ Retrofit 2 ပဲ ဖြစ်ပါတယ်။ Library Project ဖြစ်တဲ့ အတွက် သူ့ရဲ့ Public API တွေကို မှန်ကန်မှုရှိအောင် JUnit 5 ကို အသုံးပြုပြီး Unit Test ကို သေသေချာချာလုပ်ထားဖို့ လိုအပ်ပါတယ်။
+
+## Restaurant GUI
+
+ဒီပရိုဂျက်ကတော့ ကောင်တာမှာနေတဲ့ သူတွေ အသုံးပြုမည့် Desktop Application တစ်ခုဖြစ်ပါတယ်။ 
+Java FX ကို အသုံးပြုပြီး ရေးသားသွားမှာ ဖြစ်ပါတယ်။ စာပွဲထိုးလေးတွေက Android ကို အသုံးပြုပြီး လုပ်ဆောင်နေတာတွေကိုလဲဲ လုပ်ဆောင်နိုင်ဖို့ လိုအပ်သလို၊ ပိုက်ဆံရှင်းတာတို့၊ ပြီးတော့ အချက်အလက်တွေကိို လိုအပ်လာရင်ပြင်ပေးနိုင်ဖို့ လိုအပ်ပါတယ်။
