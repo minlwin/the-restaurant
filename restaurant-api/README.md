@@ -142,3 +142,9 @@ export class Employee implements IdEnable{
 ### Product Relation
 
 ### Sale Relation
+
+### Sale Details Relation
+
+## Controllers
+
+## Service Layer
