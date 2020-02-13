@@ -23,16 +23,14 @@ export class SaleDetailsService extends BaseService<SaleDetails> {
 
     async saveBySale(saleId:number, details:SaleDetails) {
 
-        let sale = await this.saleService.findById(saleId)
-        details.sale = sale
+        details.sale = await this.saleService.findById(saleId)
+        await this.repo.save(details)
 
-        let saveResult = await this.repo.save(details)
+        details.sale = await this.saleService.findById(saleId)
+        details.sale.subTotal = details.sale.details.map(s => s.quantity * s.unitPrice).reduce((a, b) => a + b)
+        details.sale.tax = details.sale.subTotal / 100 * 5
+        await this.saleService.save(details.sale)
 
-        sale.details.push(saveResult)
-        sale.subTotal = sale.details.map(s => s.quantity * s.unitPrice).reduce((a, b) => a + b)
-        sale.tax = sale.subTotal / 100 * 5
-        await this.saleService.save(sale)
-
-        return saveResult
+        return details
     }
 }
