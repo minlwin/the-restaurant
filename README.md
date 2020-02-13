@@ -30,7 +30,7 @@ Backend အပိုင်းဖြစ်တဲ့ အတွက်ဒီနေ�
 
 ဒီ ပရိုဂျက်မှာ အသုံးပြုသွားမှာကတော့ Retrofit 2 ပဲ ဖြစ်ပါတယ်။ Library Project ဖြစ်တဲ့ အတွက် သူ့ရဲ့ Public API တွေကို မှန်ကန်မှုရှိအောင် JUnit 5 ကို အသုံးပြုပြီး Unit Test ကို သေသေချာချာလုပ်ထားဖို့ လိုအပ်ပါတယ်။
 
-##[Restaurant GUI](https://github.com/minlwin/the-restaurant/tree/master/restaurant-gui)
+## [Restaurant GUI](https://github.com/minlwin/the-restaurant/tree/master/restaurant-gui)
 
 ဒီပရိုဂျက်ကတော့ ကောင်တာမှာနေတဲ့ သူတွေ အသုံးပြုမည့် Desktop Application တစ်ခုဖြစ်ပါတယ်။ 
 Java FX ကို အသုံးပြုပြီး ရေးသားသွားမှာ ဖြစ်ပါတယ်။ စာပွဲထိုးလေးတွေက Android ကို အသုံးပြုပြီး လုပ်ဆောင်နေတာတွေကိုလဲဲ လုပ်ဆောင်နိုင်ဖို့ လိုအပ်သလို၊ ပိုက်ဆံရှင်းတာတို့၊ ပြီးတော့ အချက်အလက်တွေကိို လိုအပ်လာရင်ပြင်ပေးနိုင်ဖို့ လိုအပ်ပါတယ်။
