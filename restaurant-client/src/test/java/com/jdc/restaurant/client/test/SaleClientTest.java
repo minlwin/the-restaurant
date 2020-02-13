@@ -1,8 +1,10 @@
 package com.jdc.restaurant.client.test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.Date;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,9 +13,9 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
-import com.jdc.restaurant.client.RestaurantClientFactory;
 import com.jdc.restaurant.client.api.SaleApi;
 import com.jdc.restaurant.client.dto.Sale;
+import com.jdc.restaurant.client.utils.ClientTestFactory;
 import com.jdc.restaurant.client.utils.DatabaseCleanner;
 import com.jdc.restaurant.client.utils.SaleHelper;
 
@@ -32,7 +34,7 @@ class SaleClientTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
-		api = RestaurantClientFactory.generate(SaleApi.class);
+		api = ClientTestFactory.generate(SaleApi.class);
 	}
 
 	@Test
@@ -61,6 +63,14 @@ class SaleClientTest {
 	void findByIdTest() {
 		try {
 			
+			Sale result = api.findById(1).execute().body();
+			
+			assertEquals(1, result.getId());
+			assertEquals(2000, result.getSubTotal());
+			assertEquals(100, result.getTax());
+			assertNotNull(result.getDate());
+			assertNotNull(result.getTable());
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -71,6 +81,9 @@ class SaleClientTest {
 	void findAllTest() {
 		try {
 			
+			List<Sale> result = api.findAll().execute().body();
+			assertEquals(1, result.size());
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -80,7 +93,13 @@ class SaleClientTest {
 	@Order(4)
 	void updateTest() {
 		try {
+			Sale data = api.findById(1).execute().body();
+			data.addOrder(helper.getMenu(), 3);
 			
+			Sale result = api.update(data).execute().body();
+			
+			assertEquals(8000, result.getSubTotal());
+			assertEquals(400, result.getTax());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -13,11 +13,11 @@ import retrofit2.http.Path;
 
 public interface OrderApi {
 
-	@POST("/orders")
-	Call<Order> create(@Body Order order);
+	@POST("/orders/sale/{id}")
+	Call<Order> create(@Path("id") long saleId, @Body Order order);
 
-	@PUT("/orders")
-	Call<Order> update(@Body Order order);
+	@PUT("/orders/sale/{id}")
+	Call<Order> update(@Path("id") long saleId, @Body Order order);
 
 	@GET("/orders")
 	Call<List<Order>> findAll();

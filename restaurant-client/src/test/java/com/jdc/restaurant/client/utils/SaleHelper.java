@@ -1,6 +1,5 @@
 package com.jdc.restaurant.client.utils;
 
-import com.jdc.restaurant.client.RestaurantClientFactory;
 import com.jdc.restaurant.client.api.CategoryApi;
 import com.jdc.restaurant.client.api.MenuApi;
 import com.jdc.restaurant.client.api.TableApi;
@@ -24,15 +23,15 @@ public class SaleHelper {
 			m.setPrice(2000);
 			m.setSize("Small");
 			
-			m.setCategory(RestaurantClientFactory.generate(CategoryApi.class).create(c).execute().body());
+			m.setCategory(ClientTestFactory.generate(CategoryApi.class).create(c).execute().body());
 			
-			this.menu = RestaurantClientFactory.generate(MenuApi.class).create(m).execute().body();
+			this.menu = ClientTestFactory.generate(MenuApi.class).create(m).execute().body();
 			
 			Table t = new Table();
 			t.setSeats(4);
 			t.setTableNumber("A01");
 			
-			table = RestaurantClientFactory.generate(TableApi.class).create(t).execute().body();
+			this.table = ClientTestFactory.generate(TableApi.class).create(t).execute().body();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
