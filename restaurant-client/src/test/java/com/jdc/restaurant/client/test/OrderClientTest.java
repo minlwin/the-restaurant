@@ -2,6 +2,8 @@ package com.jdc.restaurant.client.test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer;
@@ -10,6 +12,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
 import com.jdc.restaurant.client.api.OrderApi;
+import com.jdc.restaurant.client.api.SaleApi;
+import com.jdc.restaurant.client.dto.Sale;
 import com.jdc.restaurant.client.utils.ClientTestFactory;
 import com.jdc.restaurant.client.utils.DatabaseCleanner;
 import com.jdc.restaurant.client.utils.SaleDetailsHelper;
@@ -47,6 +51,10 @@ class OrderClientTest {
 			
 			assertEquals(1, od.getId());
 			
+			Sale sale = ClientTestFactory.generate(SaleApi.class).findById(1).execute().body();
+			assertEquals(6000, sale.getSubTotal());
+			assertEquals(300, sale.getTax());
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -56,6 +64,12 @@ class OrderClientTest {
 	@Order(2)
 	void findByIdTest() {
 		try {
+			
+			com.jdc.restaurant.client.dto.Order od = api.findById(1).execute().body();
+			
+			assertEquals(helper.getMenu().getId(), od.getMenu().getId());
+			assertEquals(helper.getMenu().getCategory().getId(), od.getMenu().getCategory().getId());
+			assertEquals(3, od.getQuantity());
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -67,6 +81,9 @@ class OrderClientTest {
 	void findAllTest() {
 		try {
 			
+			List<com.jdc.restaurant.client.dto.Order> list = api.findAll().execute().body();
+			assertEquals(1, list.size());
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -76,6 +93,15 @@ class OrderClientTest {
 	@Order(4)
 	void updateTest() {
 		try {
+			com.jdc.restaurant.client.dto.Order od = api.findById(1).execute().body();
+			od.setQuantity(1);
+			
+			od = api.update(1, od).execute().body();
+
+			Sale sale = ClientTestFactory.generate(SaleApi.class).findById(1).execute().body();
+			assertEquals(2000, sale.getSubTotal());
+			assertEquals(100, sale.getTax());
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
