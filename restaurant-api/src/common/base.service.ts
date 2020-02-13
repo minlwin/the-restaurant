@@ -1,0 +1,19 @@
+import { Repository, ObjectLiteral } from "typeorm";
+import { IdEnable } from "./id.enable";
+
+export class BaseService<T extends IdEnable> {
+
+    constructor(protected readonly repo:Repository<T>) {}
+
+    findAll() {
+        return this.repo.find()
+    }
+
+    findById(id:number) {
+        return this.repo.findOne(id)
+    }
+
+    save(t:T) {
+        return this.repo.save(t)
+    }
+}
