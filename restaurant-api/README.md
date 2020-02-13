@@ -14,7 +14,7 @@ TypeORM ဆိုတာ Object Relation Mapping (ORM) ကို အခြေခ�
 
 အသုံးပြုမည့် ဝန်ထမ်းတွေကို သိမ်းပေးထားနိုင်တဲ့ Table ဖြစ်ပါတယ်။ ဝန်ထမ်းတွေကို အသစ်ထပ်ပြီး ဖြည့်စွက်တာ၊ ပြင်တာ၊ ပြီးတော့ ရှိသမျှဝန်ထန်းတွေရဲ့ အချက်အလက်တွေကို ပြန်ကြည့်တာတို့ လုပ်နိုင်ဖို့ API တစ်ခုကိုတော့ ဒီမှာ ရေးရမှာ ဖြစ်ပါတယ်။
   
-Employee Class
+[Employee Class](https://github.com/minlwin/the-restaurant/blob/master/restaurant-api/src/employee/model/employee.entity.ts)
 ```
 import { PrimaryGeneratedColumn, Entity, Column, CreateDateColumn, UpdateDateColumn } from "typeorm"
 import { Transform } from 'class-transformer'
