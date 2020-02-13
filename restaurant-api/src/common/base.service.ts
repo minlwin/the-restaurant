@@ -1,4 +1,4 @@
-import { Repository, ObjectLiteral } from "typeorm";
+import { Repository } from "typeorm";
 import { IdEnable } from "./id.enable";
 
 export class BaseService<T extends IdEnable> {

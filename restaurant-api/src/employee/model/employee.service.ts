@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { Repository, Like } from 'typeorm';
-import { Employee } from './employee.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { BaseService } from 'src/common/base.service';
+import { Repository } from 'typeorm';
+import { Employee } from './employee.entity';
 
 @Injectable()
 export class EmployeeService extends BaseService<Employee> {

@@ -2,14 +2,12 @@ import { Controller, Get, Post, Body, Res, Put, Param } from '@nestjs/common';
 import { SaleDetailsService } from '../model/saledetails.service';
 import { BaseController } from 'src/common/base.controller';
 import { SaleDetails } from '../model/saledetails.entity';
-import { SaleService } from '../model/sale.service';
 
 @Controller("orders")
 export class SaleDetailsController extends BaseController<SaleDetails> {
  
     constructor(
-        private readonly detailsService:SaleDetailsService,
-        private readonly saleService:SaleService
+        private readonly detailsService:SaleDetailsService
     ) {
         super(detailsService, '/orders')
     }

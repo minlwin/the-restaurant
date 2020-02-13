@@ -1,6 +1,6 @@
-import { Category } from "./category.entity"
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from "typeorm"
 import { IdEnable } from "src/common/id.enable"
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm"
+import { Category } from "./category.entity"
 
 @Entity()
 export class Product implements IdEnable{
