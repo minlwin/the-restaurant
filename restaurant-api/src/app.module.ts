@@ -8,8 +8,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
   imports: [
     TypeOrmModule.forRoot(),
     MasterModule, 
-        SalesModule, 
-        EmployeeModule, 
+    EmployeeModule, 
+    SalesModule, 
   ],
   controllers: [],
   providers: [],

@@ -1,8 +1,8 @@
 import { PrimaryGeneratedColumn, Entity, ManyToOne, Column } from "typeorm";
 import { Sale } from "./sale.entity";
-import { Product } from "src/master/model/product.entity";
 import { Exclude } from "class-transformer";
 import { IdEnable } from "src/common/id.enable";
+import { Product } from "src/master/model/product.entity";
 
 @Entity()
 export class SaleDetails implements IdEnable{
@@ -11,7 +11,7 @@ export class SaleDetails implements IdEnable{
     id:number
 
     @ManyToOne(type => Sale, sale => sale.details, {
-        eager : true,
+        eager: true,
         nullable : false
     })
     @Exclude()
