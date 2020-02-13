@@ -15,3 +15,7 @@ Nest JS ကိုလေ့လာရင်း ဒီပရိုဂျက်က�
 ## Restaurant REST API
 
 Backend အပိုင်းမှာ နေရာကျပါတယ်။ TypeScript Language နဲ့ Nest JS Framework ကို အသုံးပြုထားပါတယ်။ 
+
+ဒီီ System မှာ အသုံးပြုမည့် Database Structure (ERD) ကတော့ အောက်ပါအတိုင်းဖြစ်ပါတယ်။ 
+
+![ERD](/images/RestaurantERD.png)
