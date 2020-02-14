@@ -9,12 +9,6 @@ Nest JS ဟာ Type Script ကို အသုံးပြုထားတဲ့ 
 1. Employee Module
 
 ```
-import { EmployeeService } from './model/employee.service';
-import { EmployeeController } from './controller/employee.controller';
-import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm'
-import { Employee } from './model/employee.entity'
-
 @Module({
     imports: [
         TypeOrmModule.forFeature([Employee])
@@ -30,18 +24,6 @@ export class EmployeeModule {}
 2. Master Module
 
 ```
-import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { CategoryController } from './controller/category.controller';
-import { ProductController } from './controller/product.controller';
-import { TablesController } from './controller/tables.controller';
-import { Category } from './model/category.entity';
-import { CategoryService } from './model/category.service';
-import { Product } from './model/product.entity';
-import { ProductService } from './model/product.service';
-import { Tables } from './model/tables.entity';
-import { TablesService } from './model/tables.service';
-
 @Module({
     imports: [
         TypeOrmModule.forFeature([Category, Product, Tables])
@@ -63,16 +45,6 @@ export class MasterModule {}
 3. Sale Module
 
 ```
-import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { Product } from 'src/master/model/product.entity';
-import { SaleController } from './controller/sale.controller';
-import { SaleDetailsController } from './controller/saledetails.controller';
-import { Sale } from './model/sale.entity';
-import { SaleService } from './model/sale.service';
-import { SaleDetails } from './model/saledetails.entity';
-import { SaleDetailsService } from './model/saledetails.service';
-
 @Module({
     imports: [
         TypeOrmModule.forFeature([
@@ -102,17 +74,12 @@ TypeORM ဆိုတာ Object Relation Mapping (ORM) ကို အခြေခ�
 
 ![ERD](/images/RestaurantERD.png)
 
-### Employee Relation
+### Employee 
 
-အသုံးပြုမည့် ဝန်ထမ်းတွေကို သိမ်းပေးထားနိုင်တဲ့ Table ဖြစ်ပါတယ်။ ဝန်ထမ်းတွေကို အသစ်ထပ်ပြီး ဖြည့်စွက်တာ၊ ပြင်တာ၊ ပြီးတော့ ရှိသမျှဝန်ထန်းတွေရဲ့ အချက်အလက်တွေကို ပြန်ကြည့်တာတို့ လုပ်နိုင်ဖို့ API တစ်ခုကိုတော့ ဒီမှာ ရေးရမှာ ဖြစ်ပါတယ်။
+အသုံးပြုမည့် ဝန်ထမ်းတွေကို သိမ်းပေးထားနိုင်တဲ့ Table ဖြစ်ပါတယ်။ ဝန်ထမ်းတွေကို အသစ်ထပ်ပြီး ဖြည့်စွက်တာ၊ ပြင်တာ၊ ပြီးတော့ ရှိသမျှဝန်ထန်းတွေရဲ့ အချက်အလက်တွေကို ပြန်ကြည့်တာတို့ လုပ်နိုင်ဖို့ API တစ်ခုကိုတော့ ဒီမှာ ရေးရမှာ ဖြစ်ပါတယ်။ Employees Module ထဲဲမှာပါဝင်တဲ့ Entity တစ်ခုဖြစ်ပါတယ်။
   
 [Employee Class](https://github.com/minlwin/the-restaurant/blob/master/restaurant-api/src/employee/model/employee.entity.ts)
 ```
-import { PrimaryGeneratedColumn, Entity, Column, CreateDateColumn, UpdateDateColumn } from "typeorm"
-import { Transform } from 'class-transformer'
-import moment = require("moment")
-import { IdEnable } from "src/common/id.enable"
-
 @Entity()
 export class Employee implements IdEnable{
     
@@ -135,15 +102,68 @@ export class Employee implements IdEnable{
 }
 ```
 
-### Tables Relation
+### Tables 
+
+Restaurant မှာရှိတဲ့ စားပွဲတွေကို ကိုယ်စားပြုတဲ့ Entity ဖြစ်ပါတယ်။ အရောင်းစာရင်းတွေမှတ်တဲ့ နေရာ၊ အော်ဒါမှာတဲ့အခါတွေမှာ ဘယ်စာပွဲကလဲ ဆိုတာကို ဖေါ်ပြတဲ့ နေရာမှာ အသုံးပြပါမယ်။ Master Data အမျိုးအစားဖြစ်တဲ့ အတွက် အပလီကေးရှင်းစတဲ့ အချိန်မှာ ကြိုပြီး ပြင်ဆင်ထားဖို့လိုအပ်ပါတယ်။ တဖန် လိုအပ်သလို ထပ်ပြီး ဖြည့်စွက်နိုင်သလို ပြင်လို့လဲရရပါမယ်။
+
+```
+@Entity()
+export class Tables implements IdEnable{
+    @PrimaryGeneratedColumn()
+    id:number
+    @Index({unique : true})
+    @Column()
+    tableNumber:string
+    @Column()
+    seats:number
+}
+```
 
 ### Category Relation
+ဟင်းပွဲအမျိုးအစားတွေကို ကိုယ်စားပြုတဲ့ Entity တစ်ခုဖြစ်ပါတယ်။ အမျိုးအစားအလိုက် ဟင်းပွဲတွေကို ရှာဖွေတဲ့ နေရာမှာ အထောက်အကူပြုနိုင်ပါတယ်။ တဖန် အမျိုးအစားအလိုက် ရောင်းအားတွေကို ခန့်မှန်းတဲ့ နေရာမှာလဲ အသုံးပြုနိုင်ပါတယ်။ Master Data အမျိုးအစားဖြစ်ပြီး MasterModule အောက်မှာ ပါဝင်ပါတယ်။
 
-### Product Relation
+```
+@Entity()
+export class Category  implements IdEnable{
+    
+    @PrimaryGeneratedColumn()
+    id:number
 
-### Sale Relation
+    @Index({unique : true})
+    @Column()
+    name:string
+    @Column()
+    color:number
+}
+```
 
-### Sale Details Relation
+### Product 
+ဟင်းပွဲ Menu တွေကို ကိုယ်စားပြုပါတယ်။ ဈေးနူန်းတွေ၊ အရွယ်အစားတွေ ကို ဖေါ်ပြပေးနိုင်ပါတယ်။ Master Data အမျိုးအစားဖြစ်ပြီး MasterModule အောက်မှာ ပါဝင်ပါတယ်။
+
+```
+@Entity()
+export class Product implements IdEnable{
+    
+    @PrimaryGeneratedColumn()
+    id:number
+    @Column()
+    name:string
+
+    @ManyToOne(type => Category, {
+        nullable : false,
+        eager: true
+    })
+    category:Category
+    @Column()
+    price:number
+    @Column()
+    size:String
+}
+```
+
+### Sale 
+
+### Sale Details 
 
 ## Controllers
 
