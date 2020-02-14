@@ -7,62 +7,8 @@ Nest JS ဟာ Type Script ကို အသုံးပြုထားတဲ့ 
 လက်ရှိ System မှာတော့ အောက်ပါအတိုင်း Module တွေကိို ခွဲခြားရေးသားထားပါတယ်။
 
 1. Employee Module
-
-```typescript
-@Module({
-    imports: [
-        TypeOrmModule.forFeature([Employee])
-    ],
-    controllers: [
-        EmployeeController, ],
-    providers: [
-        EmployeeService, ],
-})
-export class EmployeeModule {}
-```
-
 2. Master Module
-
-```typescript
-@Module({
-    imports: [
-        TypeOrmModule.forFeature([Category, Product, Tables])
-    ],
-    controllers: [
-        CategoryController,
-        ProductController,
-        TablesController
-    ],
-    providers: [
-        CategoryService,
-        ProductService,
-        TablesService
-    ],
-})
-export class MasterModule {}
-```
-
 3. Sale Module
-
-```typescript
-@Module({
-    imports: [
-        TypeOrmModule.forFeature([
-            Sale,
-            SaleDetails,
-            Product
-        ])
-    ],
-    controllers: [
-        SaleController, 
-        SaleDetailsController],
-    providers: [
-        SaleService,
-        SaleDetailsService
-    ],
-})
-export class SalesModule {}
-```
 
 
 ## Persistance Layer
