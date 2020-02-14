@@ -8,7 +8,7 @@ Nest JS ဟာ Type Script ကို အသုံးပြုထားတဲ့ 
 
 1. Employee Module
 
-```
+```typescript
 @Module({
     imports: [
         TypeOrmModule.forFeature([Employee])
@@ -23,7 +23,7 @@ export class EmployeeModule {}
 
 2. Master Module
 
-```
+```typescript
 @Module({
     imports: [
         TypeOrmModule.forFeature([Category, Product, Tables])
@@ -44,7 +44,7 @@ export class MasterModule {}
 
 3. Sale Module
 
-```
+```typescript
 @Module({
     imports: [
         TypeOrmModule.forFeature([
@@ -79,7 +79,7 @@ TypeORM ဆိုတာ Object Relation Mapping (ORM) ကို အခြေခ�
 အသုံးပြုမည့် ဝန်ထမ်းတွေကို သိမ်းပေးထားနိုင်တဲ့ Table ဖြစ်ပါတယ်။ ဝန်ထမ်းတွေကို အသစ်ထပ်ပြီး ဖြည့်စွက်တာ၊ ပြင်တာ၊ ပြီးတော့ ရှိသမျှဝန်ထန်းတွေရဲ့ အချက်အလက်တွေကို ပြန်ကြည့်တာတို့ လုပ်နိုင်ဖို့ API တစ်ခုကိုတော့ ဒီမှာ ရေးရမှာ ဖြစ်ပါတယ်။ Employees Module ထဲဲမှာပါဝင်တဲ့ Entity တစ်ခုဖြစ်ပါတယ်။
   
 [Employee Class](https://github.com/minlwin/the-restaurant/blob/master/restaurant-api/src/employee/model/employee.entity.ts)
-```
+```typescript
 @Entity()
 export class Employee implements IdEnable{
     
@@ -106,7 +106,7 @@ export class Employee implements IdEnable{
 
 Restaurant မှာရှိတဲ့ စားပွဲတွေကို ကိုယ်စားပြုတဲ့ Entity ဖြစ်ပါတယ်။ အရောင်းစာရင်းတွေမှတ်တဲ့ နေရာ၊ အော်ဒါမှာတဲ့အခါတွေမှာ ဘယ်စာပွဲကလဲ ဆိုတာကို ဖေါ်ပြတဲ့ နေရာမှာ အသုံးပြပါမယ်။ Master Data အမျိုးအစားဖြစ်တဲ့ အတွက် အပလီကေးရှင်းစတဲ့ အချိန်မှာ ကြိုပြီး ပြင်ဆင်ထားဖို့လိုအပ်ပါတယ်။ တဖန် လိုအပ်သလို ထပ်ပြီး ဖြည့်စွက်နိုင်သလို ပြင်လို့လဲရရပါမယ်။
 
-```
+```typescript
 @Entity()
 export class Tables implements IdEnable{
     @PrimaryGeneratedColumn()
@@ -122,7 +122,7 @@ export class Tables implements IdEnable{
 ### Category Relation
 ဟင်းပွဲအမျိုးအစားတွေကို ကိုယ်စားပြုတဲ့ Entity တစ်ခုဖြစ်ပါတယ်။ အမျိုးအစားအလိုက် ဟင်းပွဲတွေကို ရှာဖွေတဲ့ နေရာမှာ အထောက်အကူပြုနိုင်ပါတယ်။ တဖန် အမျိုးအစားအလိုက် ရောင်းအားတွေကို ခန့်မှန်းတဲ့ နေရာမှာလဲ အသုံးပြုနိုင်ပါတယ်။ Master Data အမျိုးအစားဖြစ်ပြီး MasterModule အောက်မှာ ပါဝင်ပါတယ်။
 
-```
+```typescript
 @Entity()
 export class Category  implements IdEnable{
     
@@ -140,7 +140,7 @@ export class Category  implements IdEnable{
 ### Product 
 ဟင်းပွဲ Menu တွေကို ကိုယ်စားပြုပါတယ်။ ဈေးနူန်းတွေ၊ အရွယ်အစားတွေ ကို ဖေါ်ပြပေးနိုင်ပါတယ်။ Master Data အမျိုးအစားဖြစ်ပြီး MasterModule အောက်မှာ ပါဝင်ပါတယ်။
 
-```
+```typescript
 @Entity()
 export class Product implements IdEnable{
     
