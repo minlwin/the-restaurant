@@ -14,6 +14,13 @@ Entity တွေဟာ Relational Database ထဲက  Table တွေနဲ့ M
 
 Entity တွေဟာ Table တွေကို ကိုယ်စားပြုတဲ့ Object တွေဖြစ်ကြပြီး Repository တွေက Database Operation တွေကို ဆောင်ရွက်ပေးနိုင်တဲ့ Object တွေ ဖြစ်ကြပါတယ်။
 
+### Business Logic Layer
+
+အထက်ပါ Diagram ထဲမှာပါဝင်တဲ့ Services တွေဟာ Business Logic Layer မှာ တာဝန်ကျပါတယ်။ ပြန်ပြီး အသုံးပြုနိုင်တဲ့ Business Logic တွေကို Wrap လုပ်ပေးမယ်၊ ပြီးတော့ Repository တွေကို အသုံးပြုပြီး Business Logic အလိုက် Prensation Layer အတွက် Data တွေကို Support လုပ်ပေးမယ်။ Presentation Layer ကနေ ရလာတဲ့ User Input Data တွေကိုနဲ့ Repository ကို အသုံးပြုပြီး Persistance Data တွေကို Update လုပ်ပေးပါမယ်။
+
+### Presentation Layer 
+
+
 ## Data Structure
 Database အနေနဲ့ကတော့ Open Source Database ဖြစ်တဲ့ MariaDB ကို အသုံးပြုသွားပါမယ်။ Nest JS Framework မှာ Relational Database ကို အသုံးပြုဖို့အတွက် TypeORM Framework ကို အသုံးပြုသွားမှာဖြစ်ပါတယ်။
 
