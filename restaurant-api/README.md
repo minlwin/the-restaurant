@@ -6,9 +6,9 @@ Backend အပိုင်းမှာ နေရာကျပါတယ်။ Type
 Nest JS ဟာ Type Script ကို အသုံးပြုထားတဲ့ အတွက် ရည်ရွယ်ချက်အပေါ်မူတည်ပြီး Module တွေကို ခွဲခြားရေးသားနိုင်ပါတယ်။
 လက်ရှိ System မှာတော့ အောက်ပါအတိုင်း Module တွေကိို ခွဲခြားရေးသားထားပါတယ်။
 
-[1. Employee Module](1.Employee.md)
-[2. Master Module](2.Master.md)
-[3. Sale Module](3.Sale.md)
+1. [Employee Module](1.Employee.md)
+2. [Master Module](2.Master.md)
+3. [Sale Module](3.Sale.md)
 
 
 ## Persistance Layer
