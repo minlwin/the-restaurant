@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { BaseServiceMutable } from 'src/common/base.service.mutable';
 import { Repository } from 'typeorm';
 import { Category } from './category.entity';
-import { InjectRepository } from '@nestjs/typeorm';
-import { BaseService } from 'src/common/base.service';
 
 @Injectable()
-export class CategoryService extends BaseService<Category> {
+export class CategoryService extends BaseServiceMutable<Category> {
     
     constructor(
         @InjectRepository(Category)

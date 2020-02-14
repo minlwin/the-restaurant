@@ -13,7 +13,4 @@ export class BaseService<T extends IdEnable> {
         return this.repo.findOne(id)
     }
 
-    save(t:T) {
-        return this.repo.save(t)
-    }
 }

@@ -4,7 +4,7 @@ import { IdEnable } from "./id.enable";
 
 export class BaseController<T extends IdEnable> {
 
-    constructor(protected readonly service:BaseService<T>, private readonly path:string) {}
+    constructor(protected readonly service:BaseService<T>) {}
 
     @Get()
     @UseInterceptors(ClassSerializerInterceptor)
@@ -18,15 +18,4 @@ export class BaseController<T extends IdEnable> {
         return this.service.findById(id)
     }
 
-    @Post()
-    async create(@Body() t:T, @Res() res:any) {
-        let savedResult = await this.service.save(t)
-        res.redirect(`${this.path}/${savedResult.id}`)
-    }
-
-    @Put()
-    async update(@Body() t:T, @Res() res:any) {
-        let savedResult = await this.service.save(t)
-        res.redirect(`${this.path}/${savedResult.id}`)
-    }
 }

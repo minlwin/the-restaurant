@@ -1,10 +1,10 @@
 import { Controller } from '@nestjs/common';
-import { CategoryService } from '../model/category.service';
+import { BaseControllerMutable } from 'src/common/base.controller.mutable';
 import { Category } from '../model/category.entity';
-import { BaseController } from 'src/common/base.controller';
+import { CategoryService } from '../model/category.service';
 
 @Controller('categories')
-export class CategoryController extends BaseController<Category> {
+export class CategoryController extends BaseControllerMutable<Category> {
 
     constructor(service:CategoryService) {
         super(service, '/categories')

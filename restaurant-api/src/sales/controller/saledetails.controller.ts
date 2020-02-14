@@ -9,7 +9,7 @@ export class SaleDetailsController extends BaseController<SaleDetails> {
     constructor(
         private readonly detailsService:SaleDetailsService
     ) {
-        super(detailsService, '/orders')
+        super(detailsService)
     }
 
     @Post('/sale/:id')
@@ -22,13 +22,5 @@ export class SaleDetailsController extends BaseController<SaleDetails> {
     async updateBySale(@Param('id') saleId:number, @Body() t:SaleDetails, @Res() res:any) {
         let savedResult = await this.detailsService.saveBySale(saleId, t)
         res.redirect(`/orders/${savedResult.id}`)
-    } 
-    
-    create(t:SaleDetails, res:any) {
-        return new Promise<void>((resolve, reject) => {})
-    }
-
-    update(t:SaleDetails, res:any) {
-        return new Promise<void>((resolve, reject) => {})
-    }
+    }     
 }

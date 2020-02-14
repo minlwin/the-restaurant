@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { BaseService } from 'src/common/base.service';
+import { BaseServiceMutable } from 'src/common/base.service.mutable';
 import { Repository } from 'typeorm';
 import { Employee } from './employee.entity';
 
 @Injectable()
-export class EmployeeService extends BaseService<Employee> {
+export class EmployeeService extends BaseServiceMutable<Employee> {
     constructor(
         @InjectRepository(Employee)
         repo:Repository<Employee>
