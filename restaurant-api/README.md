@@ -1,5 +1,8 @@
 # Restaurant API
-Backend အပိုင်းမှာ နေရာကျပါတယ်။ TypeScript Language နဲ့ Nest JS Framework ကို အသုံးပြုထားပါတယ်။ 
+
+Restaurant Management System ရဲ့ Backend အပိုင်းမှာ နေရာကျပါတယ်။ TypeScript Language နဲ့ Nest JS Framework ကို အသုံးပြုထားပါတယ်။ 
+
+ကောင်တာအသုံးပြုသူတွေကော၊ စာပွဲထိုးလေးတွေကော၊ ဆိုင်ပိုင်ရှင်ပါ မတူညီတဲ့ Platform တွေကနေ ဒီ System ကို အသုံးပြုကြပါမယ်။ ဘယ်လို Platform ကပဲဖြစ်ဖြစ် ဘယ်လို Language ပဲဖြစ်ဖြစ် တူညီတဲ့ Resource တွေကို Support လုပ်ပေးဖို့အတွက် ဒီ Project မှာ တာဝန်ရှိပါတယ်။ 
 
 ## Modular Approach
 
