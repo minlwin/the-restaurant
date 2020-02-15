@@ -123,12 +123,12 @@ TypeORM ဆိုတာ Object Relation Mapping (ORM) ကို အခြေခ�
 Nest JS ဟာ Type Script ကို အသုံးပြုထားတဲ့ အတွက် ရည်ရွယ်ချက်အပေါ်မူတည်ပြီး Module တွေကို ခွဲခြားရေးသားနိုင်ပါတယ်။
 လက်ရှိ System မှာတော့ အောက်ပါအတိုင်း Module တွေကိို ခွဲခြားရေးသားထားပါတယ်။
 
-1. [Employee Module](1.Employee.md)
+1. [Employee Module](src/employee)
 >Restaurant Application ကို အသုံးပြုမည့် ဝန်ထမ်းတွေကို Manage လုပ်တာတွေကို ဆောင်ရွက်ပေးမည့် Module ဖြစ်ပါတယ်။
 
-2. [Master Module](2.Master.md)
+2. [Master Module](src/master)
 >Restaurant Application အတွက် မဖြစ်မနေပါဝင်ရမည့် Master Data တွေကို Manage လုပ်ပေးနိုင်တဲ့ Module ဖြစ်ပါတယ်။ Tables (စားပွဲခုံ) တွေ၊ Category (ဟင်းပွဲအမျိုးအစား) တွေနဲ့ Menu (ဟင်းပွဲ) တွေအတွက် Entity, Service, Controller တွေပါဝင်ပါမယ်။ 
 
-3. [Sale Module](3.Sale.md)
+3. [Sale Module](src/sales)
 >Restaurant Application အတွက် Business Transaction ကို Manage လုပ်ပေးနိုင်တဲ့ Module ဖြစ်ပါတယ်။ Customer တွေရဲ့ မှာထားတဲ့ ဘောင်ချာတစ်ခုကို ကိုယ်စားပြုတဲ့ Sale နဲ့ အော်ဒါတွေကို ကိုယ်စားပြုတဲ့ Sale Details တွေအတွက် Entity, Service, Controller တွေပါဝင်ပါမယ်။ 
 
