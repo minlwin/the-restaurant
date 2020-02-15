@@ -20,3 +20,17 @@ Application ကို အလုပ်လုပ်စေဖို့ ကြို
 })
 export class MasterModule {}
 ```
+
+MasterModule ထဲမှာတော့ TypeOrmModule ကနေ Entity တွေအတွက် Repository တွေကို Inject လုပ်ဖို့အတွက် TypeOrmModule.forFeature([Category, Product, Tables]) ဆိုပြီး Import လုပ်ထားပါတယ်။ 
+
+Module ထဲမှာ အသုံးပြုမည့် Controller တွေဖြစ်ကြတဲ့ CategoryController, ProductController, TablesController တွေကို Controller အနေနဲ့ Define လုပ်ထားပါတယ်။
+
+CategoryService, ProductService, TablesService တွေကို Controller တွေထဲမှာ Inject လုပ်ပြီး အသုံးပြုနိုင်အောင် Provider အနေနဲ့ Define လုပ်ထားပါတယ်။
+
+## Entities
+
+
+## Services
+
+
+## Controllers
