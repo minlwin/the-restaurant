@@ -58,8 +58,11 @@ export class BaseServiceMutable<T extends IdEnable> extends BaseService<T> {
 
 ### Presentation Layer 
 
+Request တွေကို Handle လုပ်ပေးနေတဲ့ အပိုင်းဖြစ်ပြီး၊ Nest JS Framework မှာတော့ Controller တွေက လုပ်ဆောင်ပေးရပါတယ်။ လာသမျှ Request တွေအားလုံးဟာ Nest Container ရဲ့ Routing Mechanism က လက်ခံယူပြီးတော့ Request URL နဲ့ Request Method တွေနဲ့ Map လုပ်ထားတဲ့ Controller Method တွေကို Invoke လုပ်ပြီး ရလာတဲ့ Result တွေကနေနဲ့ Client ဆီကို Response ပြန်ပေးမှာ ဖြစ်ပါတယ်။
+
 
 ## Data Structure
+
 Database အနေနဲ့ကတော့ Open Source Database ဖြစ်တဲ့ MariaDB ကို အသုံးပြုသွားပါမယ်။ Nest JS Framework မှာ Relational Database ကို အသုံးပြုဖို့အတွက် TypeORM Framework ကို အသုံးပြုသွားမှာဖြစ်ပါတယ်။
 
 TypeORM ဆိုတာ Object Relation Mapping (ORM) ကို အခြေခံထားတဲ့ Framework တစ်ခုဖြစ်ပါတယ်။ Nest JS မှာ TypeORM ကို အသုံးပြုနိုင်အောင် ပြင်ဆင်ပေးထားပါတယ်။
