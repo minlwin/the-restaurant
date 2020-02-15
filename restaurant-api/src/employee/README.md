@@ -44,3 +44,49 @@ export class Employee implements IdEnable{
     modification:Date
 }
 ```
+
+## Services
+
+Employee Resource ကို Handle လုပ်ပေးနိုင်တဲ့ EmployeeService Class ဖြစ်ပါတယ်။
+```typescript
+@Injectable()
+export class EmployeeService extends BaseServiceMutable<Employee> {
+    constructor(
+        @InjectRepository(Employee)
+        repo:Repository<Employee>
+    ) {
+        super(repo)
+    }
+
+    findByNameLike(name:String) {
+
+        if(!name) {
+            return this.repo.find()
+        }
+
+        return this.repo.createQueryBuilder()
+            .where('lower(name) like lower(:name)', {name: `%${name.toLowerCase()}%s`}).getMany()
+    }
+}
+```
+
+Provider တွေကနေ Inject လုပ်ပေးနိုင်အောင် @Injectable Decorator ကို ရေးသားထားပါတယ်။ တဖန် အခြေခံ CRUD Operation တွေကို အသုံးပြုနိုင်အောင် BaseServiceMutable Class ကို Extends လုပ်ထားပါတယ်။ BaseServiceMutable class ဟာ Generics Type ဖြစ်တဲ့အတွက် Type Parameter အနေနဲ့ Employee ကို ပေးထားတဲ့ အတွက် BaseServiceMutable ရဲ့ save(t:T), findAll():Promise<T[]> နဲ့ findById(id:number):Promise<T> method တွေရဲ့ T နေရာမှာ Employee က အစားထိုးဝင်ရောက်ပြီး Employee ကို အသုံးပြုနိုင်တဲ့ Operation တွေဖြစ်လာပါတယ်။
+
+## Controllers
+
+Employee Resource တွေကို အသုံးပြုနိုင်တဲ့ End Point API ဖြစ်ပါတယ်။
+
+```typescript
+@Controller("employees")
+export class EmployeeController extends BaseControllerMutable<Employee> {
+
+    constructor(private readonly empService:EmployeeService) {
+        super(empService, '/employees')
+    }
+
+    @Get('search')
+    search(@Query('name') name:string) {
+        return this.empService.findByNameLike(name)
+    }
+}
+```

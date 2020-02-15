@@ -6,12 +6,12 @@ import { EmployeeService } from '../model/employee.service';
 @Controller("employees")
 export class EmployeeController extends BaseControllerMutable<Employee> {
 
-    constructor(service:EmployeeService) {
-        super(service, '/employees')
+    constructor(private readonly empService:EmployeeService) {
+        super(empService, '/employees')
     }
 
     @Get('search')
     search(@Query('name') name:string) {
-
+        return this.empService.findByNameLike(name)
     }
 }

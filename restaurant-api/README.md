@@ -20,14 +20,14 @@ Entity တွေဟာ Table တွေကို ကိုယ်စားပြ�
 
 Business Logic ကို ရေးသားကြတဲ့နေရာမှာ တူညီတဲ့ အပိုင်းတွေရှိနိုင်ပါတယ်။ Resource တွေကို ID နဲ့ရှာတာတို့။ Resource တွေအားလုံးကို ရှာတာတို့၊ Resource တွေကို Insert, Update, Delete လုပ်တာတို့ တူညီတဲ့ လုပ်ဆောင်မှုတွေရှိနေနိုင်ပါတယ်။ အဲ့ဒီအတွက် Generic Base Class လေးတွေကို ရေးသားထားပါတယ်။ Service Class တွေက သက်ဆိုင်ရာ Base Class ကို Extend လုပ်ထားပြီး Specific Logic တွေကိုပဲ မိမိအထဲမှာ ရေးသားသွားမှာ ဖြစ်ပါတယ်။
 
-[IdEnable](https://github.com/minlwin/the-restaurant/blob/master/restaurant-api/src/common/id.enable.ts)
+[IdEnable](src/common/id.enable.ts)
 ```.typescript
 export interface IdEnable extends ObjectLiteral{
     id:number
 }
 ```
 
-[BaseService](https://github.com/minlwin/the-restaurant/blob/master/restaurant-api/src/common/base.controller.ts)
+[BaseService](src/common/base.controller.ts)
 ```typescript
 export class BaseService<T extends IdEnable> {
 
@@ -42,7 +42,7 @@ export class BaseService<T extends IdEnable> {
     }
 }
 ```
-[BaseServiceMutable](https://github.com/minlwin/the-restaurant/blob/master/restaurant-api/src/common/base.controller.mutable.ts)
+[BaseServiceMutable](src/common/base.controller.mutable.ts)
 ```typescript
 export class BaseServiceMutable<T extends IdEnable> extends BaseService<T> {
 
@@ -84,6 +84,12 @@ export class BaseController<T extends IdEnable> {
 }
 ```
 
+|Mapping Path|Request Method|Argument|Description|
+|/root-path|GET||Resource တွေအားလုံးကို ပြန်ပေးနိုင်မှာ ဖြစ်တယ်|
+|/root-path/:id|GET|id from Path|Resource Object ကို ID နဲ့ ရှာပေးနိုင်မှာ ဖြစ်တယ်|
+
+>Root Path နေရာမှာ Extends လုပ်လာတဲ့ Controller Class ရဲ့ Path က အစားထိုးဝင်ရောက်မှာ ဖြစ်တယ်
+
 [Base Mutable Controller](src/common/base.controller.mutable.ts)
 ```typescript
 export class BaseControllerMutable<T extends IdEnable> extends BaseController<T> {
@@ -106,7 +112,15 @@ export class BaseControllerMutable<T extends IdEnable> extends BaseController<T>
     }
 }
 ```
+BaseControllerMutable ဟာ BaseController ကို Extends လုပ်ထားတာဖြစ်တဲ့ အတွက် BaseController မှာ သုံးလို့ရတဲ့ Method တွေကိုလဲ BaseControllerMutable မှာ သုံးလို့ရမှာဖြစ်တယ်။
 
+|Mapping Path|Request Method|Argument|Description|
+|/root-path|GET||Resource တွေအားလုံးကို ပြန်ပေးနိုင်မှာ ဖြစ်တယ်|
+|/root-path/:id|GET|id from path|Resource Object ကို ID နဲ့ ရှာပေးနိုင်မှာ ဖြစ်တယ်|
+|/root-path|POST|Resource From Body|Resource တစ်ခုကို Create လုပ်တဲ့နေရာမှာ အသုံးပြုပါမယ်|
+|/root-path|PUT||Resource From Body|Resource တစ်ခုကို Update လုပ်တဲ့နေရာမှာ အသုံးပြုပါမယ်|
+
+>Root Path နေရာမှာ Extends လုပ်လာတဲ့ Controller Class ရဲ့ Path က အစားထိုးဝင်ရောက်မှာ ဖြစ်တယ်
 
 ## Data Structure
 
