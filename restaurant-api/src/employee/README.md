@@ -90,3 +90,14 @@ export class EmployeeController extends BaseControllerMutable<Employee> {
     }
 }
 ```
+
+EmployeeController ဟာ BaseControllerMutable ကို Extends လုပ်ထားတဲ့ အတွက် BaseControllerMutable မှာရှိတဲ့ Operation တွေကို အမွေဆက်ခံရရှိပါတယ်။ ဒါ့အပြင် Name နဲ့ Employee တွေကို ရှာနိုင်ဖို့လဲ EmployeeController ထဲမှာ search() Method ကို ရေးသားထားပါတယ်။
+
+| Mapping Path | Request Method | Argument | Description |
+|  ---  | --- | --- | --- |
+| /employees | GET | | Employee တွေအားလုံးကို ပြန်ပေးနိုင်မှာ ဖြစ်တယ် |
+| /employees/:id | GET | id from path | Employee Object ကို ID နဲ့ ရှာပေးနိုင်မှာ ဖြစ်တယ် |
+| /employees | POST | Employee From Body | Employee တစ်ခုကို Create လုပ်တဲ့နေရာမှာ အသုံးပြုပါမယ် |
+| /employees | PUT | Employee From Body | Employee တစ်ခုကို Update လုပ်တဲ့နေရာမှာ အသုံးပြုပါမယ် |
+| /employees/search | GET | name From Query Param | Employee တွေကို name နဲ့ ရှာပေးနိုင်မှာ ဖြစ်တယ် |
+
