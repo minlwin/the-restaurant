@@ -124,6 +124,7 @@ BaseControllerMutable ဟာ BaseController ကို Extends လုပ်ထာ
 
 >Root Path နေရာမှာ Extends လုပ်လာတဲ့ Controller Class ရဲ့ Path က အစားထိုးဝင်ရောက်မှာ ဖြစ်တယ်
 
+
 ## Data Structure
 
 Database အနေနဲ့ကတော့ Open Source Database ဖြစ်တဲ့ MariaDB ကို အသုံးပြုသွားပါမယ်။ Nest JS Framework မှာ Relational Database ကို အသုံးပြုဖို့အတွက် TypeORM Framework ကို အသုံးပြုသွားမှာဖြစ်ပါတယ်။
