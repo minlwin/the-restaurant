@@ -1,6 +1,6 @@
 package com.jdc.restaurant.client.test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 
@@ -16,6 +16,7 @@ import com.jdc.restaurant.client.api.CategoryApi;
 import com.jdc.restaurant.client.api.MenuApi;
 import com.jdc.restaurant.client.dto.Category;
 import com.jdc.restaurant.client.dto.Menu;
+import com.jdc.restaurant.client.utils.ClientTestFactory;
 import com.jdc.restaurant.client.utils.DatabaseCleanner;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -32,7 +33,7 @@ class MenuClientTest {
 		category.setColor(20);
 		category.setName("Chinese");
 		
-		category = RestaurantClientFactory.generate(CategoryApi.class).create(category).execute().body();
+		category = ClientTestFactory.generate(CategoryApi.class).create(category).execute().body();
 	}
 
 	@BeforeEach
@@ -103,4 +104,19 @@ class MenuClientTest {
 		}
 	}
 
+	@Test
+	@Order(5)
+	void findByCategoryTest() {
+		try {
+			List<Menu> data = api.findByCategory(1).execute().body();
+			assertEquals(1, data.size());
+			
+			
+			data = api.findByCategory(2).execute().body();
+			assertEquals(0, data.size());
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

@@ -12,8 +12,7 @@ import { SaleDetailsService } from './model/saledetails.service';
     imports: [
         TypeOrmModule.forFeature([
             Sale,
-            SaleDetails,
-            Product
+            SaleDetails
         ])
     ],
     controllers: [

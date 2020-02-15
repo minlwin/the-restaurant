@@ -12,9 +12,9 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
-import com.jdc.restaurant.client.RestaurantClientFactory;
 import com.jdc.restaurant.client.api.TableApi;
 import com.jdc.restaurant.client.dto.Table;
+import com.jdc.restaurant.client.utils.ClientTestFactory;
 import com.jdc.restaurant.client.utils.DatabaseCleanner;
 
 import retrofit2.Response;
@@ -31,7 +31,7 @@ class TableClientTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
-		api = RestaurantClientFactory.generate(TableApi.class);
+		api = ClientTestFactory.generate(TableApi.class);
 	}
 
 	@Test

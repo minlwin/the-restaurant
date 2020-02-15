@@ -1,5 +1,5 @@
+import { ClassSerializerInterceptor, Get, Param, UseInterceptors } from "@nestjs/common";
 import { BaseService } from "./base.service";
-import { Get, Param, Post, Body, Put, UseInterceptors, ClassSerializerInterceptor, Res } from "@nestjs/common";
 import { IdEnable } from "./id.enable";
 
 export class BaseController<T extends IdEnable> {

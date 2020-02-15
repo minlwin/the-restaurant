@@ -12,9 +12,9 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
-import com.jdc.restaurant.client.RestaurantClientFactory;
 import com.jdc.restaurant.client.api.CategoryApi;
 import com.jdc.restaurant.client.dto.Category;
+import com.jdc.restaurant.client.utils.ClientTestFactory;
 import com.jdc.restaurant.client.utils.DatabaseCleanner;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -29,7 +29,7 @@ class CategoryClientTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
-		api = RestaurantClientFactory.generate(CategoryApi.class);
+		api = ClientTestFactory.generate(CategoryApi.class);
 	}
 
 	@Test

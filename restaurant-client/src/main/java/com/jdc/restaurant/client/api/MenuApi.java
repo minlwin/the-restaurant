@@ -24,4 +24,7 @@ public interface MenuApi {
 	
 	@GET("/products/{id}")
 	Call<Menu> findById(@Path("id") long id);
+
+	@GET("/products/category/{id}")
+	Call<List<Menu>> findByCategory(@Path("id") long id);
 }

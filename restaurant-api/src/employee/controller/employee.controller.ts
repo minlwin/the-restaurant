@@ -1,4 +1,4 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import { ClassSerializerInterceptor, Controller, Get, Query, UseInterceptors } from '@nestjs/common';
 import { BaseControllerMutable } from 'src/common/base.controller.mutable';
 import { Employee } from '../model/employee.entity';
 import { EmployeeService } from '../model/employee.service';
@@ -11,7 +11,8 @@ export class EmployeeController extends BaseControllerMutable<Employee> {
     }
 
     @Get('search')
-    search(@Query('name') name:string) {
+    @UseInterceptors(ClassSerializerInterceptor)
+    search(@Query('name') name:string):Promise<Employee[]> {
         return this.empService.findByNameLike(name)
     }
 }

@@ -1,7 +1,7 @@
 import { PrimaryGeneratedColumn, Entity, Column, CreateDateColumn, UpdateDateColumn } from "typeorm"
-import { Transform } from 'class-transformer'
-import moment = require("moment")
 import { IdEnable } from "src/common/id.enable"
+import { Transform } from "class-transformer"
+import moment = require("moment")
 
 @Entity()
 export class Employee implements IdEnable{
@@ -19,9 +19,9 @@ export class Employee implements IdEnable{
     @Column()
     password:string
     @CreateDateColumn()
-    @Transform(d => moment(d).format('YYYY-MM-DD HH:mm:ss'))
+    @Transform(d => moment(d).format())
     creation:Date
     @UpdateDateColumn()
-    @Transform(d => moment(d).format('YYYY-MM-DD HH:mm:ss'))
+    @Transform(d => moment(d).format())
     modification:Date
 }

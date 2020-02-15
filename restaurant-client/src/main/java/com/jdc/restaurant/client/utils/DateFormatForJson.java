@@ -5,5 +5,5 @@ import java.text.SimpleDateFormat;
 
 public class DateFormatForJson {
 
-	public static DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	public static DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 }

@@ -1,9 +1,9 @@
 import { PrimaryGeneratedColumn, Entity, Column, ManyToOne, OneToMany } from "typeorm";
 import { SaleDetails } from "./saledetails.entity";
-import { Transform } from 'class-transformer'
-import moment = require("moment");
 import { Tables } from "src/master/model/tables.entity";
 import { IdEnable } from "src/common/id.enable";
+import { Transform } from "class-transformer"
+import moment = require("moment")
 
 @Entity()
 export class Sale implements IdEnable {
@@ -15,7 +15,7 @@ export class Sale implements IdEnable {
     })
     tables:Tables
     @Column()
-    @Transform(d => moment(d).format('YYYY-MM-DD HH:mm:ss'))
+    @Transform(d => moment(d).format())
     saleDate:Date
     @Column()
     subTotal:number

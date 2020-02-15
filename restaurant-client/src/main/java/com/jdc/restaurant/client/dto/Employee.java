@@ -11,6 +11,7 @@ public class Employee {
 
 	private long id;
 	private String name;
+	private String role;
 	private String email;
 	private String phone;
 	private String password;
@@ -35,6 +36,14 @@ public class Employee {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 	public String getEmail() {
