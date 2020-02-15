@@ -59,6 +59,53 @@ export class BaseServiceMutable<T extends IdEnable> extends BaseService<T> {
 ### Presentation Layer 
 
 Request တွေကို Handle လုပ်ပေးနေတဲ့ အပိုင်းဖြစ်ပြီး၊ Nest JS Framework မှာတော့ Controller တွေက လုပ်ဆောင်ပေးရပါတယ်။ လာသမျှ Request တွေအားလုံးဟာ Nest Container ရဲ့ Routing Mechanism က လက်ခံယူပြီးတော့ Request URL နဲ့ Request Method တွေနဲ့ Map လုပ်ထားတဲ့ Controller Method တွေကို Invoke လုပ်ပြီး ရလာတဲ့ Result တွေကနေနဲ့ Client ဆီကို Response ပြန်ပေးမှာ ဖြစ်ပါတယ်။
+![Request Mapping](/images/type2mvc.png)
+
+Controller တွေမှာလဲ တူညီတဲ့ လုပ်ဆောင်ချက်တွေရှိတဲ့ အတွက် Generics ကို အသုံးပြုပြီး Base Controller လေးကို ရေးသားထားပါတယ်။
+
+[Base Controller](src/common/base.controller.ts)
+```typescript
+export class BaseController<T extends IdEnable> {
+
+    constructor(protected readonly service:BaseService<T>) {}
+
+    @Get()
+    @UseInterceptors(ClassSerializerInterceptor)
+    index() {
+        return this.service.findAll()
+    }
+
+    @Get(':id')
+    @UseInterceptors(ClassSerializerInterceptor)
+    findById(@Param('id') id:number) {
+        return this.service.findById(id)
+    }
+
+}
+```
+
+[Base Mutable Controller](src/common/base.controller.mutable.ts)
+```typescript
+export class BaseControllerMutable<T extends IdEnable> extends BaseController<T> {
+
+    constructor(private readonly mutableService:BaseServiceMutable<T>, 
+        private readonly path:string) {
+            super(mutableService)
+    }
+
+    @Post()
+    async create(@Body() t:T, @Res() res:any) {
+        let savedResult = await this.mutableService.save(t)
+        res.redirect(`${this.path}/${savedResult.id}`)
+    }
+
+    @Put()
+    async update(@Body() t:T, @Res() res:any) {
+        let savedResult = await this.mutableService.save(t)
+        res.redirect(`${this.path}/${savedResult.id}`)
+    }
+}
+```
 
 
 ## Data Structure
