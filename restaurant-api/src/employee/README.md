@@ -20,6 +20,7 @@ EmployeeModule ထဲမှာတော့ TypeOrmModule ကနေ Employee အ�
 
 EmployeeModule ထဲမှာအသုံးပြုမည့် Entity ကတော့ ဝန်ထမ်းတွေကို ကိုယ်စားပြုမည့် Entity Class တစ်ခုရှိပါတယ်။
 
+[Employee](model/employee.entity.ts)
 ```typescript
 @Entity()
 export class Employee implements IdEnable{
@@ -48,6 +49,8 @@ export class Employee implements IdEnable{
 ## Services
 
 Employee Resource ကို Handle လုပ်ပေးနိုင်တဲ့ EmployeeService Class ဖြစ်ပါတယ်။
+
+[EmployeeService](model/employee.service.ts)
 ```typescript
 @Injectable()
 export class EmployeeService extends BaseServiceMutable<Employee> {
@@ -59,13 +62,8 @@ export class EmployeeService extends BaseServiceMutable<Employee> {
     }
 
     findByNameLike(name:String) {
-
-        if(!name) {
-            return this.repo.find()
-        }
-
         return this.repo.createQueryBuilder()
-            .where('lower(name) like lower(:name)', {name: `%${name.toLowerCase()}%s`}).getMany()
+            .where('LOWER(name) like :name', { name : `%${name.toLocaleLowerCase()}%` }).getMany()
     }
 }
 ```
@@ -76,6 +74,7 @@ Provider တွေကနေ Inject လုပ်ပေးနိုင်အော
 
 Employee Resource တွေကို အသုံးပြုနိုင်တဲ့ End Point API ဖြစ်ပါတယ်။
 
+[Employee](controller/employee.controller.ts)
 ```typescript
 @Controller("employees")
 export class EmployeeController extends BaseControllerMutable<Employee> {
@@ -85,7 +84,8 @@ export class EmployeeController extends BaseControllerMutable<Employee> {
     }
 
     @Get('search')
-    search(@Query('name') name:string) {
+    @UseInterceptors(ClassSerializerInterceptor)
+    search(@Query('name') name:string):Promise<Employee[]> {
         return this.empService.findByNameLike(name)
     }
 }
