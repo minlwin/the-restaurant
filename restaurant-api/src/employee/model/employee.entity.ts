@@ -11,6 +11,8 @@ export class Employee implements IdEnable{
     @Column()
     name:string
     @Column()
+    role:string
+    @Column()
     email:string
     @Column()
     phone:string

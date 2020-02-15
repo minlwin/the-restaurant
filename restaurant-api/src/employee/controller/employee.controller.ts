@@ -1,4 +1,4 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Get, Query } from '@nestjs/common';
 import { BaseControllerMutable } from 'src/common/base.controller.mutable';
 import { Employee } from '../model/employee.entity';
 import { EmployeeService } from '../model/employee.service';
@@ -10,4 +10,8 @@ export class EmployeeController extends BaseControllerMutable<Employee> {
         super(service, '/employees')
     }
 
+    @Get('search')
+    search(@Query('name') name:string) {
+
+    }
 }

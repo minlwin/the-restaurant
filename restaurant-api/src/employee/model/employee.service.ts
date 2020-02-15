@@ -14,7 +14,12 @@ export class EmployeeService extends BaseServiceMutable<Employee> {
     }
 
     findByNameLike(name:String) {
-        this.repo.createQueryBuilder()
+
+        if(!name) {
+            return this.repo.find()
+        }
+
+        return this.repo.createQueryBuilder()
             .where('lower(name) like lower(:name)', {name: `%${name.toLowerCase()}%s`}).getMany()
     }
 }

@@ -11,18 +11,6 @@ export class BaseControllerMutable<T extends IdEnable> extends BaseController<T>
             super(mutableService)
     }
 
-    @Get()
-    @UseInterceptors(ClassSerializerInterceptor)
-    index() {
-        return this.service.findAll()
-    }
-
-    @Get(':id')
-    @UseInterceptors(ClassSerializerInterceptor)
-    findById(@Param('id') id:number) {
-        return this.service.findById(id)
-    }
-
     @Post()
     async create(@Body() t:T, @Res() res:any) {
         let savedResult = await this.mutableService.save(t)
