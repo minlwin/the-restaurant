@@ -34,14 +34,14 @@ export class Employee implements IdEnable{
     @Column()
     email:string
     @Column()
-    password:string
-    @Column()
     phone:string
+    @Column()
+    password:string
     @CreateDateColumn()
-    @Transform(d => moment(d).format('YYYY-MM-DD HH:mm:ss'))
+    @Transform(d => moment(d).format())
     creation:Date
     @UpdateDateColumn()
-    @Transform(d => moment(d).format('YYYY-MM-DD HH:mm:ss'))
+    @Transform(d => moment(d).format())
     modification:Date
 }
 ```
