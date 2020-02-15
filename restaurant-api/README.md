@@ -84,9 +84,10 @@ export class BaseController<T extends IdEnable> {
 }
 ```
 
-|Mapping Path|Request Method|Argument|Description|
-|/root-path|GET||Resource တွေအားလုံးကို ပြန်ပေးနိုင်မှာ ဖြစ်တယ်|
-|/root-path/:id|GET|id from Path|Resource Object ကို ID နဲ့ ရှာပေးနိုင်မှာ ဖြစ်တယ်|
+| Mapping Path | Request Method | Argument | Description |
+|  ---  | --- | --- | --- |
+| /root-path | GET | | Resource တွေအားလုံးကို ပြန်ပေးနိုင်မှာ ဖြစ်တယ် |
+| /root-path/:id | GET | id from path | Resource Object ကို ID နဲ့ ရှာပေးနိုင်မှာ ဖြစ်တယ် |
 
 >Root Path နေရာမှာ Extends လုပ်လာတဲ့ Controller Class ရဲ့ Path က အစားထိုးဝင်ရောက်မှာ ဖြစ်တယ်
 
@@ -114,11 +115,12 @@ export class BaseControllerMutable<T extends IdEnable> extends BaseController<T>
 ```
 BaseControllerMutable ဟာ BaseController ကို Extends လုပ်ထားတာဖြစ်တဲ့ အတွက် BaseController မှာ သုံးလို့ရတဲ့ Method တွေကိုလဲ BaseControllerMutable မှာ သုံးလို့ရမှာဖြစ်တယ်။
 
-|Mapping Path|Request Method|Argument|Description|
-|/root-path|GET||Resource တွေအားလုံးကို ပြန်ပေးနိုင်မှာ ဖြစ်တယ်|
-|/root-path/:id|GET|id from path|Resource Object ကို ID နဲ့ ရှာပေးနိုင်မှာ ဖြစ်တယ်|
-|/root-path|POST|Resource From Body|Resource တစ်ခုကို Create လုပ်တဲ့နေရာမှာ အသုံးပြုပါမယ်|
-|/root-path|PUT||Resource From Body|Resource တစ်ခုကို Update လုပ်တဲ့နေရာမှာ အသုံးပြုပါမယ်|
+| Mapping Path | Request Method | Argument | Description |
+|  ---  | --- | --- | --- |
+| /root-path | GET | | Resource တွေအားလုံးကို ပြန်ပေးနိုင်မှာ ဖြစ်တယ် |
+| /root-path/:id | GET | id from path | Resource Object ကို ID နဲ့ ရှာပေးနိုင်မှာ ဖြစ်တယ် |
+| /root-path | POST | Resource From Body | Resource တစ်ခုကို Create လုပ်တဲ့နေရာမှာ အသုံးပြုပါမယ် |
+| /root-path | PUT | Resource From Body | Resource တစ်ခုကို Update လုပ်တဲ့နေရာမှာ အသုံးပြုပါမယ် |
 
 >Root Path နေရာမှာ Extends လုပ်လာတဲ့ Controller Class ရဲ့ Path က အစားထိုးဝင်ရောက်မှာ ဖြစ်တယ်
 
