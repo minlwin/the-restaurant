@@ -18,6 +18,44 @@ Entity တွေဟာ Table တွေကို ကိုယ်စားပြ�
 
 အထက်ပါ Diagram ထဲမှာပါဝင်တဲ့ Services တွေဟာ Business Logic Layer မှာ တာဝန်ကျပါတယ်။ ပြန်ပြီး အသုံးပြုနိုင်တဲ့ Business Logic တွေကို Wrap လုပ်ပေးမယ်၊ ပြီးတော့ Repository တွေကို အသုံးပြုပြီး Business Logic အလိုက် Prensation Layer အတွက် Data တွေကို Support လုပ်ပေးမယ်။ Presentation Layer ကနေ ရလာတဲ့ User Input Data တွေကိုနဲ့ Repository ကို အသုံးပြုပြီး Persistance Data တွေကို Update လုပ်ပေးပါမယ်။
 
+Business Logic ကို ရေးသားကြတဲ့နေရာမှာ တူညီတဲ့ အပိုင်းတွေရှိနိုင်ပါတယ်။ Resource တွေကို ID နဲ့ရှာတာတို့။ Resource တွေအားလုံးကို ရှာတာတို့၊ Resource တွေကို Insert, Update, Delete လုပ်တာတို့ တူညီတဲ့ လုပ်ဆောင်မှုတွေရှိနေနိုင်ပါတယ်။ အဲ့ဒီအတွက် Generic Base Class လေးတွေကို ရေးသားထားပါတယ်။ Service Class တွေက သက်ဆိုင်ရာ Base Class ကို Extend လုပ်ထားပြီး Specific Logic တွေကိုပဲ မိမိအထဲမှာ ရေးသားသွားမှာ ဖြစ်ပါတယ်။
+
+[IdEnable](https://github.com/minlwin/the-restaurant/blob/master/restaurant-api/src/common/id.enable.ts)
+```.typescript
+export interface IdEnable extends ObjectLiteral{
+    id:number
+}
+```
+
+[BaseService](https://github.com/minlwin/the-restaurant/blob/master/restaurant-api/src/common/base.controller.ts)
+```typescript
+export class BaseService<T extends IdEnable> {
+
+    constructor(protected readonly repo:Repository<T>) {}
+
+    findAll() {
+        return this.repo.find()
+    }
+
+    findById(id:number) {
+        return this.repo.findOne(id)
+    }
+}
+```
+[BaseServiceMutable](https://github.com/minlwin/the-restaurant/blob/master/restaurant-api/src/common/base.controller.mutable.ts)
+```typescript
+export class BaseServiceMutable<T extends IdEnable> extends BaseService<T> {
+
+    constructor(repo:Repository<T>) {
+        super(repo)
+    }
+
+    save(t:T) {
+        return this.repo.save(t)
+    }
+}
+```
+
 ### Presentation Layer 
 
 
