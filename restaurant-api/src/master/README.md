@@ -97,6 +97,62 @@ export class Tables implements IdEnable{
 
 ## Services
 
+Service တွေဟာ Resouces တွေကို Handle လုပ်ပေးနိုင်တဲ့ Component တွေဖြစ်ကြပြီး Business တွေကို Wrap လုပ်ပေးနိုင်ပါတယ်။ MasterModule ထဲမှာတော့ CategoryService, ProductService နဲ့ TablesService တို့ပါဝင်ကြပါတယ်။
 
+### Category Service
+
+Category Resource အတွက် အခြေခံ CRUD Operation တွေကို လုပ်ဆောင်ပေးနိုင်ပါတယ်။ [BaseServiceMutable](/src/common/base.service.mutable.ts) Class ကို Extends လုပ်ထားခြင်းအားဖြင့် Super Class ထဲက Method  တွေကို Inheritance လုပ်ပြီး အသုံးပြုပါတယ်။
+
+[CategoryService](model/category.service.ts)
+```typescript
+@Injectable()
+export class CategoryService extends BaseServiceMutable<Category> {
+    
+    constructor(
+        @InjectRepository(Category)
+        repo:Repository<Category>) {
+            super(repo)
+        }
+}
+```
+
+### Product Service
+
+Produuct Resource အတွက် အခြေခံ CRUD Operation တွေကို လုပ်ဆောင်ပေးနိုင်ပါတယ်။ [BaseServiceMutable](/src/common/base.service.mutable.ts) Class ကို Extends လုပ်ထားခြင်းအားဖြင့် Super Class ထဲက Method  တွေကို Inheritance လုပ်ပြီး အသုံးပြုပါတယ်။
+
+[ProductService](model/product.service.ts)
+```typescript
+@Injectable()
+export class ProductService extends BaseServiceMutable<Product> {
+
+    constructor(
+        @InjectRepository(Product)
+        repo:Repository<Product>
+    ) { super(repo) }
+
+    findByCategory(categoryId:number) {
+        return this.repo.find({category : {id : categoryId}})
+    }
+}
+```
+
+တဖန် Product တွေကို Category Id ပေးပြီးရှာဖွေလိုတဲ့ အတွက် findByCategory() Method ကို ရေးသားထားပါတယ်။
+
+### Tables Service
+
+Tables Resource အတွက် အခြေခံ CRUD Operation တွေကို လုပ်ဆောင်ပေးနိုင်ပါတယ်။ [BaseServiceMutable](/src/common/base.service.mutable.ts) Class ကို Extends လုပ်ထားခြင်းအားဖြင့် Super Class ထဲက Method  တွေကို Inheritance လုပ်ပြီး အသုံးပြုပါတယ်။
+
+[TablesService](model/tables.service.ts)
+```typescript
+@Injectable()
+export class TablesService extends BaseServiceMutable<Tables> {
+
+    constructor(
+        @InjectRepository(Tables)
+        repo:Repository<Tables>
+    ) { super(repo) }
+
+}
+```
 
 ## Controllers

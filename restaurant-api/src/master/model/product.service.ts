@@ -12,4 +12,7 @@ export class ProductService extends BaseServiceMutable<Product> {
         repo:Repository<Product>
     ) { super(repo) }
 
+    findByCategory(categoryId:number) {
+        return this.repo.find({category : {id : categoryId}})
+    }
 }
