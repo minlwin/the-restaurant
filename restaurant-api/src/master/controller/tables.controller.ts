@@ -9,5 +9,4 @@ export class TablesController extends BaseControllerMutable<Tables> {
     constructor(service:TablesService) {
         super(service, '/tables')
     }
-
 }

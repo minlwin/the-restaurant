@@ -156,3 +156,81 @@ export class TablesService extends BaseServiceMutable<Tables> {
 ```
 
 ## Controllers
+
+Master Data Resources တွေအတွက် API တွေဖြစ်ကြပါတယ်။ MasterModule ထဲမှာတော့ CategoryController, ProductController နဲ့ TablesController တို့ပါဝင်ကြပါတယ်။
+
+### Category Controller
+
+Category Resource တွေကို အသုံးပြုနိုင်တဲ့ End Point API ဖြစ်ပါတယ်။
+
+```typescript
+@Controller('categories')
+export class CategoryController extends BaseControllerMutable<Category> {
+
+    constructor(service:CategoryService) {
+        super(service, '/categories')
+    }
+}
+```
+
+CategoryController ဟာ BaseControllerMutable ကို Extends လုပ်ထားတဲ့ အတွက် BaseControllerMutable မှာရှိတဲ့ Operation တွေကို အမွေဆက်ခံရရှိပါတယ်။ 
+
+| Mapping Path | Request Method | Argument | Description |
+|  ---  | --- | --- | --- |
+| /categories | GET | | Category တွေအားလုံးကို ပြန်ပေးနိုင်မှာ ဖြစ်တယ် |
+| /categories/:id | GET | id from path | Category Object ကို ID နဲ့ ရှာပေးနိုင်မှာ ဖြစ်တယ် |
+| /categories | POST | Category From Body | Category တစ်ခုကို Create လုပ်တဲ့နေရာမှာ အသုံးပြုပါမယ် |
+| /categories | PUT | Category From Body | Category တစ်ခုကို Update လုပ်တဲ့နေရာမှာ အသုံးပြုပါမယ် |
+
+### Product Controller
+Product Resource တွေကို အသုံးပြုနိုင်တဲ့ End Point API ဖြစ်ပါတယ်။
+
+```typescript
+@Controller('products')
+export class ProductController extends BaseControllerMutable<Product> {
+
+    constructor(private readonly productservice:ProductService) {
+        super(productservice, '/products')
+    }
+
+    @Get('category/:id')
+    findByCategory(@Param('id') categoryId:number) {
+        return this.productservice.findByCategory(categoryId)
+    }
+}
+```
+
+CategoryController ဟာ BaseControllerMutable ကို Extends လုပ်ထားတဲ့ အတွက် BaseControllerMutable မှာရှိတဲ့ Operation တွေကို အမွေဆက်ခံရရှိပါတယ်။
+
+တဖန် Category အောက်မှာရှိတဲ့ Product တွေကိုလဲ ရှာဖွေလိုတဲ့ အတွက် findByCategory() Method ကို ရေးသားထားပါတယ်။
+
+| Mapping Path | Request Method | Argument | Description |
+|  ---  | --- | --- | --- |
+| /products | GET | | Product တွေအားလုံးကို ပြန်ပေးနိုင်မှာ ဖြစ်တယ် |
+| /products/:id | GET | id from path | Product Object ကို ID နဲ့ ရှာပေးနိုင်မှာ ဖြစ်တယ် |
+| /products | POST | Product From Body | Product တစ်ခုကို Create လုပ်တဲ့နေရာမှာ အသုံးပြုပါမယ် |
+| /products | PUT | Product From Body | Product တစ်ခုကို Update လုပ်တဲ့နေရာမှာ အသုံးပြုပါမယ် |
+| /products/category/:id | GET | id from path | Product တွေကို Category ID နဲ့ ရှာပေးနိုင်မှာ ဖြစ်တယ် |
+
+
+### Tables Controller
+Tables Resource တွေကို အသုံးပြုနိုင်တဲ့ End Point API ဖြစ်ပါတယ်။
+
+```typescript
+@Controller('tables')
+export class TablesController extends BaseControllerMutable<Tables> {
+
+    constructor(service:TablesService) {
+        super(service, '/tables')
+    }
+}
+```
+
+CategoryController ဟာ BaseControllerMutable ကို Extends လုပ်ထားတဲ့ အတွက် BaseControllerMutable မှာရှိတဲ့ Operation တွေကို အမွေဆက်ခံရရှိပါတယ်။ 
+
+| Mapping Path | Request Method | Argument | Description |
+|  ---  | --- | --- | --- |
+| /tables | GET | | Tables တွေအားလုံးကို ပြန်ပေးနိုင်မှာ ဖြစ်တယ် |
+| /tables/:id | GET | id from path | Tables Object ကို ID နဲ့ ရှာပေးနိုင်မှာ ဖြစ်တယ် |
+| /tables | POST | Tables From Body | Tables တစ်ခုကို Create လုပ်တဲ့နေရာမှာ အသုံးပြုပါမယ် |
+| /tables | PUT | Tables From Body | Tables တစ်ခုကို Update လုပ်တဲ့နေရာမှာ အသုံးပြုပါမယ် |
