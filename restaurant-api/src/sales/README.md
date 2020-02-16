@@ -138,7 +138,7 @@ Sale နဲ့ SaleDetails ဟာ အပြန်အလှန် Reference လ�
 
 Sale Details Resource အတွက် အခြေခံ CRUD Operation တွေကို လုပ်ဆောင်ပေးနိုင်ပါတယ်။ [BaseService](/src/common/base.service.ts) Class ကို Extends လုပ်ထားခြင်းအားဖြင့် Super Class ထဲက Method  တွေကို Inheritance လုပ်ပြီး အသုံးပြုပါတယ်။ 
 
-[SaleDetailsService](model/sale.details.service.ts)
+[SaleDetailsService](model/saledetails.service.ts)
 ```typescript
 @Injectable()
 export class SaleDetailsService extends BaseService<SaleDetails> {
@@ -179,3 +179,74 @@ export class SaleDetailsService extends BaseService<SaleDetails> {
 ```
 
 အထက်မှာ ဖေါ်ပြထားတဲ့ အတိုင်း SaleDetails ထဲမှာ Sale ကို Exclude လုပ်ထားတဲ့ အတွက် Sale ID နဲ့ SaleDetails Object ကို အသုံးပြုပြီး Save တဲ့ Method နဲ့ Sale ID ကိုပေးပြီး SaleDetails တွေကို ရှာမည့် Method တို့ကို ဖြည့်စွက်ရေးသားထားပါတယ်။
+
+
+## Controllers
+
+Sale Resources တွေအတွက် API တွေဖြစ်ကြပါတယ်။ MasterModule ထဲမှာတော့ SaleController နဲ့ SaleDetailsController တို့ပါဝင်ကြပါတယ်။
+
+### Sale Controller
+
+Sale Resource တွေကို အသုံးပြုနိုင်တဲ့ End Point API ဖြစ်ပါတယ်။
+
+[SaleController](controller/sale.controller.ts)
+```typescript
+@Controller("sales")
+@UseInterceptors(new ExcludeInterceptor())
+export class SaleController extends BaseControllerMutable<Sale> {
+
+    constructor(
+        service:SaleService
+    ) { super(service, '/sales') }
+}
+```
+
+SaleController ဟာ BaseControllerMutable ကို Extends လုပ်ထားတဲ့ အတွက် BaseControllerMutable မှာရှိတဲ့ Operation တွေကို အမွေဆက်ခံရရှိပါတယ်။ 
+
+| Mapping Path | Request Method | Argument | Description |
+|  ---  | --- | --- | --- |
+| /sales | GET | | Sale တွေအားလုံးကို ပြန်ပေးနိုင်မှာ ဖြစ်တယ် |
+| /sales/:id | GET | id from path | Sale Object ကို ID နဲ့ ရှာပေးနိုင်မှာ ဖြစ်တယ် |
+| /sales | POST | Sale From Body | Sale တစ်ခုကို Create လုပ်တဲ့နေရာမှာ အသုံးပြုပါမယ် |
+| /sales | PUT | Sale From Body | Sale တစ်ခုကို Update လုပ်တဲ့နေရာမှာ အသုံးပြုပါမယ် |
+
+
+### Sale Details Controller
+
+Sale Details Resource တွေကို အသုံးပြုနိုင်တဲ့ End Point API ဖြစ်ပါတယ်။
+
+[SaleDetailsController](controller/saledetails.controller.ts)
+```typescript
+@Controller("orders")
+export class SaleDetailsController extends BaseController<SaleDetails> {
+ 
+    constructor(
+        private readonly detailsService:SaleDetailsService
+    ) {
+        super(detailsService)
+    }
+
+    @Post('sale/:id')
+    async createBySale(@Param('id') saleId:number, @Body() t:SaleDetails, @Res() res:any) {
+        let savedResult = await this.detailsService.saveBySale(saleId, t)
+        res.redirect(`/orders/${savedResult.id}`)
+    }
+
+    @Put('sale/:id')
+    async updateBySale(@Param('id') saleId:number, @Body() t:SaleDetails, @Res() res:any) {
+        let savedResult = await this.detailsService.saveBySale(saleId, t)
+        res.redirect(`/orders/${savedResult.id}`)
+    }     
+}
+```
+
+SaleController ဟာ BaseController ကို Extends လုပ်ထားတဲ့ အတွက် BaseController မှာရှိတဲ့ Operation တွေကို အမွေဆက်ခံရရှိပါတယ်။ 
+
+တဖန် Sale ID ကို ယူပြီး Insert နဲ့ Update လုပ်နိုင်ဖို့အတွက် Post နဲ့ Put Method နှစ်ခုကို ကိုယ်ပိုင် Method တွေအနေနဲ့ ရေးသားထားပါတယ်။
+
+| Mapping Path | Request Method | Argument | Description |
+|  ---  | --- | --- | --- |
+| /orders | GET | | SaleDetails တွေအားလုံးကို ပြန်ပေးနိုင်မှာ ဖြစ်တယ် |
+| /orders/:id | GET | id from path | SaleDetails Object ကို ID နဲ့ ရှာပေးနိုင်မှာ ဖြစ်တယ် |
+| /orders/sale/:id | POST | Sale Id from path and SaleDetails From Body | SaleDetails တစ်ခုကို Create လုပ်တဲ့နေရာမှာ အသုံးပြုပါမယ် |
+| /orders/sale/:id | PUT | Sale Id from path and SaleDetails From Body | Sale တစ်ခုကို Update လုပ်တဲ့နေရာမှာ အသုံးပြုပါမယ် |
