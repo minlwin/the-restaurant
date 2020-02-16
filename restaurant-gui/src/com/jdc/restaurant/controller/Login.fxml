@@ -1,8 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1">
-	<!-- TODO Add Nodes -->
-</AnchorPane>
-
+<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="login-view" stylesheets="@application.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jdc.restaurant.controller.Login">
+   <children>
+      <VBox styleClass="al-center">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@restaurant-logo.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+      <VBox styleClass="content" HBox.hgrow="ALWAYS">
+         <children>
+            <HBox styleClass="header">
+               <children>
+                  <Label text="Employee Login" />
+               </children>
+            </HBox>
+            <VBox styleClass="form-group">
+               <children>
+                  <Label text="Login ID" />
+                  <TextField fx:id="loginId" promptText="Enter Login ID" />
+               </children>
+            </VBox>
+            <VBox layoutX="10.0" layoutY="90.0" styleClass="form-group">
+               <children>
+                  <Label text="Password" />
+                  <PasswordField fx:id="password" promptText="Enter Paassword" />
+               </children>
+            </VBox>
+            <HBox styleClass="form-group">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#close" text="CLOSE" />
+                  <Button layoutX="50.0" layoutY="10.0" mnemonicParsing="false" onAction="#login" text="LOGIN" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</HBox>

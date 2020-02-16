@@ -1,12 +1,13 @@
 * {
-	primary: #272727;
-	primary-light: #4f98ca;
-	secondary: #50d890;
-	secondary-light: #effffb;
+	primary: #D32C40;
+	primary-light: #FEFEFE;
+	secondary: #A04E5C;
+	secondary-light: #A8AFB2;
+	ascent: #E7E7E7;
 }
 
 .main-frame {
-	-fx-background-color: secondary-light;
+	-fx-background-color: primary-light;
 	-fx-pref-width: 1280px;
 	-fx-pref-height: 768px;
 }
@@ -28,6 +29,13 @@
 	-fx-background-color: primary-light;
 }
 
+.side-menu:hover SVGPath,
+.side-menu:hover Label {
+	-fx-background-color: primary-light;
+	-fx-text-fill: primary;
+	-fx-fill: primary;
+}
+
 .side-menu VBox{
 	-fx-alignment: center;
 	-fx-pref-width: 20px;
@@ -35,8 +43,8 @@
 
 .side-menu SVGPath,
 .side-menu Label {
-	-fx-fill: secondary-light;
-	-fx-text-fill: secondary-light;
+	-fx-fill: primary-light;
+	-fx-text-fill: primary-light;
 	-fx-font-size: 16px;
 }
 
@@ -61,7 +69,7 @@
 }
 
 .content-view {
-	-fx-pref-width: 960px;
+	-fx-pref-width: 1040px;
 	-fx-pref-height: 708px;
 	-fx-padding: 10 20 20 20;
 	-fx-spacing: 20;
@@ -91,35 +99,64 @@
 }
 
 .text-field {
-	-fx-text-fill: primary;
-	-fx-prompt-text-fill: primary-light;
-	-fx-border-color: primary;
 	-fx-background-color: transparent;
-}
-
-.text-field:focused {
-	-fx-prompt-text-fill: primary-light;
+	-fx-border-color: secondary;
+	-fx-text-fill: primary;
+	-fx-prompt-text-fill: secondary-light;
+	-fx-border-color: primary;
 }
 
 .button {
-	-fx-text-fill: secondary-light;
+	-fx-background-color: secondary;
+	-fx-text-fill: primary-light;
 	-fx-pref-width: 120px;
-	-fx-background-color: primary-light;
 }
 
 .button:hover {
-	-fx-background-color: primary;
+	-fx-background-color: secondary-light;
 }
 
-.category-card {
-	-fx-pref-width: 290;
+.card {
+	-fx-pref-width: 240px;
 	-fx-padding: 20px;
 	-fx-spacing: 20px;
-	-fx-background-color: secondary;
+	-fx-background-color: ascent;
 	-fx-background-radius: 4px;
 }
 
 .category-card .title {
 	-fx-font-size: 18px;
+}
+
+.login-view {
+	-fx-pref-width: 600px;
+	-fx-pref-height: 300px;
+	-fx-background-color: primary;
+}
+
+.al-center {
+	-fx-alignment: center;
+}
+
+.login-view > .content {
+	-fx-background-color: primary-light;
+	-fx-spacing: 20px;
+}
+
+.login-view > .content > .header  {
+	-fx-padding: 30 60 20 40;
+}
+
+.login-view > .content > .header > Label {
+	-fx-font-size: 24px;
+}
+
+.login-view > .content Label {
+	-fx-text-fill: secondary;
+}
+
+.login-view .form-group {
+	-fx-spacing: 10px;
+	-fx-padding: 0 60 0 40;
 }
 

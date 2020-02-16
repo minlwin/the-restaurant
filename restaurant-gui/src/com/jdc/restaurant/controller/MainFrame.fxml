@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -8,16 +9,23 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.SVGPath?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="main-frame" stylesheets="@application.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<HBox styleClass="main-frame" stylesheets="@application.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jdc.restaurant.controller.MainFrame">
    <children>
       <VBox prefHeight="200.0" prefWidth="100.0" styleClass="side-bar">
          <children>
-            <ImageView fitHeight="300.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@restaurant-logo.png" />
-               </image>
-            </ImageView>
-            <HBox styleClass="side-menu">
+            <VBox>
+               <children>
+                  <ImageView fitHeight="300.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@restaurant-logo.png" />
+                     </image>
+                  </ImageView>
+               </children>
+               <padding>
+                  <Insets bottom="20.0" top="10.0" />
+               </padding>
+            </VBox>
+            <HBox id="Home" onMouseClicked="#loadView" styleClass="side-menu">
                <children>
                   <VBox>
                      <children>
@@ -27,7 +35,7 @@
                   <Label text="Home" />
                </children>
             </HBox>
-            <HBox layoutX="10.0" layoutY="235.0" styleClass="side-menu">
+            <HBox id="Tables" layoutX="10.0" layoutY="235.0" onMouseClicked="#loadView" styleClass="side-menu">
                <children>
                   <VBox>
                      <children>
@@ -37,7 +45,7 @@
                   <Label text="Tables" />
                </children>
             </HBox>
-            <HBox layoutX="10.0" layoutY="287.0" styleClass="side-menu">
+            <HBox id="Categories" layoutX="10.0" layoutY="287.0" onMouseClicked="#loadView" styleClass="side-menu">
                <children>
                   <VBox>
                      <children>
@@ -47,7 +55,7 @@
                   <Label text="Categories" />
                </children>
             </HBox>
-            <HBox layoutX="10.0" layoutY="339.0" styleClass="side-menu">
+            <HBox id="Menus" layoutX="10.0" layoutY="339.0" onMouseClicked="#loadView" styleClass="side-menu">
                <children>
                   <VBox>
                      <children>
@@ -57,7 +65,7 @@
                   <Label text="Menus" />
                </children>
             </HBox>
-            <HBox layoutX="10.0" layoutY="346.0" styleClass="side-menu">
+            <HBox id="Sales" layoutX="10.0" layoutY="346.0" onMouseClicked="#loadView" styleClass="side-menu">
                <children>
                   <VBox>
                      <children>
@@ -67,7 +75,7 @@
                   <Label text="Sales" />
                </children>
             </HBox>
-            <HBox layoutX="10.0" layoutY="398.0" styleClass="side-menu">
+            <HBox id="Employees" layoutX="10.0" layoutY="398.0" onMouseClicked="#loadView" styleClass="side-menu">
                <children>
                   <VBox>
                      <children>
@@ -85,18 +93,18 @@
                <children>
                   <HBox HBox.hgrow="ALWAYS">
                      <children>
-                        <Label styleClass="title" text="Home" />
+                        <Label fx:id="title" styleClass="title" text="Home" />
                      </children>
                   </HBox>
                   <HBox styleClass="login-user">
                      <children>
                         <SVGPath content="M10 20c-5.523 0-10-4.477-10-10s4.477-10 10-10v0c5.523 0 10 4.477 10 10s-4.477 10-10 10v0zM7 6v2c0 1.657 1.343 3 3 3s3-1.343 3-3v0-2c0-1.657-1.343-3-3-3s-3 1.343-3 3v0zM3.35 14.44c1.456 2.155 3.89 3.553 6.65 3.553s5.194-1.398 6.632-3.525l0.018-0.028c-1.951-0.918-4.238-1.453-6.65-1.453s-4.699 0.536-6.748 1.495l0.098-0.041zM10 20c-5.523 0-10-4.477-10-10s4.477-10 10-10v0c5.523 0 10 4.477 10 10s-4.477 10-10 10v0zM7 6v2c0 1.657 1.343 3 3 3s3-1.343 3-3v0-2c0-1.657-1.343-3-3-3s-3 1.343-3 3v0zM3.35 14.44c1.456 2.155 3.89 3.553 6.65 3.553s5.194-1.398 6.632-3.525l0.018-0.028c-1.951-0.918-4.238-1.453-6.65-1.453s-4.699 0.536-6.748 1.495l0.098-0.041z" />
-                        <Label text="Aung Aung" />
+                        <Label fx:id="loginUserName" text="Aung Aung" />
                      </children>
                   </HBox>
                </children>
             </HBox>
-            <StackPane VBox.vgrow="ALWAYS" />
+            <StackPane fx:id="content" VBox.vgrow="ALWAYS" />
          </children>
       </VBox>
    </children>

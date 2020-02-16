@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.SVGPath?>
 
-
 <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="content-view" stylesheets="@application.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox styleClass="search-bar">
@@ -18,9 +17,9 @@
             <Button layoutX="220.0" layoutY="11.0" mnemonicParsing="false" text="ADD NEW" />
          </children>
       </HBox>
-      <TilePane hgap="20.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" vgap="20.0" VBox.vgrow="ALWAYS">
+      <TilePane hgap="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" vgap="10.0" VBox.vgrow="ALWAYS">
          <children>
-            <HBox styleClass="category-card">
+            <HBox styleClass="card">
                <children>
                   <VBox>
                      <children>
@@ -34,7 +33,7 @@
                   </VBox>
                </children>
             </HBox>
-            <HBox layoutX="10.0" layoutY="10.0" styleClass="category-card">
+            <HBox layoutX="10.0" layoutY="10.0" styleClass="card">
                <children>
                   <VBox>
                      <children>
@@ -48,7 +47,7 @@
                   </VBox>
                </children>
             </HBox>
-            <HBox layoutX="10.0" layoutY="10.0" styleClass="category-card">
+            <HBox layoutX="10.0" layoutY="10.0" styleClass="card">
                <children>
                   <VBox>
                      <children>
@@ -62,7 +61,7 @@
                   </VBox>
                </children>
             </HBox>
-            <HBox layoutX="630.0" layoutY="10.0" styleClass="category-card">
+            <HBox layoutX="630.0" layoutY="10.0" styleClass="card">
                <children>
                   <VBox>
                      <children>
@@ -76,7 +75,7 @@
                   </VBox>
                </children>
             </HBox>
-            <HBox layoutX="10.0" layoutY="93.0" styleClass="category-card">
+            <HBox layoutX="10.0" layoutY="93.0" styleClass="card">
                <children>
                   <VBox>
                      <children>

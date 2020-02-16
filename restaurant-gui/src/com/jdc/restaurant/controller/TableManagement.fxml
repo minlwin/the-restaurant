@@ -19,7 +19,7 @@
       </HBox>
       <TilePane hgap="20.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" vgap="20.0" VBox.vgrow="ALWAYS">
          <children>
-            <HBox styleClass="category-card">
+            <HBox styleClass="card">
                <children>
                   <VBox>
                      <children>
