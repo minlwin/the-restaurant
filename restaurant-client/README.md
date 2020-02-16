@@ -136,5 +136,28 @@ public interface OrderApi {
 
 ```
 
+## Client Factory
 
+Client API တွေကို ရယူဖို့အတွက် Factory Class တစ်ခုဖြစ်ပါတယ်။ 
+
+[RestaurantClientFactory](src/main/java/com/jdc/restaurant/client/RestaurantClientFactory.java)
+```java
+public class RestaurantClientFactory {
+
+	private static final String BASE_URL = "http://localhost:3000/";
+	
+	private static final Retrofit.Builder builder;
+	
+	static {
+		builder = new Retrofit.Builder()
+				.addConverterFactory(JacksonConverterFactory.create())
+				.baseUrl(BASE_URL);
+	}
+	
+	
+	public static<T> T generate(Class<T> type) {
+		return builder.build().create(type);
+	}
+}
+```
 
