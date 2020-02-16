@@ -249,4 +249,4 @@ SaleController ဟာ BaseController ကို Extends လုပ်ထားတ�
 | /orders | GET | | SaleDetails တွေအားလုံးကို ပြန်ပေးနိုင်မှာ ဖြစ်တယ် |
 | /orders/:id | GET | id from path | SaleDetails Object ကို ID နဲ့ ရှာပေးနိုင်မှာ ဖြစ်တယ် |
 | /orders/sale/:id | POST | Sale Id from path and SaleDetails From Body | SaleDetails တစ်ခုကို Create လုပ်တဲ့နေရာမှာ အသုံးပြုပါမယ် |
-| /orders/sale/:id | PUT | Sale Id from path and SaleDetails From Body | Sale တစ်ခုကို Update လုပ်တဲ့နေရာမှာ အသုံးပြုပါမယ် |
+| /orders/sale/:id | PUT | Sale Id from path and SaleDetails From Body | SaleDetails တစ်ခုကို Update လုပ်တဲ့နေရာမှာ အသုံးပြုပါမယ် |
