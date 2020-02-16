@@ -22,7 +22,8 @@ export class Sale implements IdEnable {
     @Column()
     tax:number
     @OneToMany(type => SaleDetails, detail => detail.sale, {
-        onDelete: "CASCADE"
+        cascade: true,
+        eager: true
     })
     details:SaleDetails[]
     @Column()

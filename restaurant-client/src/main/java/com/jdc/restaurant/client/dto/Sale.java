@@ -30,28 +30,21 @@ public class Sale {
 	}
 	
 	public void addOrder(Menu menu) {
-		Order order = getOrderByMenu(menu);
-		order.setQuantity(order.getQuantity() + 1);
+		Order od = new Order();
+		od.setMenu(menu);
+		od.setPrice(menu.getPrice());
+		od.setQuantity(1);
+		orders.add(od);
 		calculate();
 	}
 		
 	public void addOrder(Menu menu, int count) {
-		Order order = getOrderByMenu(menu);
-		order.setQuantity(order.getQuantity() + count);
+		Order od = new Order();
+		od.setMenu(menu);
+		od.setPrice(menu.getPrice());
+		od.setQuantity(count);
+		orders.add(od);
 		calculate();
-	}
-	
-	private Order getOrderByMenu(Menu menu) {
-		return orders.stream().filter(a -> a.getId() == menu.getId()).findFirst()
-				.orElseGet(() -> {
-					Order od = new Order();
-					od.setMenu(menu);
-					od.setPrice(menu.getPrice());
-					orders.add(od);
-					od.setSale(this);
-					return od;
-				});
-		
 	}
 	
 	private void calculate() {

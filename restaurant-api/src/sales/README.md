@@ -49,14 +49,15 @@ export class Sale implements IdEnable {
     @Column()
     tax:number
     @OneToMany(type => SaleDetails, detail => detail.sale, {
-        onDelete: "CASCADE"
+        eager: true,
+        cascade: true
     })
     details:SaleDetails[]
     @Column()
     paid:boolean = false
 }
 ```
-ဘောင်ချာတစ်စောင်မှာ အော်ဒါတွေ တစ်ခုထက်အများပါဝင်နိုင်တဲ့ အတွက် Sale Entity ထဲကနေ SaleDetails Entity ကို OneToMany Relationship နဲ့ Reference လုပ်ထားပါတယ်။ တဖန် Sale ကို Delete လုပ်ရင် Sale ထဲမှာရှိတဲ့ SaleDetails တွေကိုပါဖျက်နိုင်အောင် onDelete မှာ CASCADE လို့ သတ်မှတ်ထားပါတယ်။
+ဘောင်ချာတစ်စောင်မှာ အော်ဒါတွေ တစ်ခုထက်အများပါဝင်နိုင်တဲ့ အတွက် Sale Entity ထဲကနေ SaleDetails Entity ကို OneToMany Relationship နဲ့ Reference လုပ်ထားပါတယ်။ Sale ကို Insert, Update, Delete လုပ်ရင် SaleDetails ကိုပါ လုပ်နိုင်အောင် cascade ကို true လို့သတ်မှတ်ထားပါတယ်။
 
 > ကျွန်တော်တို့ မြန်မာနိုင်ငံမှာ လဘ္ဘက်ရည်ဆိုင်တွေမှာ စားပွဲတစ်လုံးမှာ Customer တစ်ယောက်ထက်မက ထိုင်နိုင်တဲ့အချက်ကို အစဉ်ပြေအောင် ဆောင်ရွက်ပေးနိုင်ဖို့ စဉ်းစားထားဖို့လိုအပ်ပါတယ်
 
@@ -73,7 +74,6 @@ export class SaleDetails implements IdEnable{
     id:number
 
     @ManyToOne(type => Sale, sale => sale.details, {
-        eager: true,
         nullable : false
     })
     @Exclude()
@@ -101,3 +101,81 @@ Product နဲ့ SaleDetails တို့ရဲ့ ပတ်သက်မှု�
 Sale Entity ကို Serialize လုပ်တဲ့အခါမှာ အထဲမှာပါတဲ့ SaleDetails တွေကို Serialize လုပ်ဖို့ကြိုးစားပါမယ်။ တဖန် SaleDetails ကို Serialize လုပ်တဲ့နေရာမှာလဲ အထဲမှာ Sale ကို ManyToOne နဲ့ Reference လုပ်ထားတဲ့ အတွက် Sale ကို Serialize လုပ်ဖို့ ကြိုးစားပါမယ်။ ဒီလိုနဲ့ အဆုံးမရှိ Serialize လုပ်မိနေပြီး Stack Overflow Error ကို ဖြစ်ပေါ်စေမှာ ဖြစ်ပါတယ်။
 
 ဒါကြောင့် SaleDetails ထဲမှာ Sale ကို Exclude လုပ်တားတာဖြစ်ပါတယ်။
+
+## Services
+
+Service တွေဟာ Resouces တွေကို Handle လုပ်ပေးနိုင်တဲ့ Component တွေဖြစ်ကြပြီး Business Logic တွေကို Wrap လုပ်ပေးနိုင်ပါတယ်။ SaleModule ထဲမှာတော့ SaleService နဲ့ SaleDetailsService တို့ပါဝင်ကြပါတယ်။
+
+### Sale Service
+
+Sale Resource အတွက် အခြေခံ CRUD Operation တွေကို လုပ်ဆောင်ပေးနိုင်ပါတယ်။ [BaseService](/src/common/base.service.ts) Class ကို Extends လုပ်ထားခြင်းအားဖြင့် Super Class ထဲက Method  တွေကို Inheritance လုပ်ပြီး အသုံးပြုပါတယ်။ 
+
+[SaleService](model/sale.service.ts)
+```typescript
+@Injectable()
+export class SaleService extends BaseService<Sale> {
+
+    constructor(
+        @InjectRepository(Sale)
+        repo:Repository<Sale>,
+        @InjectRepository(SaleDetails)
+        private readonly orders:Repository<SaleDetails>
+    ) { super(repo) }
+
+    save(sale:Sale) {
+        sale.details.forEach(d => {
+            d.sale = sale
+        })
+        return this.repo.save(sale)
+    }
+}
+```
+ဒီနေရာမှာ BaseServiceMutable ကို မဟုတ်ပဲ BaseService ကို Inheritance လုပ်နေတာကတော့ SaleService ဟာ save method ကို ကိုယ်ပိုင်ရေးသားဖို့လိုတဲ့ အတွက်ဖြစ်ပါတယ်။
+
+Sale နဲ့ SaleDetails ဟာ အပြန်အလှန် Reference လုပ်နေတဲ့ အတွက် Endless Serialization ကို ရှောင်ဖို့အတွက် SaleDetails ထဲကနေ Sale ကို Exclude လုပ်ထားခဲ့ပါတယ်။ ဒါ့ကြောင့် Save မလုပ်ခင် SaleDetails မှာ Sale ကို ပြန်ပြီး သတ်မှတ်ဖို့လိုအပ်တဲ့ အတွက် save() method ကို ကိုယ်ပိုင်ရေးသားဖို့လိုအပ်တာဖြစ်ပါတယ်။
+
+### Sale Details Service
+
+Sale Details Resource အတွက် အခြေခံ CRUD Operation တွေကို လုပ်ဆောင်ပေးနိုင်ပါတယ်။ [BaseService](/src/common/base.service.ts) Class ကို Extends လုပ်ထားခြင်းအားဖြင့် Super Class ထဲက Method  တွေကို Inheritance လုပ်ပြီး အသုံးပြုပါတယ်။ 
+
+[SaleDetailsService](model/sale.details.service.ts)
+```typescript
+@Injectable()
+export class SaleDetailsService extends BaseService<SaleDetails> {
+
+    constructor(
+        private readonly saleService:SaleService,
+        @InjectRepository(SaleDetails)
+        repo:Repository<SaleDetails>
+    ) { super(repo) }
+    
+    findBySale(sale:Sale) {
+        return this.repo.find({
+            sale : { id : sale.id }
+        })
+    }
+
+    async saveBySale(saleId:number, details:SaleDetails) {
+
+        let sale = await this.saleService.findById(saleId)
+        details.sale = sale
+        if(details.id) {
+            for(let index in sale.details) {
+                let  data = sale.details[index]
+                if(data.id == details.id) {
+                    sale.details[index] = details
+                }
+            }            
+        } else {
+            sale.details.push(details)
+        }
+        sale.subTotal = sale.details.map(s => s.quantity * s.unitPrice).reduce((a, b) => a + b)
+        sale.tax = details.sale.subTotal / 100 * 5
+        await this.saleService.save(details.sale)
+
+        return details
+    }
+}
+```
+
+အထက်မှာ ဖေါ်ပြထားတဲ့ အတိုင်း SaleDetails ထဲမှာ Sale ကို Exclude လုပ်ထားတဲ့ အတွက် Sale ID နဲ့ SaleDetails Object ကို အသုံးပြုပြီး Save တဲ့ Method နဲ့ Sale ID ကိုပေးပြီး SaleDetails တွေကို ရှာမည့် Method တို့ကို ဖြည့်စွက်ရေးသားထားပါတယ်။

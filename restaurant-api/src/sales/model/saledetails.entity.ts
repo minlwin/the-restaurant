@@ -11,7 +11,6 @@ export class SaleDetails implements IdEnable{
     id:number
 
     @ManyToOne(type => Sale, sale => sale.details, {
-        eager: true,
         nullable : false
     })
     @Exclude()

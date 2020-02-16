@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { BaseServiceMutable } from 'src/common/base.service.mutable';
 import { Repository } from 'typeorm';
 import { Sale } from './sale.entity';
 import { SaleDetails } from './saledetails.entity';
+import { BaseService } from 'src/common/base.service';
 
 @Injectable()
-export class SaleService extends BaseServiceMutable<Sale> {
+export class SaleService extends BaseService<Sale> {
 
     constructor(
         @InjectRepository(Sale)
@@ -15,20 +15,10 @@ export class SaleService extends BaseServiceMutable<Sale> {
         private readonly orders:Repository<SaleDetails>
     ) { super(repo) }
 
-    async save(t:Sale) {
-        let sale = await this.repo.save(t)
+    save(sale:Sale) {
         sale.details.forEach(d => {
             d.sale = sale
-            this.orders.save(d)
         })
-        return sale
+        return this.repo.save(sale)
     }
-
-    async findById(id:number) {
-        let sale = await this.repo.findOne(id)
-        let details = await this.orders.find({sale : {id : id}})
-        sale.details = details
-        return sale
-    }
-
 }

@@ -12,13 +12,13 @@ export class SaleDetailsController extends BaseController<SaleDetails> {
         super(detailsService)
     }
 
-    @Post('/sale/:id')
+    @Post('sale/:id')
     async createBySale(@Param('id') saleId:number, @Body() t:SaleDetails, @Res() res:any) {
         let savedResult = await this.detailsService.saveBySale(saleId, t)
         res.redirect(`/orders/${savedResult.id}`)
     }
 
-    @Put('/sale/:id')
+    @Put('sale/:id')
     async updateBySale(@Param('id') saleId:number, @Body() t:SaleDetails, @Res() res:any) {
         let savedResult = await this.detailsService.saveBySale(saleId, t)
         res.redirect(`/orders/${savedResult.id}`)
