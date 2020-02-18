@@ -1,5 +1,7 @@
 package com.jdc.restaurant.controller.card;
 
-public class CategoryCard {
+import javafx.scene.layout.HBox;
+
+public class CategoryCard extends HBox{
 
 }

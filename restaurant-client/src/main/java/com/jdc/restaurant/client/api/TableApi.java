@@ -10,6 +10,7 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface TableApi{
 
@@ -24,5 +25,8 @@ public interface TableApi{
 	
 	@GET("/tables")
 	Call<List<Table>> findAll();
+	
+	@GET("/tables/search")
+	Call<List<Table>> search(@Query("number") String number);
 
 }

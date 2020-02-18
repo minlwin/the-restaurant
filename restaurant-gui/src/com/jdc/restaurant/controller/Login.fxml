@@ -27,6 +27,11 @@
                   <Label text="Employee Login" />
                </children>
             </HBox>
+            <HBox styleClass="message">
+               <children>
+                  <Label fx:id="message" />
+               </children>
+            </HBox>
             <VBox styleClass="form-group">
                <children>
                   <Label text="Login ID" />

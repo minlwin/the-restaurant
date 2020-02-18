@@ -130,7 +130,6 @@
 
 .login-view {
 	-fx-pref-width: 600px;
-	-fx-pref-height: 300px;
 	-fx-background-color: primary;
 }
 
@@ -140,12 +139,19 @@
 
 .login-view > .content {
 	-fx-background-color: primary-light;
-	-fx-spacing: 20px;
+	-fx-spacing: 10;
+	-fx-padding: 0 0 40 0;
 }
 
-.login-view > .content > .header  {
-	-fx-padding: 30 60 20 40;
+
+.login-view > .content > .header {
+	-fx-padding: 20 0.0 10 40;
 }
+
+.login-view > .content > .message {
+	-fx-padding: 0 0.0 0.0 40;
+}
+
 
 .login-view > .content > .header > Label {
 	-fx-font-size: 24px;
