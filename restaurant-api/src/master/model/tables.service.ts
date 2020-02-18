@@ -12,4 +12,10 @@ export class TablesService extends BaseServiceMutable<Tables> {
         repo:Repository<Tables>
     ) { super(repo) }
 
+    search(tableNumber:string) {
+        return this.repo.createQueryBuilder()
+            .where('LOWER(tableNumber) like :tableNumber', 
+                {tableNumber : `%${tableNumber.toLocaleLowerCase()}%`})
+            .getMany()
+    }
 }
