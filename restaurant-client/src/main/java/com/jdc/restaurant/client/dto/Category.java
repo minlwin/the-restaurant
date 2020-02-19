@@ -4,7 +4,8 @@ public class Category {
 
 	private long id;
 	private String name;
-	private int color;
+	private String colorCode;
+	private String colorName;
 
 	public long getId() {
 		return id;
@@ -22,12 +23,20 @@ public class Category {
 		this.name = name;
 	}
 
-	public int getColor() {
-		return color;
+	public String getColorCode() {
+		return colorCode;
 	}
 
-	public void setColor(int color) {
-		this.color = color;
+	public void setColorCode(String colorCode) {
+		this.colorCode = colorCode;
+	}
+
+	public String getColorName() {
+		return colorName;
+	}
+
+	public void setColorName(String colorName) {
+		this.colorName = colorName;
 	}
 
 }

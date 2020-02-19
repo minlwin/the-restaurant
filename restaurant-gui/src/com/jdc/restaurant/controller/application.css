@@ -92,12 +92,26 @@
 	-fx-pref-width: 200px;	
 }
 
+.wid260 {
+	-fx-pref-width: 260px;	
+}
+
+.pad-top-10 {
+	-fx-padding: 10 0 0 0;
+}
+
+.date-picker,
+.combo-box,
+.color-picker,
 .text-field, 
 .button {
 	-fx-border-radius: 4px;
 	-fx-border-width: 1px;
 }
 
+.date-picker,
+.combo-box,
+.color-picker,
 .text-field {
 	-fx-background-color: transparent;
 	-fx-border-color: secondary;

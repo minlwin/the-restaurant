@@ -39,7 +39,6 @@ class CategoryClientTest {
 			
 			Category c = new Category();
 			c.setName("Chinese");
-			c.setColor(20);
 			
 			Category result = api.create(c).execute().body();
 			
@@ -58,7 +57,6 @@ class CategoryClientTest {
 			Category result = api.findById(1).execute().body();
 			assertNotNull(result);
 			assertEquals("Chinese", result.getName());
-			assertEquals(20, result.getColor());
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -83,10 +81,10 @@ class CategoryClientTest {
 	void updateTest() {
 		try {
 			Category oldObject = api.findById(1).execute().body();
-			oldObject.setColor(40);
+			oldObject.setName("Update");
 			
 			Category result = api.update(oldObject).execute().body();
-			assertEquals(40, result.getColor());		
+			assertEquals("Update", result.getName());		
 			
 		} catch (Exception e) {
 			e.printStackTrace();

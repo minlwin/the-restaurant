@@ -5,7 +5,7 @@ public enum Page {
 	Home("The Restaurant", "RestaurantHome"), 
 	Tables("Table Management", "TableManagement"), 
 	Categories("Category Management", "CategoryManagement"), 
-	Menus("Menu Management", "MenuManagent"), 
+	Menus("Menu Management", "MenuManagement"), 
 	Sales("Sale Management", "SaleManagement"), 
 	Employees("Employee Management", "EmployeeManagement");
 

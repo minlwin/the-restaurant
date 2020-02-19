@@ -2,7 +2,6 @@
 
 <?import java.lang.String?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -10,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="login-view" stylesheets="@application.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jdc.restaurant.controller.MenuEdit">
+<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="login-view" stylesheets="@application.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jdc.restaurant.controller.TableEdit">
    <children>
       <VBox>
          <children>
@@ -29,47 +28,31 @@
          <children>
             <HBox styleClass="header">
                <children>
-                  <Label fx:id="title" text="Add New Menu" />
+                  <Label fx:id="title" text="Add New Table" />
                </children>
             </HBox>
             <HBox styleClass="message">
                <children>
-                  <Label fx:id="message" />
-                  <ComboBox fx:id="category" promptText="Category" styleClass="wid260" />
+                  <Label fx:id="message" text="Label" />
                </children>
             </HBox>
             <VBox styleClass="form-group">
                <children>
-                  <Label text="Category" />
+                  <Label text="Table Number" />
+                  <TextField fx:id="tableNumber" promptText="Enter Table Number" />
                </children>
             </VBox>
             <VBox layoutX="10.0" layoutY="90.0" styleClass="form-group">
                <children>
-                  <Label text="Menu" />
-                  <TextField fx:id="name" promptText="Enter Seat Count" />
+                  <Label text="Seats" />
+                  <TextField fx:id="seats" promptText="Enter Seat Count" />
                </children>
             </VBox>
-            <VBox layoutX="10.0" layoutY="107.0" styleClass="form-group">
-               <children>
-                  <Label text="Size" />
-                  <TextField fx:id="size" promptText="Enter Table Number" />
-               </children>
-            </VBox>
-            <VBox layoutX="10.0" layoutY="107.0" styleClass="form-group">
-               <children>
-                  <Label text="Price" />
-                  <TextField fx:id="price" promptText="Enter Table Number" />
-               </children>
-            </VBox>
-            <HBox>
+            <HBox styleClass="form-group">
                <children>
                   <Button mnemonicParsing="false" onAction="#save" text="SAVE" />
                   <Button layoutX="50.0" layoutY="10.0" mnemonicParsing="false" onAction="#close" text="CLOSE" />
                </children>
-               <styleClass>
-                  <String fx:value="form-group" />
-                  <String fx:value="pad-top-10" />
-               </styleClass>
             </HBox>
          </children>
       </VBox>

@@ -30,7 +30,6 @@ class MenuClientTest {
 		DatabaseCleanner.clean("category", "product");
 
 		category = new Category();
-		category.setColor(20);
 		category.setName("Chinese");
 		
 		category = ClientTestFactory.generate(CategoryApi.class).create(category).execute().body();

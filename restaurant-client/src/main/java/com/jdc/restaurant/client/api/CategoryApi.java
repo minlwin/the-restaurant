@@ -10,6 +10,7 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface CategoryApi {
 
@@ -24,4 +25,7 @@ public interface CategoryApi {
 	
 	@GET("/categories/{id}")
 	Call<Category> findById(@Path("id") long id);
+
+	@GET("/categories/search")
+	Call<List<Category>> search(@Query("name") String name);
 }

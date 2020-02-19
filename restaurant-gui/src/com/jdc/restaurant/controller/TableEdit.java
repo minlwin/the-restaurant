@@ -4,12 +4,13 @@ import java.util.function.Consumer;
 
 import com.jdc.restaurant.RestaurantAppException;
 import com.jdc.restaurant.client.dto.Table;
+import com.jdc.restaurant.utils.ModalUtils.ModalController;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-public class TableEdit {
+public class TableEdit implements ModalController<Table>{
 
     @FXML
     private Label title;
@@ -24,6 +25,7 @@ public class TableEdit {
     private TextField seats;
     
     private Consumer<Table> saveHandler;
+    private Table data;
 
     @FXML
     void close() {
@@ -34,7 +36,10 @@ public class TableEdit {
     void save() {
     	try {
     		
-    		Table data = new Table();
+    		if(null == data) {
+        		data = new Table();
+    		}
+
     		data.setTableNumber(tableNumber.getText());
     		data.setSeats(Integer.parseInt(seats.getText()));
     		
@@ -49,9 +54,16 @@ public class TableEdit {
 		}
     }
 
-	public static void show(Table table, Consumer<Table> saveListener) {
-		// TODO Auto-generated method stub
+	public void init(Table table, Consumer<Table> saveListener) {
+		title.setText(null == table ? "Add New Table" : "Edit Table");
+		this.message.setText("");
+		this.data = table;
+		this.saveHandler = saveListener;
 		
+		if(null != table) {
+			tableNumber.setText(table.getTableNumber());
+			seats.setText(String.valueOf(table.getSeats()));
+		}
 	}
 
 }
