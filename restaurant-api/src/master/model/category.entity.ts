@@ -11,5 +11,7 @@ export class Category  implements IdEnable{
     @Column()
     name:string
     @Column()
-    color:number
+    colorCode:string
+    @Column()
+    colorName:string
 }

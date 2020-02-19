@@ -1,4 +1,4 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Get, Query } from '@nestjs/common';
 import { BaseControllerMutable } from 'src/common/base.controller.mutable';
 import { Category } from '../model/category.entity';
 import { CategoryService } from '../model/category.service';
@@ -6,7 +6,12 @@ import { CategoryService } from '../model/category.service';
 @Controller('categories')
 export class CategoryController extends BaseControllerMutable<Category> {
 
-    constructor(service:CategoryService) {
-        super(service, '/categories')
+    constructor(private readonly myService:CategoryService) {
+        super(myService, '/categories')
+    }
+
+    @Get('search')
+    search(@Query("name") name:string) {
+        return this.myService.search(name)
     }
 }

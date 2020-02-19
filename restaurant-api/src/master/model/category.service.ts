@@ -12,4 +12,10 @@ export class CategoryService extends BaseServiceMutable<Category> {
         repo:Repository<Category>) {
             super(repo)
         }
+    
+    search(name:string) {
+        return this.repo.createQueryBuilder()
+            .where("LOWER(name) like :name", 
+            {name : `${name.toLocaleLowerCase()}%`}).getMany()
+    }
 }
