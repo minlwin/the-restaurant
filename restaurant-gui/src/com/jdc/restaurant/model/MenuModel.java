@@ -8,6 +8,7 @@ import com.jdc.restaurant.client.RestaurantClientFactory;
 import com.jdc.restaurant.client.api.MenuApi;
 import com.jdc.restaurant.client.dto.Category;
 import com.jdc.restaurant.client.dto.Menu;
+import static com.jdc.restaurant.utils.ValidationUtils.*;
 
 public class MenuModel {
 
@@ -43,6 +44,14 @@ public class MenuModel {
 	}
 	
 	private void validate(Menu menu) {
+		
+		notNull(menu, Menu.class);
+		
+		notNull(menu.getCategory(), Category.class);
+		
+		notEmptyStringInput(menu.getName(), "Name of Menu");
+		
+		notZeroNumberInputs(menu.getPrice(), "Price of Menu");
 		
 	}
 

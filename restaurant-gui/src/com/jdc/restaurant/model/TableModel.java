@@ -1,12 +1,15 @@
 package com.jdc.restaurant.model;
 
+import static com.jdc.restaurant.utils.ValidationUtils.notEmptyStringInput;
+import static com.jdc.restaurant.utils.ValidationUtils.notNull;
+import static com.jdc.restaurant.utils.ValidationUtils.notZeroNumberInputs;
+
 import java.util.List;
 
 import com.jdc.restaurant.RestaurantAppException;
 import com.jdc.restaurant.client.RestaurantClientFactory;
 import com.jdc.restaurant.client.api.TableApi;
 import com.jdc.restaurant.client.dto.Table;
-import com.jdc.restaurant.utils.StringUtils;
 
 public class TableModel {
 	
@@ -50,16 +53,10 @@ public class TableModel {
 
 	private void validate(Table table) {
 
-		if(null == table) {
-			throw new RestaurantAppException("Table must not be null!");
-		}
+		notNull(table, Table.class);
 		
-		if(StringUtils.isEmpty(table.getTableNumber())) {
-			throw new RestaurantAppException("Please enter Table Number!");
-		}
+		notEmptyStringInput(table.getTableNumber(), "Table Number");
 		
-		if(table.getSeats() == 0) {
-			throw new RestaurantAppException("Please enter seats!");
-		}
+		notZeroNumberInputs(table.getSeats(), "Seats for Table.");
 	}
 }

@@ -1,5 +1,8 @@
 package com.jdc.restaurant.model;
 
+import static com.jdc.restaurant.utils.ValidationUtils.notEmptyStringInput;
+import static com.jdc.restaurant.utils.ValidationUtils.notNull;
+
 import java.util.List;
 
 import com.jdc.restaurant.RestaurantAppException;
@@ -43,13 +46,9 @@ public class CategoryModel {
 	
 	private void validate(Category category) {
 		
-		if(null == category) {
-			throw new RestaurantAppException("Category must not be null!");
-		}
+		notNull(category, Category.class);
 		
-		if(StringUtils.isEmpty(category.getName())) {
-			throw new RestaurantAppException("Please enter Category Name!");
-		}
+		notEmptyStringInput(category.getName(), "Category Name");
 		
 		if(StringUtils.someIsEmpty(category.getColorCode(), category.getColorName())) {
 			throw new RestaurantAppException("Please select Color!");
