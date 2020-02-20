@@ -27,5 +27,5 @@ export class Sale implements IdEnable {
     })
     details:SaleDetails[]
     @Column()
-    paid:boolean = false
+    status?:string
 }

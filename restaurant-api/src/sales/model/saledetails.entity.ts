@@ -1,4 +1,4 @@
-import { PrimaryGeneratedColumn, Entity, ManyToOne, Column } from "typeorm";
+import { PrimaryGeneratedColumn, Entity, ManyToOne, Column, CreateDateColumn } from "typeorm";
 import { Sale } from "./sale.entity";
 import { Exclude } from "class-transformer";
 import { IdEnable } from "src/common/id.enable";
@@ -24,4 +24,10 @@ export class SaleDetails implements IdEnable{
     unitPrice:number
     @Column()
     quantity:number
+    @Column()
+    status?:string
+    @Column()
+    remind?:number
+    @CreateDateColumn()
+    orderTime?:Date
 }

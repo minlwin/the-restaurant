@@ -15,4 +15,24 @@ export class ProductService extends BaseServiceMutable<Product> {
     findByCategory(categoryId:number) {
         return this.repo.find({category : {id : categoryId}})
     }
+
+    upload(list:Product[]) {
+        return this.repo.save(list)
+    }
+
+    search(categoryId:number, name:string) {
+
+        let query = this.repo.createQueryBuilder('p')
+            .leftJoinAndSelect('p.category', 'category').where('1 = 1')
+
+        if(categoryId) {
+            query = query.andWhere('p.categoryId = :categoryId', {categoryId : categoryId})
+        }
+
+        if(name) {
+            query = query.andWhere('LOWER(p.name) like :name', {name: `${name}%`})
+        }
+
+        return query.getMany()
+    }
 }

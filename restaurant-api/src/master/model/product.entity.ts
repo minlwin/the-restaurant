@@ -18,5 +18,5 @@ export class Product implements IdEnable{
     @Column()
     price:number
     @Column()
-    size:String
+    size?:String
 }

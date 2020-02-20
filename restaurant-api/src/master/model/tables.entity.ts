@@ -9,5 +9,5 @@ export class Tables implements IdEnable{
     @Column()
     tableNumber:string
     @Column()
-    seats:number
+    seats?:number
 }

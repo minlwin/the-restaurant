@@ -12,7 +12,7 @@ export class EmployeeController extends BaseControllerMutable<Employee> {
 
     @Get('search')
     @UseInterceptors(ClassSerializerInterceptor)
-    search(@Query('name') name:string):Promise<Employee[]> {
-        return this.empService.findByNameLike(name)
+    search(@Query('name') name:string, @Query('phone') phone:string):Promise<Employee[]> {
+        return this.empService.search(name, phone)
     }
 }
