@@ -25,7 +25,10 @@
 	-fx-alignment: center-left;
 }
 
-.side-menu:hover,
+.side-menu:hover {
+	-fx-background-color: secondary-light;
+}
+
 .side-menu.active {
 	-fx-background-color: primary-light;
 }
@@ -34,7 +37,6 @@
 .side-menu.active Label,
 .side-menu:hover SVGPath,
 .side-menu:hover Label {
-	-fx-background-color: primary-light;
 	-fx-text-fill: primary;
 	-fx-fill: primary;
 }
@@ -134,6 +136,13 @@
 	-fx-text-fill: primary;
 	-fx-prompt-text-fill: secondary-light;
 	-fx-border-color: primary;
+}
+
+.date-picker-popup .button {
+	-fx-pref-width: 0px;
+	-fx-border-style: none;
+	-fx-border-width: 0;
+	-fx-background-color: transparent;
 }
 
 .table-view {

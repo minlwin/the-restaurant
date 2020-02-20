@@ -15,6 +15,7 @@ import com.jdc.restaurant.utils.ModalUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.TilePane;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
@@ -33,6 +34,12 @@ public class MenuManagement {
     @FXML
     private void initialize() {
     	schCategory.getItems().addAll(CategoryModel.getModel().findAll());
+    	
+    	schCategory.setOnKeyPressed(event -> {
+    		if(event.getCode() == KeyCode.BACK_SPACE) {
+    			schCategory.setValue(null);
+    		}
+    	});
     	
     	search();
     }
