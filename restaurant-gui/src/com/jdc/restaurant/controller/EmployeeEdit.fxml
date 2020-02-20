@@ -1,8 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.AnchorPane?>
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1">
-	<!-- TODO Add Nodes -->
-</AnchorPane>
-
+<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="login-view" stylesheets="@application.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jdc.restaurant.controller.EmployeeEdit">
+   <children>
+      <VBox>
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@restaurant-logo.png" />
+               </image>
+            </ImageView>
+         </children>
+         <styleClass>
+            <String fx:value="al-center" />
+            <String fx:value="side-bar" />
+         </styleClass>
+      </VBox>
+      <VBox styleClass="content" HBox.hgrow="ALWAYS">
+         <children>
+            <HBox styleClass="header">
+               <children>
+                  <Label fx:id="title" text="Add New Employee" />
+               </children>
+            </HBox>
+            <HBox styleClass="message">
+               <children>
+                  <Label fx:id="message" />
+               </children>
+            </HBox>
+            <VBox styleClass="form-group">
+               <children>
+                  <Label text="Name" />
+                  <TextField fx:id="name" promptText="Enter Table Number" />
+               </children>
+            </VBox>
+            <VBox layoutX="10.0" layoutY="90.0" styleClass="form-group">
+               <children>
+                  <Label text="Role" />
+                  <ComboBox fx:id="role" maxWidth="1.7976931348623157E308" promptText="Select  Role" />
+               </children>
+            </VBox>
+            <VBox layoutX="10.0" layoutY="107.0" styleClass="form-group">
+               <children>
+                  <Label text="Phone" />
+                  <TextField fx:id="phone" promptText="Enter Table Number" />
+               </children>
+            </VBox>
+            <VBox layoutX="10.0" layoutY="276.0" styleClass="form-group">
+               <children>
+                  <Label text="Email" />
+                  <TextField fx:id="email" promptText="Enter Table Number" />
+               </children>
+            </VBox>
+            <HBox styleClass="form-buttons">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#save" text="SAVE" />
+                  <Button layoutX="50.0" layoutY="10.0" mnemonicParsing="false" onAction="#close" text="CLOSE" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</HBox>

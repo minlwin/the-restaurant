@@ -33,6 +33,8 @@ public class MenuManagement {
     @FXML
     private void initialize() {
     	schCategory.getItems().addAll(CategoryModel.getModel().findAll());
+    	
+    	search();
     }
 
     @FXML

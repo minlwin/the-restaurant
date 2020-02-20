@@ -33,7 +33,7 @@
             </HBox>
             <HBox styleClass="message">
                <children>
-                  <Label fx:id="message" text="Label" />
+                  <Label fx:id="message" />
                </children>
             </HBox>
             <VBox styleClass="form-group">
@@ -48,7 +48,7 @@
                   <TextField fx:id="seats" promptText="Enter Seat Count" />
                </children>
             </VBox>
-            <HBox styleClass="form-group">
+            <HBox styleClass="form-buttons">
                <children>
                   <Button mnemonicParsing="false" onAction="#save" text="SAVE" />
                   <Button layoutX="50.0" layoutY="10.0" mnemonicParsing="false" onAction="#close" text="CLOSE" />

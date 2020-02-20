@@ -44,7 +44,7 @@
                   <PasswordField fx:id="password" promptText="Enter Paassword" />
                </children>
             </VBox>
-            <HBox styleClass="form-group">
+            <HBox styleClass="form-buttons">
                <children>
                   <Button mnemonicParsing="false" onAction="#close" text="CLOSE" />
                   <Button layoutX="50.0" layoutY="10.0" mnemonicParsing="false" onAction="#login" text="LOGIN" />

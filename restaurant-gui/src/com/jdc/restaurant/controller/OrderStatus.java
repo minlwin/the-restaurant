@@ -5,13 +5,13 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
-public class SaleManagement {
-
-    @FXML
-    private TextField tableNumber;
+public class OrderStatus {
 
     @FXML
     private ComboBox<?> status;
+
+    @FXML
+    private TextField tableNumber;
 
     @FXML
     private TableView<?> table;

@@ -49,7 +49,7 @@
                   <TextField fx:id="name" promptText="Enter Table Number" />
                </children>
             </VBox>
-            <HBox styleClass="form-group">
+            <HBox styleClass="form-buttons">
                <children>
                   <Button mnemonicParsing="false" onAction="#save" text="SAVE" />
                   <Button layoutX="50.0" layoutY="10.0" mnemonicParsing="false" onAction="#close" text="CLOSE" />

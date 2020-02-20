@@ -10,49 +10,44 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="content-view" stylesheets="@application.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jdc.restaurant.controller.SaleManagement">
+<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="content-view" stylesheets="@application.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jdc.restaurant.controller.OrderStatus">
    <children>
       <HBox styleClass="search-bar">
          <children>
             <DatePicker promptText="Date" />
-            <TextField fx:id="tableNumber" layoutX="10.0" layoutY="10.0" promptText="Table Number" styleClass="wid200" />
             <ComboBox fx:id="status" prefWidth="150.0" promptText="Status" />
+            <TextField fx:id="tableNumber" layoutX="10.0" layoutY="10.0" promptText="Table Number" styleClass="wid200" />
             <Button mnemonicParsing="false" onAction="#search" text="SEARCH" />
          </children>
       </HBox>
       <TableView fx:id="table" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
         <columns>
-          <TableColumn prefWidth="147.0" text="Sale Date">
-          	<cellValueFactory>
-          		<PropertyValueFactory property="role" />
-          	</cellValueFactory>
-          </TableColumn>
           <TableColumn prefWidth="210.0" text="Table">
           	<cellValueFactory>
           		<PropertyValueFactory property="name" />
           	</cellValueFactory>
           </TableColumn>
-          <TableColumn prefWidth="234.0" text="Status">
+          <TableColumn prefWidth="147.0" text="Menu">
+          	<cellValueFactory>
+          		<PropertyValueFactory property="role" />
+          	</cellValueFactory>
+          </TableColumn>
+          <TableColumn prefWidth="234.0" text="Count">
           	<cellValueFactory>
           		<PropertyValueFactory property="phone" />
           	</cellValueFactory>
           </TableColumn>
-          <TableColumn prefWidth="154.0" text="Sub Total">
+          <TableColumn prefWidth="154.0" text="Order Time">
           	<cellValueFactory>
           		<PropertyValueFactory property="email" />
           	</cellValueFactory>
           </TableColumn>
-            <TableColumn prefWidth="234.0" text="Tax">
+            <TableColumn prefWidth="234.0" text="Status">
                <cellValueFactory>
                   <PropertyValueFactory property="phone" />
                </cellValueFactory>
             </TableColumn>
-            <TableColumn prefWidth="234.0" text="Discount">
-               <cellValueFactory>
-                  <PropertyValueFactory property="phone" />
-               </cellValueFactory>
-            </TableColumn>
-            <TableColumn prefWidth="154.0" text="Total">
+            <TableColumn prefWidth="154.0" text="Reminder Count">
                <cellValueFactory>
                   <PropertyValueFactory property="email" />
                </cellValueFactory>

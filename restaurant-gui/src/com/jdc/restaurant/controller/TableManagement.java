@@ -21,6 +21,11 @@ public class TableManagement {
 	private TilePane container;
 
 	@FXML
+    private void initialize() {
+    	search();
+    }
+
+	@FXML
 	void addNew() {
 		ModalUtils.show(TableEdit.class, null, this::save);
 	}

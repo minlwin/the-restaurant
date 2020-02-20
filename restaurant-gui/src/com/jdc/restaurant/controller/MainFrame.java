@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class MainFrame {
@@ -22,6 +23,8 @@ public class MainFrame {
 	private Label title;
 	@FXML
 	private Label loginUserName;
+	@FXML
+	private VBox sideBar;
 	
 	@FXML
 	private void initialize() {
@@ -40,6 +43,8 @@ public class MainFrame {
 	private void loadView(MouseEvent event) {
 		Node node = (Node) event.getSource();
 		loadView(Page.valueOf(node.getId()));
+		sideBar.getChildren().stream().filter(a -> a.getStyleClass().contains("active")).findAny().ifPresent(a -> a.getStyleClass().remove("active"));
+		node.getStyleClass().add("active");
 	}
 	
 	private void loadView(Page page) {
@@ -48,6 +53,7 @@ public class MainFrame {
 			
 			Parent view = FXMLLoader.load(getClass().getResource(page.getViewFile()));
 			loadView(view);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

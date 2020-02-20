@@ -1,6 +1,7 @@
 package com.jdc.restaurant.client.api;
 
 import java.util.List;
+import java.util.Map;
 
 import com.jdc.restaurant.client.dto.Employee;
 
@@ -10,7 +11,7 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
-import retrofit2.http.Query;
+import retrofit2.http.QueryMap;
 
 public interface EmployeeApi {
 	
@@ -27,6 +28,6 @@ public interface EmployeeApi {
 	Call<List<Employee>> findAll();
 	
 	@GET("/employees/search")
-	Call<List<Employee>> search(@Query("name") String name);
+	Call<List<Employee>> search(@QueryMap Map<String, String> query);
 
 }

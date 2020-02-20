@@ -23,6 +23,13 @@ public class ValidationUtils {
 		}
 	}
 	
+	public static void notEmptyStringSelect(String data, String field) {
+		
+		if(StringUtils.isEmpty(data)) {
+			throw new RestaurantAppException(String.format("Please select %s!", field));
+		}
+	}
+
 	public static<T extends Number> void notZeroNumberInputs(T data, String field) {
 		
 		if(data.intValue() == 0) {

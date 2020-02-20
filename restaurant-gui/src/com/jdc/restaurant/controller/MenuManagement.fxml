@@ -18,6 +18,6 @@
             <Button layoutX="560.0" layoutY="11.0" mnemonicParsing="false" onAction="#upload" text="UPLOAD" />
          </children>
       </HBox>
-      <TilePane fx:id="container" hgap="20.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" vgap="20.0" VBox.vgrow="ALWAYS" />
+      <TilePane fx:id="container" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="container" VBox.vgrow="ALWAYS" />
    </children>
 </VBox>

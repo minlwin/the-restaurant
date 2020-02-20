@@ -1,9 +1,14 @@
 package com.jdc.restaurant.model;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import com.jdc.restaurant.RestaurantAppException;
 import com.jdc.restaurant.client.RestaurantClientFactory;
 import com.jdc.restaurant.client.api.EmployeeApi;
 import com.jdc.restaurant.client.dto.Employee;
+import static com.jdc.restaurant.utils.ValidationUtils.*;
 
 public class EmployeeModel {
 
@@ -42,7 +47,29 @@ public class EmployeeModel {
 	}
 
 	private void validate(Employee emp) {
-		// TODO Auto-generated method stub
-		
+
+		notEmptyStringInput(emp.getName(), "Employee");
+		notEmptyStringSelect(emp.getRole(), "Role of Employee");
+		notEmptyStringInput(emp.getPhone(), "Phone Number");
+		notEmptyStringInput(emp.getEmail(), "Email Address");
+	}
+
+	public List<Employee> search(String name, String phone) {
+
+		try {
+			
+			Map<String, String> query = new HashMap<>();
+			query.put("name", name);
+			query.put("phone", phone);
+			
+			return api.search(query).execute().body();
+			
+		} catch (Exception e) {
+			throw new RestaurantAppException("API Error, Please check Network Connection.");
+		}
+	}
+	
+	public enum Role {
+		Admin, Counter, Waiter, Owner, Kitchen
 	}
 }

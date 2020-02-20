@@ -2,6 +2,7 @@ package com.jdc.restaurant.client.test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -31,6 +32,8 @@ class MenuClientTest {
 
 		category = new Category();
 		category.setName("Chinese");
+		category.setColorCode("1019");
+		category.setColorName("color");
 		
 		category = ClientTestFactory.generate(CategoryApi.class).create(category).execute().body();
 	}
@@ -117,5 +120,24 @@ class MenuClientTest {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@Test
+	@Order(6)
+	void searchTest() {
+		
+		try {
+			@SuppressWarnings("serial")
+			List<Menu> data = api.search(new HashMap<String, String>() {{put("name", "hot");}}).execute().body();
+			assertEquals(1, data.size());
+			
+			
+			data = api.findByCategory(2).execute().body();
+			assertEquals(0, data.size());
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 }

@@ -44,7 +44,7 @@ public class CategoryEdit implements ModalController<Category>{
     		Color c = color.getValue();
     		
     		if(null != c) {
-    			data.setName(c.toString());
+    			data.setColorName(c.toString());
     			data.setColorCode(String.format("#%s", Integer.toHexString(c.hashCode())));
     		}
     		

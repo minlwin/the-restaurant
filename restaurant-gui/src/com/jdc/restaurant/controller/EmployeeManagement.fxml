@@ -6,24 +6,40 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 
-<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="content-view" stylesheets="@application.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="content-view" stylesheets="@application.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jdc.restaurant.controller.EmployeeManagement">
    <children>
       <HBox styleClass="search-bar">
          <children>
-            <TextField promptText="Search  Name" styleClass="wid200" />
-            <TextField layoutX="10.0" layoutY="10.0" promptText="Search Phone" styleClass="wid200" />
-            <Button mnemonicParsing="false" text="SEARCH" />
-            <Button layoutX="220.0" layoutY="11.0" mnemonicParsing="false" text="ADD NEW" />
+            <TextField fx:id="schName" promptText="Search  Name" styleClass="wid200" />
+            <TextField fx:id="schPhone" layoutX="10.0" layoutY="10.0" promptText="Search Phone" styleClass="wid200" />
+            <Button mnemonicParsing="false" onAction="#search" text="SEARCH" />
+            <Button layoutX="220.0" layoutY="11.0" mnemonicParsing="false" onAction="#addNew" text="ADD NEW" />
          </children>
       </HBox>
-      <TableView prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+      <TableView fx:id="table" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
         <columns>
-          <TableColumn prefWidth="210.0" text="Name" />
-          <TableColumn prefWidth="147.0" text="Role" />
-            <TableColumn prefWidth="234.0" text="Email" />
-            <TableColumn prefWidth="154.0" text="Create At" />
-            <TableColumn prefWidth="154.0" text="Modified At" />
+          <TableColumn prefWidth="210.0" text="Name" >
+          	<cellValueFactory>
+          		<PropertyValueFactory property="name" />
+          	</cellValueFactory>
+          </TableColumn>
+          <TableColumn prefWidth="147.0" text="Role"  >
+          	<cellValueFactory>
+          		<PropertyValueFactory property="role" />
+          	</cellValueFactory>
+          </TableColumn>
+          <TableColumn prefWidth="234.0" text="Phone"  >
+          	<cellValueFactory>
+          		<PropertyValueFactory property="phone" />
+          	</cellValueFactory>
+          </TableColumn>
+          <TableColumn prefWidth="154.0" text="Email"  >
+          	<cellValueFactory>
+          		<PropertyValueFactory property="email" />
+          	</cellValueFactory>
+          </TableColumn>
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

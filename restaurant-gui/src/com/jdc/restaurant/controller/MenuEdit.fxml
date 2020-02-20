@@ -35,12 +35,12 @@
             <HBox styleClass="message">
                <children>
                   <Label fx:id="message" />
-                  <ComboBox fx:id="category" promptText="Category" styleClass="wid260" />
                </children>
             </HBox>
             <VBox styleClass="form-group">
                <children>
                   <Label text="Category" />
+                  <ComboBox fx:id="category" promptText="Category" styleClass="wid260" />
                </children>
             </VBox>
             <VBox layoutX="10.0" layoutY="90.0" styleClass="form-group">
@@ -61,15 +61,11 @@
                   <TextField fx:id="price" promptText="Enter Table Number" />
                </children>
             </VBox>
-            <HBox>
+            <HBox styleClass="form-buttons">
                <children>
                   <Button mnemonicParsing="false" onAction="#save" text="SAVE" />
                   <Button layoutX="50.0" layoutY="10.0" mnemonicParsing="false" onAction="#close" text="CLOSE" />
                </children>
-               <styleClass>
-                  <String fx:value="form-group" />
-                  <String fx:value="pad-top-10" />
-               </styleClass>
             </HBox>
          </children>
       </VBox>

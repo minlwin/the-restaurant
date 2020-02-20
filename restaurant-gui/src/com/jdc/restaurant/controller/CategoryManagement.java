@@ -19,6 +19,11 @@ public class CategoryManagement {
 
     @FXML
     private TilePane container;
+    
+    @FXML
+    private void initialize() {
+    	search();
+    }
 
     @FXML
     private void addNew() {

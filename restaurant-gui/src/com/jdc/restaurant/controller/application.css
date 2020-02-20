@@ -25,10 +25,13 @@
 	-fx-alignment: center-left;
 }
 
-.side-menu:hover {
+.side-menu:hover,
+.side-menu.active {
 	-fx-background-color: primary-light;
 }
 
+.side-menu.active SVGPath,
+.side-menu.active Label,
 .side-menu:hover SVGPath,
 .side-menu:hover Label {
 	-fx-background-color: primary-light;
@@ -76,8 +79,12 @@
 }
 
 .search-bar {
+	-fx-padding: 20px;
 	-fx-spacing: 10px;
 	-fx-alignment: center-left;
+	-fx-background-color: ascent;
+	-fx-background-radius: 4px;
+	-fx-effect: dropshadow(gaussian, secondary-light, 0, 2, 2, 2) 
 }
 
 .wid120 {
@@ -109,6 +116,15 @@
 	-fx-border-width: 1px;
 }
 
+
+.date-picker .date-picker-display-node {
+	-fx-border-width: 0px;
+}
+
+.date-picker .arrow-button {
+	-fx-background-color: transparent;
+}
+
 .date-picker,
 .combo-box,
 .color-picker,
@@ -118,6 +134,15 @@
 	-fx-text-fill: primary;
 	-fx-prompt-text-fill: secondary-light;
 	-fx-border-color: primary;
+}
+
+.table-view {
+	-fx-effect: dropshadow(gaussian, secondary-light, 0, 2, 2, 2) 
+}
+
+.table-view .column-header-background,
+.table-view .column-header {
+	-fx-background-color: ascent;
 }
 
 .button {
@@ -136,9 +161,19 @@
 	-fx-spacing: 20px;
 	-fx-background-color: ascent;
 	-fx-background-radius: 4px;
+	-fx-effect: dropshadow(gaussian, secondary-light, 0, 2, 2, 2) 
 }
 
-.category-card .title {
+.card-nocolor {
+	-fx-pref-width: 240px;
+	-fx-padding: 20px;
+	-fx-spacing: 20px;
+	-fx-background-radius: 4px;
+	-fx-effect: dropshadow(gaussian, secondary-light, 0, 2, 2, 2) 
+}
+
+.card-nocolor .title,
+.card .title {
 	-fx-font-size: 18px;
 }
 
@@ -180,3 +215,16 @@
 	-fx-padding: 0 60 0 40;
 }
 
+.login-view .form-buttons {
+	-fx-spacing: 10px;
+	-fx-padding: 10 60 0 40;
+}
+
+.content-view > .container {
+	-fx-vgap: 10;
+	-fx-hgap: 10;
+}
+
+.card-nocolor {
+	
+}

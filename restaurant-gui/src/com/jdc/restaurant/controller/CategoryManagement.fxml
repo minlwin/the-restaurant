@@ -15,6 +15,6 @@
             <Button layoutX="220.0" layoutY="11.0" mnemonicParsing="false" onAction="#addNew" text="ADD NEW" />
          </children>
       </HBox>
-      <TilePane fx:id="container" hgap="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" vgap="10.0" VBox.vgrow="ALWAYS" />
+      <TilePane fx:id="container" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="container" VBox.vgrow="ALWAYS" />
    </children>
 </VBox>

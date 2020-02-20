@@ -3,7 +3,9 @@ package com.jdc.restaurant.client.test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -106,18 +108,22 @@ class EmployeeClientTest {
 	void findByNameLikeTest() {
 		try {
 			
-			List<Employee> data = api.search("update").execute().body();
+			Map<String, String> query  = new HashMap<>();
+			query.put("name", "update");
+			List<Employee> data = api.search(query).execute().body();
 			assertEquals(1, data.size());
 			
 			for(Employee emp : data) {
 				System.out.println(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(emp.getModification()));
 			}
 
-			data = api.search("name").execute().body();
+			query.put("name", "name");
+			data = api.search(query).execute().body();
 			assertEquals(1, data.size());
 			
 			
-			data = api.search("other").execute().body();
+			query.put("name", "other");
+			data = api.search(query).execute().body();
 			assertEquals(0, data.size());
 		} catch (Exception e) {
 			e.printStackTrace();
