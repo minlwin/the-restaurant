@@ -1,6 +1,6 @@
 package com.jdc.restaurant.model;
 
-import static com.jdc.restaurant.utils.ValidationUtils.*;
+import static com.jdc.restaurant.utils.ValidationUtils.notEmptyStringInput;
 import static com.jdc.restaurant.utils.ValidationUtils.notNull;
 
 import java.util.List;

@@ -3,7 +3,6 @@ package com.jdc.restaurant.client.api;
 import java.util.List;
 
 import com.jdc.restaurant.client.dto.Sale;
-import com.jdc.restaurant.client.dto.Voucher;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -27,5 +26,5 @@ public interface SaleApi {
 	Call<Sale> findById(@Path("id") long id);
 	
 	@GET("/sales/actives")
-	Call<List<Voucher>> getActiveVouchers();
+	Call<List<Sale>> getActiveVouchers();
 }
