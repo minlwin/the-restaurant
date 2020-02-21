@@ -7,7 +7,8 @@ public enum Page {
 	OrderStatus("Order Status", "OrderStatus"),
 	Categories("Category Management", "CategoryManagement"), 
 	Menus("Menu Management", "MenuManagement"), 
-	Sales("Sale Management", "SaleManagement"), 
+	Sales("Sale History", "SaleHistory"), 
+	SaleManagement("Sales Management", "SaleManagement"), 
 	Employees("Employee Management", "EmployeeManagement");
 
 	private String title;

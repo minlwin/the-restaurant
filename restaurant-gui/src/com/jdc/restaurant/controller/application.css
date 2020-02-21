@@ -173,6 +173,11 @@
 	-fx-effect: dropshadow(gaussian, secondary-light, 0, 2, 2, 2) 
 }
 
+.card:hover {
+	-fx-background-color: secondary-light;	
+	-fx-effect: dropshadow(gaussian, secondary, 0, 2, 2, 2) 
+}
+
 .card-nocolor {
 	-fx-pref-width: 240px;
 	-fx-padding: 20px;
@@ -234,6 +239,63 @@
 	-fx-hgap: 10;
 }
 
-.card-nocolor {
-	
+.summary {
+	-fx-spacing: 10px;
+}
+
+.summary-card {
+	-fx-alignment: center-right;
+	-fx-background-radius: 4px;
+	-fx-padding: 20px;
+	-fx-pref-width: 242.5px;
+	-fx-effect: dropshadow(gaussian, secondary-light, 0, 2, 2, 2) 
+}
+
+.shadow {
+	-fx-background-radius: 4px;
+	-fx-background-color: ascent;
+	-fx-effect: dropshadow(gaussian, secondary-light, 0, 2, 2, 2) 
+}
+
+.primary {
+	-fx-background-color: primary;
+}
+
+.primary SVGPath,
+.primary Label {
+	-fx-fill: primary-light;
+	-fx-text-fill: primary-light;
+}
+
+.right {
+	-fx-alignment: center-right;
+}
+
+.left {
+	-fx-alignment: center-left;
+}
+
+.center {
+	-fx-alignment: center;
+}
+
+.sp-10 {
+	-fx-spacing: 10px;
+}
+
+.fs-48 {
+	-fx-font-size: 48px;
+}
+
+.pad-bot-10  {
+	-fx-padding: 10 0 20 0;
+}
+
+ScrollPane {
+	-fx-background-color: transparent;
+	-fx-border-style: none;
+}
+
+.scroll-pane > .viewport {
+	-fx-background-color: transparent;
 }

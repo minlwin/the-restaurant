@@ -24,6 +24,12 @@ public class MenuModel {
 	private MenuApi api;
 	private static MenuModel model;
 	
+	public enum Size {
+		Regular,
+		Small,
+		Large
+	}
+	
 	private MenuModel() {
 		api = RestaurantClientFactory.generate(MenuApi.class);
 	}

@@ -1,24 +1,23 @@
 package com.jdc.restaurant.controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.TilePane;
 
-public class SaleManagement {
+public class SaleHistory {
 
     @FXML
     private TextField tableNumber;
 
     @FXML
-    private TilePane container;
+    private ComboBox<?> status;
 
     @FXML
-    private void addNew() {
-
-    }
+    private TableView<?> table;
 
     @FXML
-    private void search() {
+    void search() {
 
     }
 

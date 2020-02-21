@@ -52,7 +52,7 @@
             <VBox layoutX="10.0" layoutY="107.0" styleClass="form-group">
                <children>
                   <Label text="Size" />
-                  <TextField fx:id="size" promptText="Enter Table Number" />
+                  <ComboBox fx:id="size" maxWidth="1.7976931348623157E308" promptText="Select Size" />
                </children>
             </VBox>
             <VBox layoutX="10.0" layoutY="107.0" styleClass="form-group">

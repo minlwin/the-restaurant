@@ -6,6 +6,7 @@ import com.jdc.restaurant.RestaurantAppException;
 import com.jdc.restaurant.client.dto.Category;
 import com.jdc.restaurant.client.dto.Menu;
 import com.jdc.restaurant.model.CategoryModel;
+import com.jdc.restaurant.model.MenuModel.Size;
 import com.jdc.restaurant.utils.ModalUtils.ModalController;
 
 import javafx.fxml.FXML;
@@ -28,7 +29,7 @@ public class MenuEdit implements ModalController<Menu>{
     private TextField name;
 
     @FXML
-    private TextField size;
+    private ComboBox<Size> size;
 
     @FXML
     private TextField price;
@@ -39,6 +40,8 @@ public class MenuEdit implements ModalController<Menu>{
     @FXML
     private void initialize() {
     	category.getItems().addAll(CategoryModel.getModel().findAll());
+    	size.getItems().addAll(Size.values());
+    	size.setValue(Size.Regular);
     }
 
     @FXML
@@ -52,7 +55,7 @@ public class MenuEdit implements ModalController<Menu>{
     		
     		menu.setCategory(category.getValue());
     		menu.setName(name.getText());
-    		menu.setSize(size.getText());
+    		menu.setSize(size.getValue().name());
     		menu.setPrice(Integer.parseInt(price.getText()));
     		
     		listener.accept(menu);
@@ -79,7 +82,7 @@ public class MenuEdit implements ModalController<Menu>{
 			title.setText("Edit Menu");
 			category.setValue(data.getCategory());
 			name.setText(data.getName());
-			size.setText(data.getSize());
+			size.setValue(Size.valueOf(data.getSize()));
 			price.setText(String.valueOf(data.getPrice()));
 		}
 	}

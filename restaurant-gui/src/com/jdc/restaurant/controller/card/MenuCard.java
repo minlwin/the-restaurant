@@ -35,9 +35,12 @@ public class MenuCard extends HBox {
 		name.getStyleClass().add("title");
 		name.setTextFill(fill);
 		
-		Label price = new Label(String.format("%s : %d MMK", menu.getSize(), menu.getPrice()));
+		Label price = new Label(String.format("%d MMK", menu.getPrice()));
 		price.setTextFill(fill);
 		
-		getChildren().addAll(iconBox, new VBox(name, price));
+		Label size = new Label(menu.getSize());
+		size.setTextFill(fill);
+
+		getChildren().addAll(iconBox, new VBox(name, size, price));
 	}
 }
