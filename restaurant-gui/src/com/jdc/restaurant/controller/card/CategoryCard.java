@@ -19,13 +19,10 @@ public class CategoryCard extends HBox{
 	public CategoryCard(Category data, Icons icon, Consumer<Category> listener) {
 		
 		getStyleClass().add("card-nocolor");
-		
-		Color back = Color.valueOf(data.getColorName());
-		Color fill = back.getBrightness() < 0.9 ? Color.WHITE : Color.BLACK;
-
-		setStyle(String.format("-fx-background-color: %s", data.getColorCode()));
+		setStyle(String.format("-fx-background-color: %s", data.getBackColor()));
 		
 		// icon box
+		Color fill = Color.web(data.getFillColor());
 		SVGPath svg = icon.getSvg();
 		svg.setFill(fill);
 		
@@ -39,10 +36,8 @@ public class CategoryCard extends HBox{
 		name.setTextFill(fill);
 		
 		name.getStyleClass().add("title");
-		Label color = new Label(data.getColorName());
-		color.setTextFill(fill);
 		
-		VBox dataBox = new VBox(name, color);
+		VBox dataBox = new VBox(name);
 		
 		getChildren().addAll(iconBox, dataBox);
 	}

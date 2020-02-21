@@ -48,7 +48,7 @@ public class MenuModel {
 			}
 			
 		} catch (Exception e) {
-			throw new RestaurantAppException("API Error, Please check Network Connection.");
+			throw new RestaurantAppException();
 		}
 	}
 	
@@ -79,7 +79,7 @@ public class MenuModel {
 			return api.search(query).execute().body();
 			
 		} catch (Exception e) {
-			throw new RestaurantAppException("API Error, Please check Network Connection.");
+			throw new RestaurantAppException();
 		}
 	}
 

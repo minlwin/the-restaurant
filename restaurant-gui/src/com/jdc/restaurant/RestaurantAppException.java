@@ -11,5 +11,9 @@ public class RestaurantAppException extends RuntimeException{
 	public RestaurantAppException(String message) {
 		super(message);
 	}
+	
+	public RestaurantAppException() {
+		super("API Error, Please check Network Connection.");
+	}
 
 }

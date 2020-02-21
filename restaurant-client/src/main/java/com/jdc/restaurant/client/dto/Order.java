@@ -1,5 +1,7 @@
 package com.jdc.restaurant.client.dto;
 
+import java.util.Date;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -13,6 +15,10 @@ public class Order {
 	@JsonProperty("unitPrice")
 	private int price;
 	private int quantity;
+
+	private String status;
+	private int remind;
+	private Date orderTime;
 
 	public long getId() {
 		return id;
@@ -52,6 +58,30 @@ public class Order {
 
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public int getRemind() {
+		return remind;
+	}
+
+	public void setRemind(int remind) {
+		this.remind = remind;
+	}
+
+	public Date getOrderTime() {
+		return orderTime;
+	}
+
+	public void setOrderTime(Date orderTime) {
+		this.orderTime = orderTime;
 	}
 
 }

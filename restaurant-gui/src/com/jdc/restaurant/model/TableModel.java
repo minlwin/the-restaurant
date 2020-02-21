@@ -32,7 +32,7 @@ public class TableModel {
 		try {
 			return api.search(tableNumber).execute().body();
 		} catch (Exception e) {
-			throw new RestaurantAppException("API Error, Please check Network Connection.");
+			throw new RestaurantAppException();
 		}
 	}
 
@@ -47,7 +47,7 @@ public class TableModel {
 				api.update(table).execute();
 			}
 		} catch (Exception e) {
-			throw new RestaurantAppException("API Error, Please check Network Connection.");
+			throw new RestaurantAppException();
 		}
 	}
 

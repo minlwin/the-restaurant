@@ -19,10 +19,8 @@ public class MenuCard extends HBox {
 		
 		getStyleClass().add("card-nocolor");
 		
-		Color back = Color.valueOf(menu.getCategory().getColorName());
-		Color fill = back.getBrightness() < 0.9 ? Color.WHITE : Color.BLACK;
-
-		setStyle(String.format("-fx-background-color: %s", menu.getCategory().getColorCode()));
+		Color fill = Color.web(menu.getCategory().getFillColor());
+		setStyle(String.format("-fx-background-color: %s", menu.getCategory().getBackColor()));
 		
 		// icon box
 		SVGPath svg = icon.getSvg();

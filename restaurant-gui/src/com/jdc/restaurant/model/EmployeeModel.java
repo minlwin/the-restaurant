@@ -42,7 +42,7 @@ public class EmployeeModel {
 			}
 			
 		} catch (Exception e) {
-			throw new RestaurantAppException("API Error, Please check Network Connection.");
+			throw new RestaurantAppException();
 		}
 	}
 
@@ -65,7 +65,7 @@ public class EmployeeModel {
 			return api.search(query).execute().body();
 			
 		} catch (Exception e) {
-			throw new RestaurantAppException("API Error, Please check Network Connection.");
+			throw new RestaurantAppException();
 		}
 	}
 	

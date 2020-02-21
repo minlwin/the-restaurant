@@ -4,8 +4,8 @@ public class Category {
 
 	private long id;
 	private String name;
-	private String colorCode;
-	private String colorName;
+	private String backColor;
+	private String fillColor;
 
 	public long getId() {
 		return id;
@@ -23,22 +23,23 @@ public class Category {
 		this.name = name;
 	}
 
-	public String getColorCode() {
-		return colorCode;
-	}
-
-	public void setColorCode(String colorCode) {
-		this.colorCode = colorCode;
-	}
-
-	public String getColorName() {
-		return colorName;
-	}
-
-	public void setColorName(String colorName) {
-		this.colorName = colorName;
-	}
 	
+	public String getBackColor() {
+		return backColor;
+	}
+
+	public void setBackColor(String backColor) {
+		this.backColor = backColor;
+	}
+
+	public String getFillColor() {
+		return fillColor;
+	}
+
+	public void setFillColor(String fillColor) {
+		this.fillColor = fillColor;
+	}
+
 	@Override
 	public String toString() {
 		return name;

@@ -1,6 +1,6 @@
 package com.jdc.restaurant.model;
 
-import static com.jdc.restaurant.utils.ValidationUtils.notEmptyStringInput;
+import static com.jdc.restaurant.utils.ValidationUtils.*;
 import static com.jdc.restaurant.utils.ValidationUtils.notNull;
 
 import java.util.List;
@@ -40,7 +40,7 @@ public class CategoryModel {
 			}
 			
 		} catch (Exception e) {
-			throw new RestaurantAppException("API Error, Please check Network Connection.");
+			throw new RestaurantAppException();
 		}
 	}
 	
@@ -50,7 +50,7 @@ public class CategoryModel {
 		
 		notEmptyStringInput(category.getName(), "Category Name");
 		
-		if(StringUtils.someIsEmpty(category.getColorCode(), category.getColorName())) {
+		if(StringUtils.someIsEmpty(category.getBackColor(), category.getFillColor())) {
 			throw new RestaurantAppException("Please select Color!");
 		}
 	}
@@ -59,7 +59,7 @@ public class CategoryModel {
 		try {
 			return api.search(name).execute().body();
 		} catch (Exception e) {
-			throw new RestaurantAppException("API Error, Please check Network Connection.");
+			throw new RestaurantAppException();
 		}
 	}
 
@@ -67,7 +67,7 @@ public class CategoryModel {
 		try {
 			return api.findAll().execute().body();
 		} catch (Exception e) {
-			throw new RestaurantAppException("API Error, Please check Network Connection.");
+			throw new RestaurantAppException();
 		}
 	}
 }

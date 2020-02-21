@@ -32,8 +32,6 @@ class MenuClientTest {
 
 		category = new Category();
 		category.setName("Chinese");
-		category.setColorCode("1019");
-		category.setColorName("color");
 		
 		category = ClientTestFactory.generate(CategoryApi.class).create(category).execute().body();
 	}

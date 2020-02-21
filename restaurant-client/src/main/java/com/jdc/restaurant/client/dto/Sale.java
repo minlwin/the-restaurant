@@ -23,7 +23,7 @@ public class Sale {
 	private int tax;
 	@JsonProperty("details")
 	private List<Order> orders;
-	private boolean paid;
+	private String status;
 	
 	public Sale() {
 		orders = new ArrayList<>();
@@ -100,11 +100,12 @@ public class Sale {
 		this.orders = orders;
 	}
 
-	public boolean isPaid() {
-		return paid;
+	public String getStatus() {
+		return status;
 	}
 
-	public void setPaid(boolean paid) {
-		this.paid = paid;
+	public void setStatus(String status) {
+		this.status = status;
 	}
+
 }

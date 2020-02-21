@@ -44,8 +44,9 @@ public class CategoryEdit implements ModalController<Category>{
     		Color c = color.getValue();
     		
     		if(null != c) {
-    			data.setColorName(c.toString());
-    			data.setColorCode(String.format("#%s", Integer.toHexString(c.hashCode())));
+    			data.setBackColor(String.format("#%s", Integer.toHexString(c.hashCode())));
+    			String fill = c.getBrightness() < 0.9 ? "#ffffff" : "#000000";
+    			data.setFillColor(fill);
     		}
     		
     		listener.accept(data);
@@ -70,8 +71,8 @@ public class CategoryEdit implements ModalController<Category>{
 			this.title.setText("Edit Category");
 			this.name.setText(data.getName());
 			
-			if(null != data.getColorName()) {
-				this.color.setValue(Color.valueOf(data.getColorName()));
+			if(null != data.getBackColor()) {
+				this.color.setValue(Color.web(data.getBackColor()));
 			}
 			
 		}
