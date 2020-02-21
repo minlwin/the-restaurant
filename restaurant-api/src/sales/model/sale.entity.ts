@@ -1,4 +1,4 @@
-import { PrimaryGeneratedColumn, Entity, Column, ManyToOne, OneToMany } from "typeorm";
+import { PrimaryGeneratedColumn, Entity, Column, ManyToOne, OneToMany, CreateDateColumn } from "typeorm";
 import { SaleDetails } from "./saledetails.entity";
 import { Tables } from "src/master/model/tables.entity";
 import { IdEnable } from "src/common/id.enable";
@@ -14,7 +14,7 @@ export class Sale implements IdEnable {
         nullable: false
     })
     tables:Tables
-    @Column()
+    @CreateDateColumn()
     @Transform(d => moment(d).format())
     saleDate:Date
     @Column()

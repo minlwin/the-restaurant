@@ -30,4 +30,8 @@ public class Table {
 		this.seats = seats;
 	}
 
+	@Override
+	public String toString() {
+		return tableNumber;
+	}
 }

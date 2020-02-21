@@ -21,4 +21,18 @@ export class SaleService extends BaseService<Sale> {
         })
         return this.repo.save(sale)
     }
+
+    getActiveVouchers() {
+        return this.repo.createQueryBuilder('s')
+            .innerJoin('s.tables', 't')
+            .select([
+                's.id saleId',
+                't.tableNumber tableNumber',
+                's.saleDate saleDate',
+                's.subTotal subTotal'
+            ])
+            .where('s.status = :status', {status : 'Active'})
+            .getMany()
+        
+    }
 }
