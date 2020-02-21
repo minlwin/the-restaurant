@@ -24,9 +24,9 @@ export class SaleDetails implements IdEnable{
     unitPrice:number
     @Column()
     quantity:number
-    @Column()
+    @Column({nullable: true})
     status?:string
-    @Column()
+    @Column({nullable: true})
     remind?:number
     @CreateDateColumn()
     orderTime?:Date

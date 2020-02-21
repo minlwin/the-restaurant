@@ -26,6 +26,6 @@ export class Sale implements IdEnable {
         eager: true
     })
     details:SaleDetails[]
-    @Column()
+    @Column({nullable : true})
     status?:string
 }

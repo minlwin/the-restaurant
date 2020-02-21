@@ -10,8 +10,8 @@ export class Category  implements IdEnable{
     @Index({unique : true})
     @Column()
     name:string
-    @Column()
-    colorCode?:string
-    @Column()
-    colorName?:string
+    @Column({ nullable : true })
+    backColor?:string
+    @Column({ nullable: true })
+    fillColor?:string
 }
