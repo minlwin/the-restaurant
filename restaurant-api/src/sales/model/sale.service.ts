@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { Sale } from './sale.entity';
 import { SaleDetails } from './saledetails.entity';
 import { BaseService } from 'src/common/base.service';
+import { Voucher } from './voucher.dto';
 
 @Injectable()
 export class SaleService extends BaseService<Sale> {
@@ -23,16 +24,6 @@ export class SaleService extends BaseService<Sale> {
     }
 
     getActiveVouchers() {
-        return this.repo.createQueryBuilder('s')
-            .innerJoin('s.tables', 't')
-            .select([
-                's.id saleId',
-                't.tableNumber tableNumber',
-                's.saleDate saleDate',
-                's.subTotal subTotal'
-            ])
-            .where('s.status = :status', {status : 'Active'})
-            .getMany()
-        
+        return this.repo.find({status : 'Active'})
     }
 }

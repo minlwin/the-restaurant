@@ -13,7 +13,8 @@ export class SaleController extends BaseControllerMutable<Sale> {
     ) { super(saleService, '/sales') }
 
     @Get('actives')
-    getActives() {
-        return this.saleService.getActiveVouchers()
+    async getActives() {
+        let result = await this.saleService.getActiveVouchers()
+        return result
     }
 }
