@@ -3,6 +3,7 @@ package com.jdc.restaurant.controller;
 import java.io.IOException;
 
 import com.jdc.restaurant.utils.Page;
+import com.jdc.restaurant.utils.PageLoader;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,7 +16,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class MainFrame {
+public class MainFrame implements PageLoader{
 	
 	@FXML
 	private StackPane content;
@@ -26,9 +27,12 @@ public class MainFrame {
 	@FXML
 	private VBox sideBar;
 	
+	private static PageLoader pageLoader;
+	
 	@FXML
 	private void initialize() {
 		loadView(Page.Home);
+		pageLoader = this;
 	}
 	
 
@@ -59,9 +63,12 @@ public class MainFrame {
 		}
 	}
 
-	private void loadView(Parent view) {
+	public void loadView(Parent view) {
 		content.getChildren().clear();
 		content.getChildren().add(view);
 	}
 
+	public static PageLoader getPageLoader() {
+		return pageLoader;
+	}
 }

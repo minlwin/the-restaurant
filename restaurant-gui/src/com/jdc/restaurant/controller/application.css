@@ -186,6 +186,15 @@
 	-fx-effect: dropshadow(gaussian, secondary-light, 0, 2, 2, 2) 
 }
 
+.card-nocolor-small {
+	-fx-pref-width: 180px;
+	-fx-padding: 10px;
+	-fx-background-color: ascent;
+	-fx-spacing: 10px;
+	-fx-background-radius: 4px;
+	-fx-effect: dropshadow(gaussian, secondary-light, 0, 2, 2, 2) 
+}
+
 .card-nocolor .title,
 .card .title {
 	-fx-font-size: 18px;
@@ -298,4 +307,12 @@ ScrollPane {
 
 .scroll-pane > .viewport {
 	-fx-background-color: transparent;
+}
+
+.voucher {
+	-fx-pref-width: 400px;
+	-fx-background-radius: 4px;
+	-fx-background-color: ascent;
+	-fx-effect: dropshadow(gaussian, secondary-light, 0, 2, 2, 2) ;
+	-fx-padding: 10;
 }

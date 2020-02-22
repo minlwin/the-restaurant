@@ -61,12 +61,8 @@ public class SaleManagement {
     	List<Sale> vouchers = SaleModel.getModel().getActiveVoucher();
     	
     	vouchers.stream()
-    		.map(v -> new VoucherCard(v, this::showDetails))
+    		.map(v -> new VoucherCard(v, SaleDetails::show))
     		.forEach(container.getChildren()::add);
     }
     
-    private void showDetails(Long saleId) {
-    	
-    }
-
 }
