@@ -1,12 +1,20 @@
 package com.jdc.restaurant.controller;
 
+import java.util.List;
+
 import com.jdc.restaurant.client.dto.Category;
+import com.jdc.restaurant.client.dto.Menu;
 import com.jdc.restaurant.client.dto.Order;
 import com.jdc.restaurant.client.dto.Sale;
 import com.jdc.restaurant.controller.card.CategoryConstructor;
+import com.jdc.restaurant.controller.card.MenuCard;
 import com.jdc.restaurant.model.CategoryModel;
+import com.jdc.restaurant.model.MenuModel;
 import com.jdc.restaurant.model.SaleModel;
+import com.jdc.restaurant.utils.CardWidthUtils;
+import com.jdc.restaurant.utils.Icons;
 
+import javafx.beans.property.DoubleProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -71,6 +79,18 @@ public class SaleDetails {
     }
     
     private void searchMenu(Category category) {
+    	
+    	menus.getChildren().clear();
+    	List<Menu> list = MenuModel.getModel().search(category, null);
+    	
+    	DoubleProperty cardWidth = CardWidthUtils.getWidth(menus.widthProperty(), 240.0, 10.0);
+    	
+    	list.stream().map(m -> new MenuCard(m, null, this::addOrder, cardWidth))
+    		.forEach(menus.getChildren()::add);
+   	
+    }
+    
+    private void addOrder(Menu menu) {
     	
     }
 

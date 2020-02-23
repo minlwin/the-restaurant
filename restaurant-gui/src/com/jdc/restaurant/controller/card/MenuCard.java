@@ -24,14 +24,21 @@ public class MenuCard extends HBox {
 		Color fill = Color.web(menu.getCategory().getFillColor());
 		setStyle(String.format("-fx-background-color: %s", menu.getCategory().getBackColor()));
 		
-		// icon box
-		SVGPath svg = icon.getSvg();
-		svg.setFill(fill);
 		
-		VBox iconBox = new VBox(svg);
-		iconBox.setOnMouseClicked(event -> {
-			ModalUtils.show(MenuEdit.class, menu, listener);
-		});
+		if(null != icon) {
+			// icon box
+			SVGPath svg = icon.getSvg();
+			svg.setFill(fill);
+			
+			VBox iconBox = new VBox(svg);
+			iconBox.setOnMouseClicked(event -> {
+				ModalUtils.show(MenuEdit.class, menu, listener);
+			});
+			
+			getChildren().add(iconBox);
+			
+		}
+		
 		
 		Label name = new Label(menu.getName());
 		name.getStyleClass().add("title");
@@ -43,6 +50,6 @@ public class MenuCard extends HBox {
 		Label size = new Label(menu.getSize());
 		size.setTextFill(fill);
 
-		getChildren().addAll(iconBox, new VBox(name, size, price));
+		getChildren().addAll(new VBox(name, size, price));
 	}
 }
