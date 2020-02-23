@@ -145,7 +145,7 @@
 	-fx-background-color: transparent;
 }
 
-.table-view {
+.dropShadow {
 	-fx-effect: dropshadow(gaussian, secondary-light, 0, 2, 2, 2) 
 }
 
@@ -179,7 +179,6 @@
 }
 
 .card-nocolor {
-	-fx-pref-width: 240px;
 	-fx-padding: 20px;
 	-fx-spacing: 20px;
 	-fx-background-radius: 4px;
@@ -276,6 +275,20 @@
 	-fx-text-fill: primary-light;
 }
 
+.primary:hover {
+	-fx-background-color: primary-light;
+}
+
+.primary:hover SVGPath,
+.primary:hover Label {
+	-fx-fill: primary;
+	-fx-text-fill: primary;
+}
+
+.rounded-corner {
+	-fx-background-radius: 2px;
+}
+
 .right {
 	-fx-alignment: center-right;
 }
@@ -311,8 +324,28 @@ ScrollPane {
 
 .voucher {
 	-fx-pref-width: 400px;
+	-fx-spacing: 10px;
 	-fx-background-radius: 4px;
 	-fx-background-color: ascent;
 	-fx-effect: dropshadow(gaussian, secondary-light, 0, 2, 2, 2) ;
-	-fx-padding: 10;
+	-fx-padding: 16;
+}
+
+.voucher-btn {
+	-fx-pref-width: 200px;
+	-fx-pref-height: 60px;
+	-fx-alignment: center;
+	-fx-background-color: primary-light;
+}
+
+.voucher-btn:hover {
+	-fx-background-color: primary;
+}
+
+.voucher-btn .label{
+	-fx-text-fill: primary;
+}
+
+.voucher-btn:hover .label{
+	-fx-text-fill: primary-light;
 }

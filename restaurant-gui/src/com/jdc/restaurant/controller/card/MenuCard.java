@@ -7,6 +7,7 @@ import com.jdc.restaurant.controller.MenuEdit;
 import com.jdc.restaurant.utils.Icons;
 import com.jdc.restaurant.utils.ModalUtils;
 
+import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -15,9 +16,10 @@ import javafx.scene.shape.SVGPath;
 
 public class MenuCard extends HBox {
 
-	public MenuCard(Menu menu, Icons icon,Consumer<Menu> listener) {
+	public MenuCard(Menu menu, Icons icon,Consumer<Menu> listener, ReadOnlyDoubleProperty widthProp) {
 		
 		getStyleClass().add("card-nocolor");
+		prefWidthProperty().bind(widthProp);
 		
 		Color fill = Color.web(menu.getCategory().getFillColor());
 		setStyle(String.format("-fx-background-color: %s", menu.getCategory().getBackColor()));

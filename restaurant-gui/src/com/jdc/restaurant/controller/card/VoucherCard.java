@@ -6,6 +6,7 @@ import com.jdc.restaurant.client.dto.Sale;
 import com.jdc.restaurant.utils.DateUtiles;
 import com.jdc.restaurant.utils.Icons;
 
+import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -13,9 +14,10 @@ import javafx.scene.shape.SVGPath;
 
 public class VoucherCard extends HBox {
 	
-	public VoucherCard(Sale voucher, Consumer<Long> listener) {
+	public VoucherCard(Sale voucher, Consumer<Long> listener, ReadOnlyDoubleProperty widthProp) {
 		
 		getStyleClass().add("card");
+		prefWidthProperty().bind(widthProp);
 
 		SVGPath icon = Icons.VOUCHER.getSvg();
 		

@@ -7,6 +7,7 @@ import com.jdc.restaurant.controller.CategoryEdit;
 import com.jdc.restaurant.utils.Icons;
 import com.jdc.restaurant.utils.ModalUtils;
 
+import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -16,10 +17,12 @@ import javafx.scene.shape.SVGPath;
 public class CategoryCard extends HBox{
 
 	
-	public CategoryCard(Category data, Icons icon, Consumer<Category> listener) {
+	public CategoryCard(Category data, Icons icon, Consumer<Category> listener, ReadOnlyDoubleProperty widthProp) {
 		
 		getStyleClass().add("card-nocolor");
 		setStyle(String.format("-fx-background-color: %s", data.getBackColor()));
+		
+		prefWidthProperty().bind(widthProp);
 		
 		// icon box
 		Color fill = Color.web(data.getFillColor());

@@ -9,9 +9,11 @@ import com.jdc.restaurant.client.dto.Menu;
 import com.jdc.restaurant.controller.card.MenuCard;
 import com.jdc.restaurant.model.CategoryModel;
 import com.jdc.restaurant.model.MenuModel;
+import com.jdc.restaurant.utils.CardWidthUtils;
 import com.jdc.restaurant.utils.Icons;
 import com.jdc.restaurant.utils.ModalUtils;
 
+import javafx.beans.property.DoubleProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -55,8 +57,10 @@ public class MenuManagement {
     	container.getChildren().clear();
     	
     	List<Menu> list = MenuModel.getModel().search(schCategory.getValue(), schName.getText());
+
+    	DoubleProperty cardWidth = CardWidthUtils.getWidth(container.widthProperty(), 240.0, 10.0);
     	
-    	list.stream().map(m -> new MenuCard(m, Icons.EDIT, this::save))
+    	list.stream().map(m -> new MenuCard(m, Icons.EDIT, this::save, cardWidth))
     		.forEach(container.getChildren()::add);
     }
 

@@ -59,4 +59,12 @@ public class SaleModel {
 		}
 	}
 
+	public Sale findById(long saleId) {
+		try {
+			return api.findById(saleId).execute().body();
+		} catch (IOException e) {
+			throw new RestaurantAppException();
+		}
+	}
+
 }

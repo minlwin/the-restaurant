@@ -7,14 +7,17 @@ import com.jdc.restaurant.controller.TableEdit;
 import com.jdc.restaurant.utils.Icons;
 import com.jdc.restaurant.utils.ModalUtils;
 
+import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class TableCard extends HBox {
 	
-	public TableCard(Table table, Icons icon,Consumer<Table> listener) {
+	public TableCard(Table table, Icons icon,Consumer<Table> listener, ReadOnlyDoubleProperty widthProp) {
+
 		super();
+		prefWidthProperty().bind(widthProp);
 		
 		// icon box
 		VBox iconBox = new VBox(icon.getSvg());

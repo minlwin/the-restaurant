@@ -9,7 +9,9 @@ import com.jdc.restaurant.controller.card.VoucherCard;
 import com.jdc.restaurant.model.SaleModel;
 import com.jdc.restaurant.model.TableModel;
 import com.jdc.restaurant.utils.AutoCompleteUtils;
+import com.jdc.restaurant.utils.CardWidthUtils;
 
+import javafx.beans.property.DoubleProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.TilePane;
@@ -59,9 +61,11 @@ public class SaleManagement {
     	container.getChildren().clear();
     	
     	List<Sale> vouchers = SaleModel.getModel().getActiveVoucher();
+
+    	DoubleProperty cardWidth = CardWidthUtils.getWidth(container.widthProperty(), 220.0, 10.0);
     	
     	vouchers.stream()
-    		.map(v -> new VoucherCard(v, SaleDetails::show))
+    		.map(v -> new VoucherCard(v, SaleDetails::show, cardWidth))
     		.forEach(container.getChildren()::add);
     }
     
