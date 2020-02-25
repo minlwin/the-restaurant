@@ -19,7 +19,7 @@ public interface MenuApi {
 	Call<Menu> create(@Body Menu data);
 
 	@POST("/products/upload")
-	Call<Menu> upload(@Body List<Menu> data);
+	Call<List<Menu>> upload(@Body List<Menu> data);
 
 	@PUT("/products")
 	Call<Menu> update(@Body Menu data);

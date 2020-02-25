@@ -1,4 +1,4 @@
-package com.jdc.restaurant.client;
+package com.jdc.restaurant.client.utils;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.jackson.JacksonConverterFactory;

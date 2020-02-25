@@ -6,18 +6,17 @@ import static com.jdc.restaurant.utils.ValidationUtils.notNull;
 import java.util.List;
 
 import com.jdc.restaurant.RestaurantAppException;
-import com.jdc.restaurant.client.RestaurantClientFactory;
-import com.jdc.restaurant.client.api.CategoryApi;
+import com.jdc.restaurant.client.CategoryClent;
 import com.jdc.restaurant.client.dto.Category;
 import com.jdc.restaurant.utils.StringUtils;
 
 public class CategoryModel {
 
-	private CategoryApi api;
+	private CategoryClent client;
 	private static CategoryModel model;
 	
 	private CategoryModel() {
-		api = RestaurantClientFactory.generate(CategoryApi.class);
+		client = new CategoryClent();
 	}
 	
 	public static CategoryModel getModel() {
@@ -31,16 +30,10 @@ public class CategoryModel {
 		
 		validate(data);
 		
-		try {
-			
-			if(data.getId() == 0) {
-				api.create(data).execute();
-			} else {
-				api.update(data).execute();
-			}
-			
-		} catch (Exception e) {
-			throw new RestaurantAppException();
+		if(data.getId() == 0) {
+			client.create(data);
+		} else {
+			client.update(data);
 		}
 	}
 	
@@ -56,18 +49,10 @@ public class CategoryModel {
 	}
 
 	public List<Category> search(String name) {
-		try {
-			return api.search(name).execute().body();
-		} catch (Exception e) {
-			throw new RestaurantAppException();
-		}
+		return client.search(name);
 	}
 
 	public List<Category> findAll() {
-		try {
-			return api.findAll().execute().body();
-		} catch (Exception e) {
-			throw new RestaurantAppException();
-		}
+		return client.findAll();
 	}
 }

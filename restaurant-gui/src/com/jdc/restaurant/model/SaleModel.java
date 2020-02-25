@@ -1,19 +1,18 @@
 package com.jdc.restaurant.model;
 
-import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
-import com.jdc.restaurant.RestaurantAppException;
-import com.jdc.restaurant.client.RestaurantClientFactory;
-import com.jdc.restaurant.client.api.SaleApi;
+import com.jdc.restaurant.client.SaleClient;
 import com.jdc.restaurant.client.dto.Sale;
 import com.jdc.restaurant.client.dto.Table;
+import com.jdc.restaurant.model.OrderModel.State;
 import com.jdc.restaurant.utils.ValidationUtils;
 
 public class SaleModel {
 	
-	private SaleApi api;
+	private SaleClient client;
+	
 	private static SaleModel model;
 	
 	public enum Status {
@@ -21,7 +20,7 @@ public class SaleModel {
 	}
 	
 	private SaleModel() {
-		api = RestaurantClientFactory.generate(SaleApi.class);
+		client = new SaleClient();
 	}
 	
 	public static SaleModel getModel() {
@@ -36,15 +35,9 @@ public class SaleModel {
 
 		validate(sale);
 		
-		try {
-			
-			sale.setDate(new Date());
-			sale.setStatus(Status.Active.name());
-			api.create(sale).execute();
-			
-		} catch (Exception e) {
-			throw new RestaurantAppException();
-		}
+		sale.setDate(new Date());
+		sale.setStatus(Status.Active.name());
+		client.create(sale);
 	}
 	
 	private void validate(Sale sale) {
@@ -52,19 +45,22 @@ public class SaleModel {
 	}
 
 	public List<Sale> getActiveVoucher() {
-		try {
-			return api.getActiveVouchers().execute().body();
-		} catch (IOException e) {
-			throw new RestaurantAppException();
-		}
+		return client.getActiveVouchers();
 	}
 
 	public Sale findById(long saleId) {
-		try {
-			return api.findById(saleId).execute().body();
-		} catch (IOException e) {
-			throw new RestaurantAppException();
-		}
+		return client.findById(saleId);
 	}
+
+	public void paid(Sale sale) {
+
+		sale.setStatus(Status.Paid.name());
+		
+		sale.getValidOrders().forEach(od -> od.setStatus(State.Finished.name()));
+		
+		client.update(sale);
+	}
+
+
 
 }

@@ -32,27 +32,27 @@
           		<PropertyValueFactory property="name" />
           	</cellValueFactory>
           </TableColumn>
-          <TableColumn prefWidth="234.0" text="Status">
+          <TableColumn prefWidth="234.0" styleClass="center" text="Status">
           	<cellValueFactory>
           		<PropertyValueFactory property="phone" />
           	</cellValueFactory>
           </TableColumn>
-          <TableColumn prefWidth="154.0" text="Sub Total">
+          <TableColumn prefWidth="154.0" styleClass="right" text="Sub Total">
           	<cellValueFactory>
           		<PropertyValueFactory property="email" />
           	</cellValueFactory>
           </TableColumn>
-            <TableColumn prefWidth="234.0" text="Tax">
+            <TableColumn prefWidth="234.0" styleClass="right" text="Tax">
                <cellValueFactory>
                   <PropertyValueFactory property="phone" />
                </cellValueFactory>
             </TableColumn>
-            <TableColumn prefWidth="234.0" text="Discount">
+            <TableColumn prefWidth="234.0" styleClass="right" text="Discount">
                <cellValueFactory>
                   <PropertyValueFactory property="phone" />
                </cellValueFactory>
             </TableColumn>
-            <TableColumn prefWidth="154.0" text="Total">
+            <TableColumn prefWidth="154.0" styleClass="right" text="Total">
                <cellValueFactory>
                   <PropertyValueFactory property="email" />
                </cellValueFactory>

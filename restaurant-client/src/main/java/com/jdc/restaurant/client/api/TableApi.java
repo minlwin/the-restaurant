@@ -17,6 +17,9 @@ public interface TableApi{
 	@POST("/tables")
 	Call<Table> create(@Body Table data);
 	
+	@POST("/tables/upload")
+	Call<List<Table>> upload(@Body List<Table> data);
+
 	@PUT("/tables")
 	Call<Table> update(@Body Table data);
 	
@@ -28,5 +31,5 @@ public interface TableApi{
 	
 	@GET("/tables/search")
 	Call<List<Table>> search(@Query("number") String number);
-
+	
 }

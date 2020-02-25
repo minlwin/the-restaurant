@@ -51,7 +51,7 @@ public class MainFrame implements PageLoader{
 		node.getStyleClass().add("active");
 	}
 	
-	private void loadView(Page page) {
+	public void loadView(Page page) {
 		title.setText(page.getTitle());
 		try {
 			

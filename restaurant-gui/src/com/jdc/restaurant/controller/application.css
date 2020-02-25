@@ -149,6 +149,10 @@
 	-fx-effect: dropshadow(gaussian, secondary-light, 0, 2, 2, 2) 
 }
 
+.ascent-back {
+	-fx-background-color: ascent;
+}
+
 .table-view .column-header-background,
 .table-view .column-header {
 	-fx-background-color: ascent;
@@ -242,7 +246,7 @@
 	-fx-padding: 10 60 0 40;
 }
 
-.content-view > .container {
+.content-view .container {
 	-fx-vgap: 10;
 	-fx-hgap: 10;
 }
@@ -324,6 +328,7 @@ ScrollPane {
 
 .voucher {
 	-fx-pref-width: 400px;
+	-fx-min-width: 400px;
 	-fx-spacing: 10px;
 	-fx-background-radius: 4px;
 	-fx-background-color: ascent;
@@ -348,4 +353,8 @@ ScrollPane {
 
 .voucher-btn:hover .label{
 	-fx-text-fill: primary-light;
+}
+
+.sale-menu {
+	-fx-pref-height: 100px;
 }

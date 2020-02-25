@@ -14,55 +14,70 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 
 public class CategoryConstructor {
-	
-	public static void construct(HBox container, 
-			StringProperty searchText, 
-			Function<String, List<Category>> searcher,
+
+	public static void construct(HBox container, StringProperty searchText, Function<String, List<Category>> searcher,
 			Consumer<Category> listener) {
-		
-		searchText.addListener((a,b, c) -> {
+
+		searchText.addListener((a, b, c) -> {
 			reload(container, listener, searcher.apply(c));
 		});
-		
-		container.widthProperty().addListener((a,b,c) -> {
+
+		container.widthProperty().addListener((a, b, c) -> {
 			reload(container, listener, searcher.apply(searchText.getValue()));
 		});
 	}
-	
-	private static void reload(HBox container, Consumer<Category> listener,  List<Category> data) {
-		
-		container.getChildren().clear();
-		
-		double maxWidth = container.getWidth();
-		double current = 0;
-		
-		Iterator<Category> iterator = data.iterator();
-		
-		while (iterator.hasNext()) {
-			
-			HBox box = getItem(iterator.next(), listener);
-			container.getChildren().add(box);
 
-			current += box.getWidth() + 10.0;
+	private static void reload(HBox container, Consumer<Category> listener, List<Category> data) {
+
+		container.getChildren().clear();
+
+		double maxWidth = container.getWidth() + 200;
+		
+		if(maxWidth > 1000) {
+			maxWidth += 400;
+		}
+		double current = 0;
+
+		Iterator<Category> iterator = data.iterator();
+
+		while (iterator.hasNext()) {
+
+			CategoryBox box = new CategoryBox(iterator.next(), listener);
+			container.getChildren().add(box);
+			box.layout();
 			
-			if(current >= maxWidth) {
+			current += box.getEstimatedWidth();
+
+			if (current >= maxWidth) {
 				break;
 			}
-		}	
+		}
 	}
+
+	private static class CategoryBox extends HBox {
+		
+		private Label name;
+
+		CategoryBox(Category c, Consumer<Category> listener) {
+
+			setAlignment(Pos.CENTER);
+			setPadding(new Insets(0, 10, 0, 10));
+			
+			name = new Label(c.getName());
+			getChildren().add(name);
+
+			setOnMouseClicked(event -> listener.accept(c));
+
+			getStyleClass().addAll("primary", "rounded-corner");
+			
+			applyCss();
+			
+		}
+		
+		public double getEstimatedWidth() {
+			name.applyCss();
+			return prefWidth(-1) + name.prefWidth(-1);
+		}
 	
-	private static HBox getItem(Category c, Consumer<Category> listener) {
-		
-		HBox box = new HBox(10);
-		
-		box.setAlignment(Pos.CENTER);
-		box.setPadding(new Insets(0, 10, 0, 10));
-		
-		box.getChildren().add(new Label(c.getName()));
-		box.setOnMouseClicked(event -> listener.accept(c));
-		
-		box.getStyleClass().addAll("primary", "rounded-corner");
-		
-		return box;
 	}
 }

@@ -2,14 +2,12 @@ package com.jdc.restaurant.client.dto;
 
 import java.util.Date;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.jdc.restaurant.client.utils.DateUtiles;
 
-public class Order {
+public class OrderDto {
 
 	private long id;
-	@JsonIgnore
 	private Sale sale;
 	@JsonProperty("product")
 	private Menu menu;
@@ -21,32 +19,14 @@ public class Order {
 	private int remind;
 	private Date orderTime;
 	
-	public Order() {
-		status = "Ordered";
-	}
-	
-	public Order(OrderDto dto) {
-		this.id = dto.getId();
-		this.sale = dto.getSale();
-		this.menu = dto.getMenu();
-		this.price = dto.getPrice();
-		this.quantity = dto.getQuantity();
-		this.status = dto.getStatus();
-		this.remind = dto.getRemind();
-		this.orderTime = dto.getOrderTime();
-	}
-
-	@JsonIgnore
 	public String getOrderTimeStr() {
 		return null == orderTime ? "" : DateUtiles.getViewDateTime(orderTime);
 	}
 	
-	@JsonIgnore
 	public String getTableNumber() {
 		return sale.getTable().getTableNumber();
 	}
 	
-	@JsonIgnore
 	public String getProductName() {
 		return menu.getName();
 	}

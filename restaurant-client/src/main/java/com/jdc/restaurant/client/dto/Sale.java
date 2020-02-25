@@ -3,6 +3,7 @@ package com.jdc.restaurant.client.dto;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -30,26 +31,32 @@ public class Sale {
 	}
 	
 	public void addOrder(Menu menu) {
-		Order od = new Order();
-		od.setMenu(menu);
-		od.setPrice(menu.getPrice());
-		od.setQuantity(1);
-		orders.add(od);
-		calculate();
+		addOrder(menu, 1);
 	}
 		
 	public void addOrder(Menu menu, int count) {
-		Order od = new Order();
-		od.setMenu(menu);
-		od.setPrice(menu.getPrice());
-		od.setQuantity(count);
-		orders.add(od);
+		Order od = orders.stream().filter(a -> a.getId() == 0).filter(a -> a.getMenu().getId() == menu.getId())
+				.findAny().orElse(null);
+		
+		if(null == od) {
+			od = new Order();
+			od.setMenu(menu);
+			od.setPrice(menu.getPrice());
+			od.setQuantity(count);
+			orders.add(od);
+		} else {
+			od.setQuantity(od.getQuantity() + count);
+		}
 		calculate();
 	}
 	
 	private void calculate() {
-		this.subTotal = orders.stream().mapToInt(a -> a.getPrice() * a.getQuantity()).sum();
+		this.subTotal = getValidOrders().stream().mapToInt(a -> a.getPrice() * a.getQuantity()).sum();
 		this.tax = subTotal / 100 * 5;
+	}
+	
+	public List<Order> getValidOrders() {
+		return orders.stream().filter(a -> !a.getStatus().equals("Cancel")).collect(Collectors.toList());
 	}
 
 	public long getId() {

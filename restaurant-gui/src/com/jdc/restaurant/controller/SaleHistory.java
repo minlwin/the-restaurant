@@ -1,5 +1,8 @@
 package com.jdc.restaurant.controller;
 
+import com.jdc.restaurant.client.dto.Sale;
+import com.jdc.restaurant.model.SaleModel.Status;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableView;
@@ -11,10 +14,10 @@ public class SaleHistory {
     private TextField tableNumber;
 
     @FXML
-    private ComboBox<?> status;
+    private ComboBox<Status> status;
 
     @FXML
-    private TableView<?> table;
+    private TableView<Sale> table;
 
     @FXML
     void search() {

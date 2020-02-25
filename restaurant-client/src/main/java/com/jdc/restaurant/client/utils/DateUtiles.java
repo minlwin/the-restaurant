@@ -1,4 +1,4 @@
-package com.jdc.restaurant.utils;
+package com.jdc.restaurant.client.utils;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

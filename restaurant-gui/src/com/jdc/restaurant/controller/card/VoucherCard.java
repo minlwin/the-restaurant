@@ -27,7 +27,7 @@ public class VoucherCard extends HBox {
 		Label title = new Label(voucher.getTable().getTableNumber());
 		title.getStyleClass().add("title");
 		
-		Label date = new Label(DateUtiles.getVuewDateTime(voucher.getDate()));
+		Label date = new Label(DateUtiles.getViewDateTime(voucher.getDate()));
 		Label charges = new Label(String.format("%d MMK", voucher.getSubTotal()));
 		
 		getChildren().addAll(icon, new VBox(title,  date, charges));

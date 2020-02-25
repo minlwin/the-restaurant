@@ -2,6 +2,7 @@ package com.jdc.restaurant.client.test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -12,7 +13,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
 import com.jdc.restaurant.client.api.OrderApi;
-import com.jdc.restaurant.client.api.SaleApi;
 import com.jdc.restaurant.client.dto.Sale;
 import com.jdc.restaurant.client.utils.ClientTestFactory;
 import com.jdc.restaurant.client.utils.DatabaseCleanner;
@@ -47,11 +47,10 @@ class OrderClientTest {
 			od.setPrice(helper.getMenu().getPrice());
 			od.setQuantity(3);
 			
-			od = api.create(helper.getSale().getId(), od).execute().body();
+			Sale sale = api.create(helper.getSale().getId(), Arrays.asList(od)).execute().body();
 			
-			assertEquals(1, od.getId());
+			assertEquals(1, sale.getOrders().size());
 			
-			Sale sale = ClientTestFactory.generate(SaleApi.class).findById(1).execute().body();
 			assertEquals(6000, sale.getSubTotal());
 			assertEquals(300, sale.getTax());
 			
@@ -96,9 +95,8 @@ class OrderClientTest {
 			com.jdc.restaurant.client.dto.Order od = api.findById(1).execute().body();
 			od.setQuantity(1);
 			
-			od = api.update(1, od).execute().body();
+			Sale sale = api.update(1, Arrays.asList(od)).execute().body();
 
-			Sale sale = ClientTestFactory.generate(SaleApi.class).findById(1).execute().body();
 			assertEquals(2000, sale.getSubTotal());
 			assertEquals(100, sale.getTax());
 			

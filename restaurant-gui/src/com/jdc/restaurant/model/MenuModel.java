@@ -13,15 +13,14 @@ import java.util.List;
 import java.util.Map;
 
 import com.jdc.restaurant.RestaurantAppException;
-import com.jdc.restaurant.client.RestaurantClientFactory;
-import com.jdc.restaurant.client.api.MenuApi;
+import com.jdc.restaurant.client.MenuClient;
 import com.jdc.restaurant.client.dto.Category;
 import com.jdc.restaurant.client.dto.Menu;
 import com.jdc.restaurant.utils.StringUtils;
 
 public class MenuModel {
 
-	private MenuApi api;
+	private MenuClient client;
 	private static MenuModel model;
 	
 	public enum Size {
@@ -31,7 +30,7 @@ public class MenuModel {
 	}
 	
 	private MenuModel() {
-		api = RestaurantClientFactory.generate(MenuApi.class);
+		client = new MenuClient();
 	}
 	
 	public static MenuModel getModel() {
@@ -45,16 +44,10 @@ public class MenuModel {
 		
 		validate(data);
 		
-		try {
-			
-			if(data.getId() == 0) {
-				api.create(data).execute();
-			} else {
-				api.update(data).execute();
-			}
-			
-		} catch (Exception e) {
-			throw new RestaurantAppException();
+		if(data.getId() == 0) {
+			client.create(data);
+		} else {
+			client.update(data);
 		}
 	}
 	
@@ -71,22 +64,17 @@ public class MenuModel {
 	}
 
 	public List<Menu> search(Category category, String name) {
-		try {
-			Map<String, String> query = new HashMap<>();
-			
-			if(null != category) {
-				query.put("categoryId", String.valueOf(category.getId()));
-			}
-			
-			if(!StringUtils.isEmpty(name)) {
-				query.put("name", name);
-			}
-			
-			return api.search(query).execute().body();
-			
-		} catch (Exception e) {
-			throw new RestaurantAppException();
+		Map<String, String> query = new HashMap<>();
+		
+		if(null != category) {
+			query.put("categoryId", String.valueOf(category.getId()));
 		}
+		
+		if(!StringUtils.isEmpty(name)) {
+			query.put("name", name);
+		}
+		
+		return client.search(query);
 	}
 
 	public void upload(Category category, File file) {
@@ -118,11 +106,12 @@ public class MenuModel {
 				}
 				
 				if(!menus.isEmpty()) {
-					api.upload(menus).execute();
+					client.upload(menus);
 				}
 				
 				
 			} catch (Exception e) {
+				e.printStackTrace();
 				throw new RestaurantAppException("Please check your up load file layout!");
 			}
 			

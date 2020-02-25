@@ -2,17 +2,21 @@ package com.jdc.restaurant.controller;
 
 import java.util.List;
 
+import com.jdc.restaurant.RestaurantAppException;
 import com.jdc.restaurant.client.dto.Category;
 import com.jdc.restaurant.client.dto.Menu;
 import com.jdc.restaurant.client.dto.Order;
 import com.jdc.restaurant.client.dto.Sale;
+import com.jdc.restaurant.client.utils.RestaurantApiException;
 import com.jdc.restaurant.controller.card.CategoryConstructor;
-import com.jdc.restaurant.controller.card.MenuCard;
+import com.jdc.restaurant.controller.card.SaleMenu;
 import com.jdc.restaurant.model.CategoryModel;
 import com.jdc.restaurant.model.MenuModel;
+import com.jdc.restaurant.model.OrderModel;
 import com.jdc.restaurant.model.SaleModel;
+import com.jdc.restaurant.model.SalesManager;
 import com.jdc.restaurant.utils.CardWidthUtils;
-import com.jdc.restaurant.utils.Icons;
+import com.jdc.restaurant.utils.Page;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.fxml.FXML;
@@ -53,18 +57,32 @@ public class SaleDetails {
     @FXML
     private Label total;
     
+    private SalesManager saleManager;
+    
     @FXML
     private void initialize() {
     	
-    	CategoryConstructor.construct(categories, 
-    			schCategory.textProperty(), 
-    			CategoryModel.getModel()::search, 
-    			this::searchMenu);
+    	saleManager = new SalesManager(orders.getItems());
+    	    	
+    	subTotal.textProperty().bind(saleManager.subTotalProperty());
+    	tax.textProperty().bind(saleManager.taxProperty());
+    	total.textProperty().bind(saleManager.totalProperty());
+    	totalTitle.textProperty().bind(saleManager.totalProperty());
     }
     
 
     @FXML
     void paid() {
+    	try {
+    		
+    		SaleModel.getModel().paid(saleManager.getSale());
+    		
+			SaleDetails.show(saleManager.getSale().getId());
+    		
+		} catch (RestaurantAppException | RestaurantApiException e) {
+			e.printStackTrace();
+			MessageDialog.show(e.getMessage());
+		}
 
     }
 
@@ -74,26 +92,36 @@ public class SaleDetails {
     }
 
     @FXML
-    void save() {
-
+    void sendOrder() {
+    	
+    	try {
+    		
+    		OrderModel.getModel().takeOrder(saleManager.getSale());
+    		
+			MainFrame.getPageLoader().loadView(Page.SaleManagement);
+    		
+		} catch (RestaurantAppException | RestaurantApiException e) {
+			e.printStackTrace();
+			MessageDialog.show(e.getMessage());
+		}
+    	
     }
     
     private void searchMenu(Category category) {
+    	loadMenus(MenuModel.getModel().search(category, null));
+    }
+    
+    private void loadMenus(List<Menu> list) {
+    	
+    	DoubleProperty cardWidth = CardWidthUtils.getWidth(menus.widthProperty(), 186.0, 10.0);
     	
     	menus.getChildren().clear();
-    	List<Menu> list = MenuModel.getModel().search(category, null);
-    	
-    	DoubleProperty cardWidth = CardWidthUtils.getWidth(menus.widthProperty(), 240.0, 10.0);
-    	
-    	list.stream().map(m -> new MenuCard(m, null, this::addOrder, cardWidth))
+
+    	list.stream().map(m -> new SaleMenu(m, saleManager::addOrder, cardWidth))
     		.forEach(menus.getChildren()::add);
    	
     }
     
-    private void addOrder(Menu menu) {
-    	
-    }
-
 	public static void show(long saleId) {
 		
 		try {
@@ -114,5 +142,13 @@ public class SaleDetails {
 
 		Sale sale = SaleModel.getModel().findById(saleId);
 		tableNumber.setText(sale.getTable().getTableNumber());
+		saleManager.setSale(sale);
+
+		CategoryConstructor.construct(categories, 
+    			schCategory.textProperty(), 
+    			CategoryModel.getModel()::search, 
+    			this::searchMenu);
+    	
+    	loadMenus(MenuModel.getModel().search(null, null));
 	}
 }

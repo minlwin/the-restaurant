@@ -1,23 +1,23 @@
 package com.jdc.restaurant.model;
 
+import static com.jdc.restaurant.utils.ValidationUtils.notEmptyStringInput;
+import static com.jdc.restaurant.utils.ValidationUtils.notEmptyStringSelect;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.jdc.restaurant.RestaurantAppException;
-import com.jdc.restaurant.client.RestaurantClientFactory;
-import com.jdc.restaurant.client.api.EmployeeApi;
+import com.jdc.restaurant.client.EmployeeClient;
 import com.jdc.restaurant.client.dto.Employee;
-import static com.jdc.restaurant.utils.ValidationUtils.*;
 
 public class EmployeeModel {
 
-	private EmployeeApi api;
+	private EmployeeClient client;
 	
 	private static EmployeeModel model;
 	
 	private EmployeeModel() {
-		api = RestaurantClientFactory.generate(EmployeeApi.class);
+		client = new EmployeeClient();
 	}
 	
 	public static EmployeeModel getModel() {
@@ -33,16 +33,10 @@ public class EmployeeModel {
 		
 		validate(emp);
 		
-		try {
-			
-			if(emp.getId() == 0) {
-				api.create(emp).execute();
-			} else {
-				api.update(emp).execute();
-			}
-			
-		} catch (Exception e) {
-			throw new RestaurantAppException();
+		if(emp.getId() == 0) {
+			client.create(emp);
+		} else {
+			client.update(emp);
 		}
 	}
 
@@ -56,17 +50,11 @@ public class EmployeeModel {
 
 	public List<Employee> search(String name, String phone) {
 
-		try {
-			
-			Map<String, String> query = new HashMap<>();
-			query.put("name", name);
-			query.put("phone", phone);
-			
-			return api.search(query).execute().body();
-			
-		} catch (Exception e) {
-			throw new RestaurantAppException();
-		}
+		Map<String, String> query = new HashMap<>();
+		query.put("name", name);
+		query.put("phone", phone);
+		
+		return client.search(query);
 	}
 	
 	public enum Role {

@@ -12,13 +12,13 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
-import com.jdc.restaurant.client.RestaurantClientFactory;
 import com.jdc.restaurant.client.api.CategoryApi;
 import com.jdc.restaurant.client.api.MenuApi;
 import com.jdc.restaurant.client.dto.Category;
 import com.jdc.restaurant.client.dto.Menu;
 import com.jdc.restaurant.client.utils.ClientTestFactory;
 import com.jdc.restaurant.client.utils.DatabaseCleanner;
+import com.jdc.restaurant.client.utils.RestaurantClientFactory;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class MenuClientTest {

@@ -1,6 +1,7 @@
 package com.jdc.restaurant.controller;
 
 import java.io.File;
+import java.util.Arrays;
 import java.util.List;
 
 import com.jdc.restaurant.RestaurantAppException;
@@ -70,7 +71,7 @@ public class MenuManagement {
     	try {
         	FileChooser fc = new FileChooser();
         	fc.setTitle("Menu File Upload");
-        	fc.setSelectedExtensionFilter(new ExtensionFilter("Tab Separated File", "*.tsv"));
+        	fc.getExtensionFilters().add(new ExtensionFilter("Tab Separated Text File", Arrays.asList("*.tsv")));
         	
         	File file = fc.showOpenDialog(container.getScene().getWindow());
         	
