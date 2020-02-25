@@ -1,6 +1,7 @@
 package com.jdc.restaurant.model;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -53,7 +54,7 @@ public class OrderModel {
 			query.put("status", state.name());
 		}
 		
-		return client.search(query);
+		return client.search(query).stream().sorted(new Priority()).collect(Collectors.toList());
 	}
 
 	public void changeOrderState(State state, OrderDto dto) {
@@ -62,5 +63,37 @@ public class OrderModel {
 		order.setStatus(state.name());
 		
 		client.update(dto.getSale().getId(), Arrays.asList(order));
+	}
+
+	public void remind(OrderDto dto) {
+		Order order = new Order(dto);
+		order.setRemind(order.getRemind() + 1);
+		
+		client.update(dto.getSale().getId(), Arrays.asList(order));
+	}
+	
+	private class Priority implements Comparator<OrderDto> {
+
+		@Override
+		public int compare(OrderDto o1, OrderDto o2) {
+			
+			// desc remind
+			int remind = o2.getRemind() - o1.getRemind();
+			
+			if(remind == 0) {
+				
+				// order time
+				int time = o1.getOrderTime().compareTo(o2.getOrderTime());
+				
+				if(time == 0) {
+					return State.valueOf(o2.getStatus()).compareTo(State.valueOf(o1.getStatus()));
+				}
+								
+				return time;
+			}
+			
+			return remind;
+		}
+		
 	}
 }

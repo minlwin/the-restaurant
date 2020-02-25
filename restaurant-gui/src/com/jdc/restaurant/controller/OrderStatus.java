@@ -41,7 +41,8 @@ public class OrderStatus {
 
     	MenuItem remind = new MenuItem("Remind");
     	remind.setOnAction(event -> {
-    		
+        	OrderModel.getModel().remind(table.getSelectionModel().getSelectedItem());
+        	search();
     	});
     	
     	MenuItem cancel = new MenuItem("Cancel");

@@ -26,7 +26,7 @@ export class SaleDetailsService extends BaseService<SaleDetails> {
         let query = this.repo.createQueryBuilder('od')
             .leftJoinAndSelect('od.product' ,'p')
             .leftJoinAndSelect('od.sale', 's')
-            .leftJoinAndSelect('s.tables', 't').where('1 = 1')
+            .leftJoinAndSelect('s.tables', 't').where('s.status <> :status', {status: 'Paid'})
 
         if(state) {
             query = query.andWhere('od.status = :status', {status : state})
