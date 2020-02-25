@@ -7,10 +7,8 @@ import com.jdc.restaurant.client.dto.Category;
 import com.jdc.restaurant.utils.ModalUtils.ModalController;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.paint.Color;
 
 public class CategoryEdit implements ModalController<Category>{
 
@@ -19,9 +17,6 @@ public class CategoryEdit implements ModalController<Category>{
 
     @FXML
     private Label message;
-
-    @FXML
-    private ColorPicker color;
 
     @FXML
     private TextField name;
@@ -40,14 +35,6 @@ public class CategoryEdit implements ModalController<Category>{
     	try {
 			
     		data.setName(name.getText());
-    		
-    		Color c = color.getValue();
-    		
-    		if(null != c) {
-    			data.setBackColor(String.format("#%s", Integer.toHexString(c.hashCode())));
-    			String fill = c.getBrightness() < 0.9 ? "#ffffff" : "#000000";
-    			data.setFillColor(fill);
-    		}
     		
     		listener.accept(data);
     		
@@ -69,12 +56,7 @@ public class CategoryEdit implements ModalController<Category>{
 			this.data = new Category();
 		} else  {
 			this.title.setText("Edit Category");
-			this.name.setText(data.getName());
-			
-			if(null != data.getBackColor()) {
-				this.color.setValue(Color.web(data.getBackColor()));
-			}
-			
+			this.name.setText(data.getName());			
 		}
 	}
 

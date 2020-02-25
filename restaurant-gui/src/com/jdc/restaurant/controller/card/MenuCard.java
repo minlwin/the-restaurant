@@ -11,7 +11,6 @@ import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.SVGPath;
 
 public class MenuCard extends HBox {
@@ -21,14 +20,10 @@ public class MenuCard extends HBox {
 		getStyleClass().add("card-nocolor");
 		prefWidthProperty().bind(widthProp);
 		
-		Color fill = Color.web(menu.getCategory().getFillColor());
-		setStyle(String.format("-fx-background-color: %s", menu.getCategory().getBackColor()));
-		
 		
 		if(null != icon) {
 			// icon box
 			SVGPath svg = icon.getSvg();
-			svg.setFill(fill);
 			
 			VBox iconBox = new VBox(svg);
 			iconBox.setOnMouseClicked(event -> {
@@ -42,13 +37,10 @@ public class MenuCard extends HBox {
 		
 		Label name = new Label(menu.getName());
 		name.getStyleClass().add("title");
-		name.setTextFill(fill);
 		
 		Label price = new Label(String.format("%d MMK", menu.getPrice()));
-		price.setTextFill(fill);
 		
 		Label size = new Label(menu.getSize());
-		size.setTextFill(fill);
 
 		getChildren().addAll(new VBox(name, size, price));
 	}

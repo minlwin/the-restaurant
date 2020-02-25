@@ -3,11 +3,13 @@ package com.jdc.restaurant.client.dto;
 public class Menu {
 
 	private long id;
+	private String code;
 	private String name;
 	private Category category;
 	private int price;
 	private String size;
-
+	private String image;
+	
 	public long getId() {
 		return id;
 	}
@@ -46,6 +48,22 @@ public class Menu {
 
 	public void setSize(String size) {
 		this.size = size;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 }

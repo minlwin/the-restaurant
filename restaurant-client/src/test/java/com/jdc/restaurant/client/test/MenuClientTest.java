@@ -47,6 +47,8 @@ class MenuClientTest {
 		try {
 			
 			Menu menu = new Menu();
+			menu.setCode("M001");
+			menu.setCategory(category);
 			menu.setCategory(category);
 			menu.setName("Fried Rice");
 			menu.setSize("Small");

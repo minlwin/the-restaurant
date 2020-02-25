@@ -13,7 +13,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.SVGPath;
 
 public class SaleMenu extends StackPane {
@@ -34,17 +33,12 @@ public class SaleMenu extends StackPane {
 
 		menuBox = new VBox(10);
 		menuBox.setPadding(new Insets(10));
-		Color fill = Color.web(menu.getCategory().getFillColor());
-		menuBox.setStyle(String.format("-fx-background-color: %s", menu.getCategory().getBackColor()));
 		
 		Label menuTitle = new Label(menu.getName());
 		menuTitle.getStyleClass().add("title");
-		menuTitle.setTextFill(fill);
 		
 		Label size = new Label(menu.getSize());
-		size.setTextFill(fill);
 		Label price = new Label(menu.getPrice() + " MMK");
-		price.setTextFill(fill);
 		
 		menuBox.getChildren().addAll(menuTitle, size, price);
 		

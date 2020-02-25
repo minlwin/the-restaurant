@@ -5,10 +5,8 @@ import static com.jdc.restaurant.utils.ValidationUtils.notNull;
 
 import java.util.List;
 
-import com.jdc.restaurant.RestaurantAppException;
 import com.jdc.restaurant.client.CategoryClent;
 import com.jdc.restaurant.client.dto.Category;
-import com.jdc.restaurant.utils.StringUtils;
 
 public class CategoryModel {
 
@@ -43,9 +41,6 @@ public class CategoryModel {
 		
 		notEmptyStringInput(category.getName(), "Category Name");
 		
-		if(StringUtils.someIsEmpty(category.getBackColor(), category.getFillColor())) {
-			throw new RestaurantAppException("Please select Color!");
-		}
 	}
 
 	public List<Category> search(String name) {

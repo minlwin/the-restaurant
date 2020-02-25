@@ -4,8 +4,6 @@ public class Category {
 
 	private long id;
 	private String name;
-	private String backColor;
-	private String fillColor;
 
 	public long getId() {
 		return id;
@@ -21,23 +19,6 @@ public class Category {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	
-	public String getBackColor() {
-		return backColor;
-	}
-
-	public void setBackColor(String backColor) {
-		this.backColor = backColor;
-	}
-
-	public String getFillColor() {
-		return fillColor;
-	}
-
-	public void setFillColor(String fillColor) {
-		this.fillColor = fillColor;
 	}
 
 	@Override
