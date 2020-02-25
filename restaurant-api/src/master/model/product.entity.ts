@@ -7,6 +7,8 @@ export class Product implements IdEnable{
     
     @PrimaryGeneratedColumn()
     id:number
+    @Column({unique : true})
+    code:string
     @Column()
     name:string
 
@@ -18,5 +20,7 @@ export class Product implements IdEnable{
     @Column()
     price:number
     @Column()
-    size?:String
+    size?:string
+    @Column({nullable: true})
+    image?:string
 }
