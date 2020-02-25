@@ -1,4 +1,4 @@
-import { Controller, UseInterceptors, Get } from '@nestjs/common';
+import { Controller, UseInterceptors, Get, Query } from '@nestjs/common';
 import { BaseControllerMutable } from 'src/common/base.controller.mutable';
 import { ExcludeInterceptor } from 'src/common/exclude.interceptor';
 import { Sale } from '../model/sale.entity';
@@ -16,5 +16,13 @@ export class SaleController extends BaseControllerMutable<Sale> {
     async getActives() {
         let result = await this.saleService.getActiveVouchers()
         return result
+    }
+
+    @Get('search')
+    search(@Query("from") from?:string, 
+        @Query("to") to?:string, 
+        @Query("status") status?:string, 
+        @Query("tableNumber") tableNumber?:string) {
+            return this.saleService.search(from, to, status, tableNumber)
     }
 }
