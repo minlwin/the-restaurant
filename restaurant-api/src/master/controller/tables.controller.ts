@@ -1,4 +1,4 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import { Controller, Get, Query, Post, Body } from '@nestjs/common';
 import { BaseControllerMutable } from 'src/common/base.controller.mutable';
 import { Tables } from '../model/tables.entity';
 import { TablesService } from '../model/tables.service';
@@ -13,5 +13,10 @@ export class TablesController extends BaseControllerMutable<Tables> {
     @Get('search')
     search(@Query("number") tableNumber:string) {
         return this.tblService.search(tableNumber)
+    }
+
+    @Post('upload')
+    upload(@Body() tables:Tables[]) {
+        return this.tblService.upload(tables)
     }
 }

@@ -1,4 +1,4 @@
-import { PrimaryGeneratedColumn, Entity, Column, ManyToOne, OneToMany, CreateDateColumn } from "typeorm";
+import { PrimaryGeneratedColumn, Entity, Column, ManyToOne, OneToMany, CreateDateColumn, JoinTable } from "typeorm";
 import { SaleDetails } from "./saledetails.entity";
 import { Tables } from "src/master/model/tables.entity";
 import { IdEnable } from "src/common/id.enable";
@@ -25,6 +25,7 @@ export class Sale implements IdEnable {
         cascade: true,
         eager: true
     })
+    @JoinTable()
     details:SaleDetails[]
     @Column({nullable : true})
     status?:string

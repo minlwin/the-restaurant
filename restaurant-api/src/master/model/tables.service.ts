@@ -18,4 +18,8 @@ export class TablesService extends BaseServiceMutable<Tables> {
                 {tableNumber : `%${tableNumber.toLocaleLowerCase()}%`})
             .getMany()
     }
+
+    upload(tables:Tables[]) {
+        return this.repo.save(tables)
+    }
 }
