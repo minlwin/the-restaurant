@@ -1,6 +1,7 @@
 package com.jdc.restaurant.client;
 
 import java.util.List;
+import java.util.Map;
 
 import com.jdc.restaurant.client.api.SaleApi;
 import com.jdc.restaurant.client.dto.Sale;
@@ -33,6 +34,10 @@ public class SaleClient {
 	
 	public List<Sale> getActiveVouchers() {
 		return RequestUtils.execute(api.getActiveVouchers());
+	}
+	
+	public List<Sale> search(Map<String, String> query) {
+		return RequestUtils.execute(api.search(query));
 	}
 
 }

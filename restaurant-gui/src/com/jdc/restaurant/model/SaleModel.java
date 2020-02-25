@@ -1,7 +1,11 @@
 package com.jdc.restaurant.model;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.jdc.restaurant.client.SaleClient;
 import com.jdc.restaurant.client.dto.Sale;
@@ -59,6 +63,27 @@ public class SaleModel {
 		sale.getValidOrders().forEach(od -> od.setStatus(State.Finished.name()));
 		
 		client.update(sale);
+	}
+
+	public List<Sale> search(LocalDate from, LocalDate to, Status status, String tableNumber) {
+		
+		Map<String, String> query = new HashMap<>();
+		
+		if(null != from) {
+			query.put("from", from.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+		}
+		
+		if(null != to) {
+			query.put("to", to.plusDays(1).format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+		}
+		
+		if(null != status) {
+			query.put("status", status.name());
+		}
+		
+		query.put("tableNumber", tableNumber);
+
+		return client.search(query);
 	}
 
 

@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.jdc.restaurant.client.utils.DateDeSerializer;
 import com.jdc.restaurant.client.utils.DateSerializer;
+import com.jdc.restaurant.client.utils.DateUtiles;
 
 public class Sale {
 
@@ -58,7 +59,19 @@ public class Sale {
 	public List<Order> getValidOrders() {
 		return orders.stream().filter(a -> !a.getStatus().equals("Cancel")).collect(Collectors.toList());
 	}
+	
+	public String getSaleDateStr() {
+		return null == date ? "" : DateUtiles.getViewDateTime(date);
+	}
+	
+	public String getTableNumber() {
+		return null == table ? "" : table.getTableNumber();
+	}
 
+	public int getTotal() {
+		return subTotal + tax;
+	}
+	
 	public long getId() {
 		return id;
 	}

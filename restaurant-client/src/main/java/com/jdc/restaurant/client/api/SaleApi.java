@@ -1,6 +1,7 @@
 package com.jdc.restaurant.client.api;
 
 import java.util.List;
+import java.util.Map;
 
 import com.jdc.restaurant.client.dto.Sale;
 
@@ -10,6 +11,7 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
+import retrofit2.http.QueryMap;
 
 public interface SaleApi {
 
@@ -27,4 +29,7 @@ public interface SaleApi {
 	
 	@GET("/sales/actives")
 	Call<List<Sale>> getActiveVouchers();
+
+	@GET("/sales/search")
+	Call<List<Sale>> search(@QueryMap Map<String, String> query);
 }

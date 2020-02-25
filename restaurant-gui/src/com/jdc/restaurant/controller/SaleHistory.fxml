@@ -14,9 +14,10 @@
    <children>
       <HBox styleClass="search-bar">
          <children>
-            <DatePicker promptText="Date" />
-            <TextField fx:id="tableNumber" layoutX="10.0" layoutY="10.0" promptText="Table Number" styleClass="wid200" />
+            <DatePicker fx:id="dateFrom" promptText="Date" />
+            <DatePicker fx:id="dateTo" layoutX="30.0" layoutY="30.0" promptText="Date" />
             <ComboBox fx:id="status" prefWidth="150.0" promptText="Status" />
+            <TextField fx:id="tableNumber" layoutX="10.0" layoutY="10.0" promptText="Table Number" styleClass="wid200" />
             <Button mnemonicParsing="false" onAction="#search" text="SEARCH" />
          </children>
       </HBox>
@@ -24,37 +25,32 @@
         <columns>
           <TableColumn prefWidth="147.0" text="Sale Date">
           	<cellValueFactory>
-          		<PropertyValueFactory property="role" />
+          		<PropertyValueFactory property="saleDateStr" />
           	</cellValueFactory>
           </TableColumn>
           <TableColumn prefWidth="210.0" text="Table">
           	<cellValueFactory>
-          		<PropertyValueFactory property="name" />
+          		<PropertyValueFactory property="tableNumber" />
           	</cellValueFactory>
           </TableColumn>
           <TableColumn prefWidth="234.0" styleClass="center" text="Status">
           	<cellValueFactory>
-          		<PropertyValueFactory property="phone" />
+          		<PropertyValueFactory property="status" />
           	</cellValueFactory>
           </TableColumn>
           <TableColumn prefWidth="154.0" styleClass="right" text="Sub Total">
           	<cellValueFactory>
-          		<PropertyValueFactory property="email" />
+          		<PropertyValueFactory property="subTotal" />
           	</cellValueFactory>
           </TableColumn>
             <TableColumn prefWidth="234.0" styleClass="right" text="Tax">
                <cellValueFactory>
-                  <PropertyValueFactory property="phone" />
-               </cellValueFactory>
-            </TableColumn>
-            <TableColumn prefWidth="234.0" styleClass="right" text="Discount">
-               <cellValueFactory>
-                  <PropertyValueFactory property="phone" />
+                  <PropertyValueFactory property="tax" />
                </cellValueFactory>
             </TableColumn>
             <TableColumn prefWidth="154.0" styleClass="right" text="Total">
                <cellValueFactory>
-                  <PropertyValueFactory property="email" />
+                  <PropertyValueFactory property="total" />
                </cellValueFactory>
             </TableColumn>
         </columns>
