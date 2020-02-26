@@ -51,21 +51,13 @@
                       		<PropertyValueFactory property="productName" />
                       	</cellValueFactory>
                       </TableColumn>
-                      <TableColumn maxWidth="80.0" minWidth="80.0" styleClass="right" text="Price">
-                      	<cellValueFactory>
-                      		<PropertyValueFactory property="price" />
-                      	</cellValueFactory>
-                      </TableColumn>
+                      <TableColumn maxWidth="80.0" minWidth="80.0" styleClass="right" text="Price" fx:id="colPrice" />
                       <TableColumn maxWidth="50.0" minWidth="50.0" prefWidth="50.0" styleClass="right" text="Count">
                       	<cellValueFactory>
                       		<PropertyValueFactory property="quantity" />
                       	</cellValueFactory>
                       </TableColumn>
-                      <TableColumn maxWidth="100.0" minWidth="100.0" prefWidth="100.0" styleClass="right" text="Total">
-                      	<cellValueFactory>
-                      		<PropertyValueFactory property="total" />
-                      	</cellValueFactory>
-                      </TableColumn>
+                      <TableColumn maxWidth="100.0" minWidth="100.0" prefWidth="100.0" styleClass="right" text="Total" fx:id="colTotal" />
                     </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

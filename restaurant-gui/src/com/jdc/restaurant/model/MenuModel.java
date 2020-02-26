@@ -95,9 +95,10 @@ public class MenuModel {
 					Menu menu = new Menu();
 					menu.setCategory(category);
 					
-					menu.setName(array[0]);
-					menu.setSize(array[1]);
-					menu.setPrice(Integer.parseInt(array[2]));
+					menu.setCode(array[0]);
+					menu.setName(array[1]);
+					menu.setSize(array[2]);
+					menu.setPrice(Integer.parseInt(array[3]));
 					
 					validate(menu);
 					

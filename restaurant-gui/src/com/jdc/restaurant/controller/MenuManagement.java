@@ -10,15 +10,17 @@ import com.jdc.restaurant.client.dto.Menu;
 import com.jdc.restaurant.controller.card.MenuCard;
 import com.jdc.restaurant.model.CategoryModel;
 import com.jdc.restaurant.model.MenuModel;
+import com.jdc.restaurant.utils.AutoCompleteUtils;
 import com.jdc.restaurant.utils.CardWidthUtils;
 import com.jdc.restaurant.utils.Icons;
 import com.jdc.restaurant.utils.ModalUtils;
+import com.jdc.restaurant.utils.StringUtils;
 
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
 import javafx.scene.layout.TilePane;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
@@ -26,7 +28,7 @@ import javafx.stage.FileChooser.ExtensionFilter;
 public class MenuManagement {
 
     @FXML
-    private ComboBox<Category> schCategory;
+    private TextField schCategory;
 
     @FXML
     private TextField schName;
@@ -34,15 +36,22 @@ public class MenuManagement {
     @FXML
     private TilePane container;
     
+    private ObjectProperty<Category> category;
+    
     @FXML
     private void initialize() {
-    	schCategory.getItems().addAll(CategoryModel.getModel().findAll());
     	
-    	schCategory.setOnKeyPressed(event -> {
-    		if(event.getCode() == KeyCode.BACK_SPACE) {
-    			schCategory.setValue(null);
+    	category = new SimpleObjectProperty<>();
+    	category.addListener((a,b,c) -> search());
+    	
+    	schCategory.textProperty().addListener((a,b,c) -> {
+    		if(StringUtils.isEmpty(c)) {
+    			search();
     		}
     	});
+
+    	AutoCompleteUtils.attach(schCategory, 
+    			CategoryModel.getModel()::search, c -> this.category.set(c), 1);
     	
     	search();
     }
@@ -57,7 +66,7 @@ public class MenuManagement {
     	
     	container.getChildren().clear();
     	
-    	List<Menu> list = MenuModel.getModel().search(schCategory.getValue(), schName.getText());
+    	List<Menu> list = MenuModel.getModel().search(category.get(), schName.getText());
 
     	DoubleProperty cardWidth = CardWidthUtils.getWidth(container.widthProperty(), 240.0, 10.0);
     	
@@ -75,7 +84,7 @@ public class MenuManagement {
         	
         	File file = fc.showOpenDialog(container.getScene().getWindow());
         	
-        	MenuModel.getModel().upload(schCategory.getValue(), file);
+        	MenuModel.getModel().upload(category.get(), file);
         	
         	search();
 

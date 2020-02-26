@@ -5,10 +5,12 @@ import java.util.List;
 import com.jdc.restaurant.client.dto.Sale;
 import com.jdc.restaurant.model.SaleModel;
 import com.jdc.restaurant.model.SaleModel.Status;
+import com.jdc.restaurant.utils.DecimalFormatCellValueFactory;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
@@ -28,6 +30,13 @@ public class SaleHistory {
 
     @FXML
     private TableView<Sale> table;
+    @FXML
+    private TableColumn<Sale, String> colSubTotal;
+    @FXML
+    private TableColumn<Sale, String> colTax;
+    @FXML
+    private TableColumn<Sale, String> colTotal;
+    
     
     @FXML
     private void initialize() {
@@ -41,6 +50,11 @@ public class SaleHistory {
     			}
     		}
     	});
+    	
+    	colSubTotal.setCellValueFactory(new DecimalFormatCellValueFactory<Sale>(sale -> sale.getSubTotal()));
+    	colTax.setCellValueFactory(new DecimalFormatCellValueFactory<Sale>(sale -> sale.getTax()));
+    	colTotal.setCellValueFactory(new DecimalFormatCellValueFactory<Sale>(sale -> sale.getTotal()));
+
     }
 
     @FXML

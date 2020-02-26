@@ -3,6 +3,7 @@ package com.jdc.restaurant.controller.card;
 import java.util.function.Consumer;
 
 import com.jdc.restaurant.client.dto.Category;
+import com.jdc.restaurant.client.dto.CategoryDto;
 import com.jdc.restaurant.controller.CategoryEdit;
 import com.jdc.restaurant.utils.Icons;
 import com.jdc.restaurant.utils.ModalUtils;
@@ -16,7 +17,7 @@ import javafx.scene.shape.SVGPath;
 public class CategoryCard extends HBox{
 
 	
-	public CategoryCard(Category data, Icons icon, Consumer<Category> listener, ReadOnlyDoubleProperty widthProp) {
+	public CategoryCard(CategoryDto data, Icons icon, Consumer<Category> listener, ReadOnlyDoubleProperty widthProp) {
 		
 		getStyleClass().add("card");
 		
@@ -28,15 +29,23 @@ public class CategoryCard extends HBox{
 		
 		VBox iconBox = new VBox(svg);
 		iconBox.setOnMouseClicked(event -> {
-			ModalUtils.show(CategoryEdit.class, data, listener);
+			ModalUtils.show(CategoryEdit.class, getCategory(data) , listener);
 		});
 		
 		Label name = new Label(data.getName());
-		
 		name.getStyleClass().add("title");
 		
-		VBox dataBox = new VBox(name);
+		Label menus = new Label(String.format("%d Menus", data.getMenus()));
+		
+		VBox dataBox = new VBox(name, menus);
 		
 		getChildren().addAll(iconBox, dataBox);
+	}
+	
+	private Category getCategory(CategoryDto dto) {
+		Category c = new Category();
+		c.setId(dto.getId());
+		c.setName(dto.getName());
+		return c;
 	}
 }

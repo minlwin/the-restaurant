@@ -43,7 +43,6 @@ public class SaleMenu extends StackPane {
 		menuBox.getChildren().addAll(menuTitle, size, price);
 		
 		menuBox.setOnMouseEntered(event -> switchView(true));
-		menuBox.getStyleClass().addAll("dropShadow", "rounded-corner");
 		
 		
 		saleBox = new VBox(10);
@@ -86,9 +85,9 @@ public class SaleMenu extends StackPane {
 				switchView(false);
 			}
 		});
-		saleBox.getStyleClass().addAll("dropShadow", "rounded-corner", "ascent-back");
 		
 		getStyleClass().add("sale-menu");
+		getStyleClass().add("card");
 	}
 	
 	private void switchView(boolean menu) {

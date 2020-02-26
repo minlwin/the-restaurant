@@ -5,6 +5,7 @@ import java.util.function.Consumer;
 import com.jdc.restaurant.client.dto.Menu;
 import com.jdc.restaurant.controller.MenuEdit;
 import com.jdc.restaurant.utils.Icons;
+import com.jdc.restaurant.utils.MMKFormatter;
 import com.jdc.restaurant.utils.ModalUtils;
 
 import javafx.beans.property.ReadOnlyDoubleProperty;
@@ -17,7 +18,7 @@ public class MenuCard extends HBox {
 
 	public MenuCard(Menu menu, Icons icon,Consumer<Menu> listener, ReadOnlyDoubleProperty widthProp) {
 		
-		getStyleClass().add("card-nocolor");
+		getStyleClass().add("card");
 		prefWidthProperty().bind(widthProp);
 		
 		
@@ -38,7 +39,7 @@ public class MenuCard extends HBox {
 		Label name = new Label(menu.getName());
 		name.getStyleClass().add("title");
 		
-		Label price = new Label(String.format("%d MMK", menu.getPrice()));
+		Label price = new Label(MMKFormatter.format(menu.getPrice()));
 		
 		Label size = new Label(menu.getSize());
 

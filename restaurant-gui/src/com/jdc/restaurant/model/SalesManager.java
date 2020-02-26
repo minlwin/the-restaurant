@@ -3,6 +3,7 @@ package com.jdc.restaurant.model;
 import com.jdc.restaurant.client.dto.Menu;
 import com.jdc.restaurant.client.dto.Order;
 import com.jdc.restaurant.client.dto.Sale;
+import com.jdc.restaurant.utils.MMKBinding;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -29,9 +30,9 @@ public class SalesManager {
 		
 		this.orders = orders;
 		
-		subTotalMMK.bind(subTotal.asString("%s MMK"));
-		taxMMK.bind(tax.asString("%s MMK"));
-		totalMMK.bind(total.asString("%s MMK"));
+		subTotalMMK.bind(new MMKBinding(subTotal));
+		taxMMK.bind(new MMKBinding(tax));
+		totalMMK.bind(new MMKBinding(total));
 		
 		total.bind(subTotal.add(tax));
 	}

@@ -14,7 +14,11 @@ public class AutoCompleteUtils {
     public static<T> void attach(TextField textField, Function<String, List<T>> mapper, Consumer<T> consumer,int suggestStartLength) {
 
         ContextMenu suggestions = new ContextMenu();
-
+        
+        textField.widthProperty().addListener((a,b,c) -> {
+        	suggestions.setStyle(String.format("-fx-pref-width: %f;", c));
+        });
+               
         Consumer<T> executor = s -> {
             textField.setText(s.toString());
             textField.positionCaret(s.toString().length());

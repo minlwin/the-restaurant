@@ -16,6 +16,7 @@ import com.jdc.restaurant.model.OrderModel;
 import com.jdc.restaurant.model.SaleModel;
 import com.jdc.restaurant.model.SalesManager;
 import com.jdc.restaurant.utils.CardWidthUtils;
+import com.jdc.restaurant.utils.DecimalFormatCellValueFactory;
 import com.jdc.restaurant.utils.Page;
 
 import javafx.beans.property.DoubleProperty;
@@ -23,6 +24,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
@@ -47,6 +49,12 @@ public class SaleDetails {
 
     @FXML
     private TableView<Order> orders;
+    
+    @FXML
+    private TableColumn<Order, String> colPrice;
+    
+    @FXML
+    private TableColumn<Order, String> colTotal;
 
     @FXML
     private Label subTotal;
@@ -68,6 +76,9 @@ public class SaleDetails {
     	tax.textProperty().bind(saleManager.taxProperty());
     	total.textProperty().bind(saleManager.totalProperty());
     	totalTitle.textProperty().bind(saleManager.totalProperty());
+    	
+    	colPrice.setCellValueFactory(new DecimalFormatCellValueFactory<>(a -> a.getPrice()));
+    	colTotal.setCellValueFactory(new DecimalFormatCellValueFactory<>(a -> a.getTotal()));
     }
     
 

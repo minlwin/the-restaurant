@@ -12,8 +12,8 @@
       <HBox styleClass="search-bar">
          <children>
             <TextField fx:id="schName" promptText="Search  Name" styleClass="wid200" />
-            <Button mnemonicParsing="false" onAction="#search" text="SEARCH" />
             <Button layoutX="220.0" layoutY="11.0" mnemonicParsing="false" onAction="#addNew" text="ADD NEW" />
+            <Button layoutX="240.0" layoutY="31.0" mnemonicParsing="false" onAction="#upload" text="UPLOAD" />
          </children>
       </HBox>
       <ScrollPane fitToWidth="true" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">

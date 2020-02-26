@@ -3,6 +3,7 @@ package com.jdc.restaurant.client.api;
 import java.util.List;
 
 import com.jdc.restaurant.client.dto.Category;
+import com.jdc.restaurant.client.dto.CategoryDto;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -17,6 +18,9 @@ public interface CategoryApi {
 	@POST("/categories")
 	Call<Category> create(@Body Category data);
 
+	@POST("/categories/upload")
+	Call<List<Category>> upload(@Body List<Category> list);
+
 	@PUT("/categories")
 	Call<Category> update(@Body Category data);
 
@@ -28,4 +32,8 @@ public interface CategoryApi {
 
 	@GET("/categories/search")
 	Call<List<Category>> search(@Query("name") String name);
+
+	@GET("/categories/searchwithmenus")
+	Call<List<CategoryDto>> searchWithMenus(@Query("name") String name);
+
 }

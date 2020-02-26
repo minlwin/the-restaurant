@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
@@ -12,9 +11,8 @@
    <children>
       <HBox styleClass="search-bar">
          <children>
-            <ComboBox fx:id="schCategory" prefWidth="150.0" promptText="Select Category" styleClass="wid200" />
+            <TextField fx:id="schCategory" promptText="Search Category" styleClass="wid200" />
             <TextField fx:id="schName" promptText="Search  Name" styleClass="wid200" />
-            <Button mnemonicParsing="false" onAction="#search" text="SEARCH" />
             <Button layoutX="220.0" layoutY="11.0" mnemonicParsing="false" onAction="#addNew" text="ADD NEW" />
             <Button layoutX="560.0" layoutY="11.0" mnemonicParsing="false" onAction="#upload" text="UPLOAD" />
          </children>
