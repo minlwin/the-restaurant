@@ -60,11 +60,11 @@ public class AutoCompleteUtils {
     }
 
     public static<T> void attach(TextField textField, Function<String, List<T>> mapper) {
-        attach(textField, mapper, null, 2);
+        attach(textField, mapper, null);
     }
 
     public static<T> void attach(TextField textField, Function<String, List<T>> mapper, Consumer<T> consumer) {
-        attach(textField, mapper, consumer, 2);
+        attach(textField, mapper, consumer, 1);
     }
 
 }

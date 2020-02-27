@@ -16,12 +16,16 @@ import com.jdc.restaurant.utils.ModalUtils;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.TilePane;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 
 public class CategoryManagement {
+	
+    @FXML
+	private ComboBox<String> schType;
 
     @FXML
     private TextField schName;
@@ -33,6 +37,13 @@ public class CategoryManagement {
     private void initialize() {
     	
     	schName.textProperty().addListener((a,b,c) -> search());
+
+    	schType.getItems().addAll(CategoryModel.getModel().types());
+    	schType.getSelectionModel().select(0);
+    	schType.valueProperty().addListener((a,b,c) -> {
+    		schName.clear();
+    		search();
+    	});
     	
     	search();
     }
@@ -51,7 +62,7 @@ public class CategoryManagement {
         	
         	File file = fc.showOpenDialog(container.getScene().getWindow());
         	
-        	CategoryModel.getModel().upload(file);
+        	CategoryModel.getModel().upload(schType.getValue(), file);
         	
         	search();
 
@@ -65,7 +76,7 @@ public class CategoryManagement {
     	try {
         	container.getChildren().clear();
         	
-        	List<CategoryDto> list = CategoryModel.getModel().searchWithMenus(schName.getText());
+        	List<CategoryDto> list = CategoryModel.getModel().searchWithMenus(schType.getValue(), schName.getText());
         	
         	DoubleProperty cardWidth = CardWidthUtils.getWidth(container.widthProperty(), 240.0, 10.0);
         	

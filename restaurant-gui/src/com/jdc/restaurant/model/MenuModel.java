@@ -57,14 +57,18 @@ public class MenuModel {
 		
 		notNull(menu.getCategory(), Category.class);
 		
+		notEmptyStringInput(menu.getName(), "Code of Menu");
+
 		notEmptyStringInput(menu.getName(), "Name of Menu");
 		
 		notZeroNumberInputs(menu.getPrice(), "Price of Menu");
 		
 	}
 
-	public List<Menu> search(Category category, String name) {
+	public List<Menu> search(String type, Category category, String name) {
 		Map<String, String> query = new HashMap<>();
+		
+		query.put("type", type);
 		
 		if(null != category) {
 			query.put("categoryId", String.valueOf(category.getId()));

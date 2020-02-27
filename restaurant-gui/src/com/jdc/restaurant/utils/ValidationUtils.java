@@ -16,6 +16,12 @@ public class ValidationUtils {
 		}
 	}
 
+	public static <T> void notNullSelect(T data, String type) {
+		if(null == data) {
+			throw new RestaurantAppException(String.format("Please select %s!", type));
+		}
+	}
+
 	public static void notEmptyStringInput(String data, String field) {
 		
 		if(StringUtils.isEmpty(data)) {

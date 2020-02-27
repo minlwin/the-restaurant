@@ -1,12 +1,14 @@
 package com.jdc.restaurant.model;
 
 import static com.jdc.restaurant.utils.ValidationUtils.notEmptyStringInput;
-import static com.jdc.restaurant.utils.ValidationUtils.notNull;
+import static com.jdc.restaurant.utils.ValidationUtils.*;
 
 import java.io.File;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.jdc.restaurant.RestaurantAppException;
 import com.jdc.restaurant.client.CategoryClent;
@@ -29,6 +31,10 @@ public class CategoryModel {
 		return model;
 	}
 	
+	public List<String> types() {
+		return client.types();
+	}
+	
 	public void save(Category data) {
 		
 		validate(data);
@@ -43,24 +49,31 @@ public class CategoryModel {
 	private void validate(Category category) {
 		
 		notNull(category, Category.class);
-		
+			
+		notNullSelect(category.getType(), "Type");
 		notEmptyStringInput(category.getName(), "Category Name");
 		
 	}
 
-	public List<Category> search(String name) {
-		return client.search(name);
+	public List<Category> search(String type, String name) {
+		Map<String, String> query = new HashMap<String, String>();
+		query.put("type", type);
+		query.put("name", name);
+		return client.search(query);
 	}
 
-	public List<CategoryDto> searchWithMenus(String name) {
-		return client.searchWithMenus(name);
+	public List<CategoryDto> searchWithMenus(String type, String name) {
+		Map<String, String> query = new HashMap<String, String>();
+		query.put("type", type);
+		query.put("name", name);
+		return client.searchWithMenus(query);
 	}
 
 	public List<Category> findAll() {
 		return client.findAll();
 	}
 
-	public void upload(File file) {
+	public void upload(String type, File file) {
 
 		if(null != file) {
 			
@@ -75,7 +88,7 @@ public class CategoryModel {
 					
 					Category category = new Category();
 					category.setName(array[0]);
-					
+					category.setType(type);
 					validate(category);
 					
 					categories.add(category);

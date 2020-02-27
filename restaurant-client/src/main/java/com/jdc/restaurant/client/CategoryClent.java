@@ -1,6 +1,7 @@
 package com.jdc.restaurant.client;
 
 import java.util.List;
+import java.util.Map;
 
 import com.jdc.restaurant.client.api.CategoryApi;
 import com.jdc.restaurant.client.dto.Category;
@@ -32,15 +33,19 @@ public class CategoryClent {
 		return RequestUtils.execute(api.findById(id));
 	}
 	
+	public List<String> types() {
+		return RequestUtils.execute(api.types());
+	}
+	
 	public List<Category> findAll() {
 		return RequestUtils.execute(api.findAll());
 	}
-	
-	public List<Category> search(String name) {
-		return RequestUtils.execute(api.search(name));
+
+	public List<Category> search(Map<String, String> query) {
+		return RequestUtils.execute(api.search(query));
 	}
 
-	public List<CategoryDto> searchWithMenus(String name) {
-		return RequestUtils.execute(api.searchWithMenus(name));
+	public List<CategoryDto> searchWithMenus(Map<String, String> query) {
+		return RequestUtils.execute(api.searchWithMenus(query));
 	}
 }

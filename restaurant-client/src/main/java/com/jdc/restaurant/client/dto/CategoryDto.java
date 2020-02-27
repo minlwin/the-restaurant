@@ -4,6 +4,7 @@ public class CategoryDto {
 
 	private long id;
 	private String name;
+	private String type;
 	private int menus;
 
 	public long getId() {
@@ -28,6 +29,14 @@ public class CategoryDto {
 
 	public void setMenus(int menus) {
 		this.menus = menus;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 }

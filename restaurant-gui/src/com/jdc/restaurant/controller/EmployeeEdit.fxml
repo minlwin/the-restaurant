@@ -21,7 +21,7 @@
             </ImageView>
          </children>
          <styleClass>
-            <String fx:value="al-center" />
+            <String fx:value="center" />
             <String fx:value="side-bar" />
          </styleClass>
       </VBox>

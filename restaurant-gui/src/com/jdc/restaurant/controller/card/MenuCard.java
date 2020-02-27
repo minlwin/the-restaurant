@@ -9,8 +9,10 @@ import com.jdc.restaurant.utils.MMKFormatter;
 import com.jdc.restaurant.utils.ModalUtils;
 
 import javafx.beans.property.ReadOnlyDoubleProperty;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.SVGPath;
 
@@ -35,14 +37,25 @@ public class MenuCard extends HBox {
 			
 		}
 		
+		Label code = new Label(menu.getCode());
+		code.getStyleClass().add("title");
 		
 		Label name = new Label(menu.getName());
-		name.getStyleClass().add("title");
+		
+		
+		HBox sizeBox = new HBox(new Label(menu.getSize()));
+		
+		sizeBox.setMaxWidth(Double.MAX_VALUE);
+		HBox.setHgrow(sizeBox, Priority.ALWAYS);
 		
 		Label price = new Label(MMKFormatter.format(menu.getPrice()));
 		
-		Label size = new Label(menu.getSize());
+		HBox row = new HBox(sizeBox, price);
+		row.setPadding(new Insets(10, 0, 0, 0));
+		
+		VBox dataBox = new VBox(code, name, row);
+		HBox.setHgrow(dataBox, Priority.ALWAYS);
 
-		getChildren().addAll(new VBox(name, size, price));
+		getChildren().add(dataBox);
 	}
 }

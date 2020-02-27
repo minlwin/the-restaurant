@@ -4,9 +4,11 @@ import java.util.function.Consumer;
 
 import com.jdc.restaurant.RestaurantAppException;
 import com.jdc.restaurant.client.dto.Category;
+import com.jdc.restaurant.model.CategoryModel;
 import com.jdc.restaurant.utils.ModalUtils.ModalController;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
@@ -17,12 +19,20 @@ public class CategoryEdit implements ModalController<Category>{
 
     @FXML
     private Label message;
+    
+    @FXML
+    private ComboBox<String>  types;
 
     @FXML
     private TextField name;
     
     private Category data; 
     private Consumer<Category> listener;
+    
+    @FXML
+    private void initialize() {
+    	types.getItems().addAll(CategoryModel.getModel().types());
+    }
 
     @FXML
     private void close() {
@@ -35,6 +45,7 @@ public class CategoryEdit implements ModalController<Category>{
     	try {
 			
     		data.setName(name.getText());
+    		data.setType(types.getValue());
     		
     		listener.accept(data);
     		
@@ -56,6 +67,7 @@ public class CategoryEdit implements ModalController<Category>{
 			this.data = new Category();
 		} else  {
 			this.title.setText("Edit Category");
+			this.types.setValue(data.getType());
 			this.name.setText(data.getName());			
 		}
 	}

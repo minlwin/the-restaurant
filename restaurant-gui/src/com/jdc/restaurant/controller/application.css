@@ -85,7 +85,6 @@
 	-fx-spacing: 10px;
 	-fx-alignment: center-left;
 	-fx-background-color: ascent;
-	-fx-background-radius: 4px;
 	-fx-effect: dropshadow(gaussian, secondary-light, 0, 2, 2, 2) 
 }
 
@@ -114,7 +113,6 @@
 .color-picker,
 .text-field, 
 .button {
-	-fx-border-radius: 4px;
 	-fx-border-width: 1px;
 }
 
@@ -160,6 +158,7 @@
 
 .button {
 	-fx-background-color: secondary;
+	-fx-background-radius: 0;
 	-fx-text-fill: primary-light;
 	-fx-pref-width: 120px;
 }
@@ -173,7 +172,6 @@
 	-fx-padding: 20px;
 	-fx-spacing: 20px;
 	-fx-background-color: ascent;
-	-fx-background-radius: 4px;
 	-fx-effect: dropshadow(gaussian, secondary-light, 0, 2, 2, 2) 
 }
 
@@ -182,53 +180,64 @@
 	-fx-effect: dropshadow(gaussian, secondary, 0, 2, 2, 2) 
 }
 
-.card-nocolor {
-	-fx-padding: 20px;
-	-fx-spacing: 20px;
-	-fx-background-radius: 4px;
-	-fx-effect: dropshadow(gaussian, secondary-light, 0, 2, 2, 2) 
-}
-
-.card-nocolor-small {
-	-fx-pref-width: 180px;
-	-fx-padding: 10px;
+.edit-menu-card {
+	-fx-pref-width: 320px;
 	-fx-background-color: ascent;
-	-fx-spacing: 10px;
-	-fx-background-radius: 4px;
-	-fx-effect: dropshadow(gaussian, secondary-light, 0, 2, 2, 2) 
+	-fx-effect: dropshadow(gaussian, secondary-light, 0, 2, 2, 2);
+	-fx-border-color: ascent;
+	-fx-border-width: 1px;
+	-fx-border-style: solid;
 }
 
-.card-nocolor .title,
-.card .title {
-	-fx-font-size: 18px;
+.edit-menu-card .content {
+	-fx-padding: 16 10 10 10;
+	
 }
+
+.edit-menu-card .bottom {
+	-fx-alignment: bottom-center;
+}
+
+.menu-edit {
+	-fx-pref-width: 800px;
+	-fx-background-color: primary;
+}
+
+.menu-edit .form {
+	-fx-padding: 0 60 0 40;
+}
+
 
 .login-view {
 	-fx-pref-width: 600px;
 	-fx-background-color: primary;
 }
 
-.al-center {
-	-fx-alignment: center;
-}
-
-.login-view > .content {
+.login-view > .content,
+.menu-edit > .content
+ {
 	-fx-background-color: primary-light;
 	-fx-spacing: 10;
 	-fx-padding: 0 0 40 0;
 }
 
 
-.login-view > .content > .header {
+.login-view > .content > .header,
+.menu-edit > .content > .header
+ {
 	-fx-padding: 20 0.0 10 40;
 }
 
-.login-view > .content > .message {
+.login-view > .content > .message,
+.menu-edit > .content > .message
+ {
 	-fx-padding: 0 0.0 0.0 40;
 }
 
 
-.login-view > .content > .header > Label {
+.login-view > .content > .header > Label,
+.menu-edit > .content > .header > Label
+ {
 	-fx-font-size: 24px;
 }
 
@@ -241,7 +250,9 @@
 	-fx-padding: 0 60 0 40;
 }
 
-.login-view .form-buttons {
+.login-view .form-buttons,
+.menu-edit .form-buttons
+ {
 	-fx-spacing: 10px;
 	-fx-padding: 10 60 0 40;
 }
@@ -257,14 +268,12 @@
 
 .summary-card {
 	-fx-alignment: center-right;
-	-fx-background-radius: 4px;
 	-fx-padding: 20px;
 	-fx-pref-width: 242.5px;
 	-fx-effect: dropshadow(gaussian, secondary-light, 0, 2, 2, 2) 
 }
 
 .shadow {
-	-fx-background-radius: 4px;
 	-fx-background-color: ascent;
 	-fx-effect: dropshadow(gaussian, secondary-light, 0, 2, 2, 2) 
 }
@@ -289,10 +298,6 @@
 	-fx-text-fill: primary;
 }
 
-.rounded-corner {
-	-fx-background-radius: 2px;
-}
-
 .right {
 	-fx-alignment: center-right;
 }
@@ -303,6 +308,10 @@
 
 .center {
 	-fx-alignment: center;
+}
+
+.sp-5 {
+	-fx-spacing: 5px;
 }
 
 .sp-10 {
@@ -330,7 +339,6 @@ ScrollPane {
 	-fx-pref-width: 400px;
 	-fx-min-width: 400px;
 	-fx-spacing: 10px;
-	-fx-background-radius: 4px;
 	-fx-background-color: ascent;
 	-fx-effect: dropshadow(gaussian, secondary-light, 0, 2, 2, 2) ;
 	-fx-padding: 16;

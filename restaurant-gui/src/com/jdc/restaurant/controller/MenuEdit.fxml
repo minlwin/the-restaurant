@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="login-view" stylesheets="@application.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jdc.restaurant.controller.MenuEdit">
+<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="menu-edit" stylesheets="@application.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jdc.restaurant.controller.MenuEdit">
    <children>
       <VBox>
          <children>
@@ -21,7 +21,7 @@
             </ImageView>
          </children>
          <styleClass>
-            <String fx:value="al-center" />
+            <String fx:value="center" />
             <String fx:value="side-bar" />
          </styleClass>
       </VBox>
@@ -37,29 +37,61 @@
                   <Label fx:id="message" />
                </children>
             </HBox>
-            <VBox styleClass="form-group">
+            <VBox>
                <children>
-                  <Label text="Category" />
-                  <ComboBox fx:id="category" promptText="Category" styleClass="wid260" />
+                  <HBox styleClass="sp-10">
+                     <children>
+                        <VBox prefWidth="180.0" styleClass="sp-5">
+                           <children>
+                              <Label text="Type" />
+                              <ComboBox fx:id="type" maxWidth="1.7976931348623157E308" />
+                           </children>
+                        </VBox>
+                        <VBox layoutX="10.0" layoutY="10.0" styleClass="sp-5" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Label text="Category" />
+                              <TextField fx:id="category" promptText="Category" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox layoutX="50.0" layoutY="10.0" styleClass="sp-10">
+                     <children>
+                        <VBox prefWidth="180.0" styleClass="sp-5">
+                           <children>
+                              <Label text="Code" />
+                              <TextField fx:id="code" promptText="Menu Code" />
+                           </children>
+                        </VBox>
+                        <VBox layoutX="10.0" layoutY="10.0" styleClass="sp-5" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Label text="Menu Name" />
+                              <TextField fx:id="name" promptText="Menu Name" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox layoutX="50.0" layoutY="10.0" styleClass="sp-10">
+                     <children>
+                        <VBox prefWidth="180.0" styleClass="sp-5">
+                           <children>
+                              <Label text="Size" />
+                              <ComboBox fx:id="size" maxWidth="1.7976931348623157E308" />
+                           </children>
+                        </VBox>
+                        <VBox layoutX="10.0" layoutY="10.0" styleClass="sp-5" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Label text="Price" />
+                              <TextField fx:id="price" promptText="Price" styleClass="wid160" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
                </children>
-            </VBox>
-            <VBox layoutX="10.0" layoutY="90.0" styleClass="form-group">
-               <children>
-                  <Label text="Menu" />
-                  <TextField fx:id="name" promptText="Enter Seat Count" />
-               </children>
-            </VBox>
-            <VBox layoutX="10.0" layoutY="107.0" styleClass="form-group">
-               <children>
-                  <Label text="Size" />
-                  <ComboBox fx:id="size" maxWidth="1.7976931348623157E308" promptText="Select Size" />
-               </children>
-            </VBox>
-            <VBox layoutX="10.0" layoutY="107.0" styleClass="form-group">
-               <children>
-                  <Label text="Price" />
-                  <TextField fx:id="price" promptText="Enter Table Number" />
-               </children>
+               <styleClass>
+                  <String fx:value="form" />
+                  <String fx:value="sp-10" />
+               </styleClass>
             </VBox>
             <HBox styleClass="form-buttons">
                <children>

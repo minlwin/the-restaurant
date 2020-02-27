@@ -35,9 +35,10 @@ public class CategoryCard extends HBox{
 		Label name = new Label(data.getName());
 		name.getStyleClass().add("title");
 		
+		Label type = new Label(data.getType());
 		Label menus = new Label(String.format("%d Menus", data.getMenus()));
 		
-		VBox dataBox = new VBox(name, menus);
+		VBox dataBox = new VBox(name, type, menus);
 		
 		getChildren().addAll(iconBox, dataBox);
 	}
@@ -46,6 +47,7 @@ public class CategoryCard extends HBox{
 		Category c = new Category();
 		c.setId(dto.getId());
 		c.setName(dto.getName());
+		c.setType(dto.getType());
 		return c;
 	}
 }
