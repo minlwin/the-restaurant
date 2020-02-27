@@ -1,0 +1,1 @@
+export const TYPES = ["Grand Menu", "Set Menu", "Alcohol & Other Drinks"]

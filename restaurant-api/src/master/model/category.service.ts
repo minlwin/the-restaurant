@@ -14,19 +14,26 @@ export class CategoryService extends BaseServiceMutable<Category> {
             super(repo)
         }
 
-    search(name:string) {
+    search(type:string, name:string) {
         return this.repo.createQueryBuilder()
-            .where('LOWER(name) like :name', { name : `${name.toLocaleLowerCase()}%`})
+            .where('type = :type and LOWER(name) like :name', { 
+                type: type,
+                name : `${name.toLocaleLowerCase()}%`
+            })
             .getMany()
     }
     
-    searchWithMenuCount(name:string):Promise<CategoryDTO[]> {
+    searchWithMenuCount(type:string, name:string):Promise<CategoryDTO[]> {
         return this.repo.createQueryBuilder('c')
             .addSelect('c.id', 'id')
+            .addSelect('c.type', 'type')
             .addSelect('c.name', 'name')
             .addSelect('count(p.id)', 'menus')
             .leftJoin('product', 'p', 'c.id = p.categoryId')
-            .where("LOWER(c.name) like :name", {name : `${name.toLocaleLowerCase()}%`})
+            .where("c.type = :type and LOWER(c.name) like :name", {
+                type: type,
+                name : `${name.toLocaleLowerCase()}%`
+            })
             .groupBy('c.id')
             .getRawMany()
     }

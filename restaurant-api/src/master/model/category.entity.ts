@@ -7,6 +7,9 @@ export class Category  implements IdEnable{
     @PrimaryGeneratedColumn()
     id:number
 
+    @Column()
+    type:string
+
     @Index({unique : true})
     @Column()
     name:string

@@ -3,7 +3,6 @@ import { BaseControllerMutable } from 'src/common/base.controller.mutable';
 
 import { Product } from '../model/product.entity';
 import { ProductService } from '../model/product.service';
-import { Employee } from 'src/employee/model/employee.entity';
 
 @Controller('products')
 export class ProductController extends BaseControllerMutable<Product> {
@@ -18,8 +17,8 @@ export class ProductController extends BaseControllerMutable<Product> {
     }
 
     @Get('search')
-    search(@Query('categoryId') categoryId:number = 0, @Query('name') name:string) {
-        return this.productservice.search(categoryId, name)
+    search( @Query('type') type:string, @Query('categoryId') categoryId:number = 0, @Query('name') name:string) {
+        return this.productservice.search(type, categoryId, name)
     }
 
     @Post('upload')
