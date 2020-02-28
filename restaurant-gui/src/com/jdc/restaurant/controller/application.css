@@ -180,27 +180,51 @@
 	-fx-effect: dropshadow(gaussian, secondary, 0, 2, 2, 2) 
 }
 
-.edit-menu-card {
-	-fx-pref-width: 320px;
+.menu-card {
 	-fx-background-color: ascent;
 	-fx-effect: dropshadow(gaussian, secondary-light, 0, 2, 2, 2);
+	-fx-pref-height: 120px;
+	-fx-max-height: 120px;
 	-fx-border-color: ascent;
 	-fx-border-width: 1px;
 	-fx-border-style: solid;
 }
 
-.edit-menu-card .content {
+.menu-card .content {
 	-fx-padding: 16 10 10 10;
 	
 }
 
-.edit-menu-card .bottom {
+
+.bottom {
 	-fx-alignment: bottom-center;
 }
 
 .menu-edit {
 	-fx-pref-width: 800px;
 	-fx-background-color: primary;
+}
+
+.control-view {
+	-fx-background-color: secondary;
+	-fx-alignment: center-left;
+	-fx-padding: 16 10 10 10;
+	-fx-effect: dropshadow(gaussian, secondary-light, 0, 2, 2, 2);
+	-fx-pref-height: 120px;
+	-fx-max-height: 120px;
+}
+
+.control-view .button {
+	-fx-background-color: secondary-light;
+	-fx-text-fill: primary;
+}
+
+.control-view .button:hover {
+	-fx-background-color: primary-light;
+}
+
+.control-view .label{
+	-fx-text-fill: primary-light;
 }
 
 .menu-edit .form {

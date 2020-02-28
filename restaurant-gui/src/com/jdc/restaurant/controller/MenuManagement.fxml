@@ -2,11 +2,8 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
@@ -24,40 +21,7 @@
       </HBox>
       <ScrollPane fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
          <content>
-            <TilePane fx:id="container" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="container">
-               <children>
-                  <HBox styleClass="edit-menu-card">
-                     <children>
-                        <ImageView fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@card/menu.png" />
-                           </image>
-                        </ImageView>
-                        <VBox styleClass="content" HBox.hgrow="ALWAYS">
-                           <children>
-                              <Label styleClass="title" text="Menu Name" />
-                              <Label text="101 Category" />
-                              <VBox alignment="BOTTOM_LEFT" styleClass="bottom" VBox.vgrow="ALWAYS">
-                                 <children>
-                                    <HBox>
-                                       <children>
-                                          <Label maxWidth="1.7976931348623157E308" text="Size" HBox.hgrow="ALWAYS" />
-                                          <Label text="Regular" />
-                                       </children>
-                                    </HBox>
-                                    <HBox>
-                                       <children>
-                                          <Label maxWidth="1.7976931348623157E308" text="Price" HBox.hgrow="ALWAYS" />
-                                          <Label text="1,300 MMK" />
-                                       </children>
-                                    </HBox>
-                                 </children>
-                              </VBox>
-                           </children>
-                        </VBox>
-                     </children>
-                  </HBox>
-               </children></TilePane>
+            <TilePane fx:id="container" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="container" />
          </content>
       </ScrollPane>
    </children>
