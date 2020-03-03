@@ -6,13 +6,13 @@ import javafx.beans.property.SimpleDoubleProperty;
 
 public class CardWidthUtils {
 
-	public static DoubleProperty getWidth(ReadOnlyDoubleProperty readOnlyDoubleProperty, Double minWidth, Double space) {
+	public static DoubleProperty getWidth(ReadOnlyDoubleProperty containerWidth, Double minWidth, Double space) {
 		
-		double calWidth = getWidth(readOnlyDoubleProperty.get(), minWidth, space);
+		double calWidth = getWidth(containerWidth.get(), minWidth, space);
 		
 		DoubleProperty cardWidth = new SimpleDoubleProperty(calWidth);
 		
-		readOnlyDoubleProperty.addListener((a,b,c) -> {
+		containerWidth.addListener((a,b,c) -> {
 			cardWidth.set(getWidth(c.doubleValue(), minWidth, space));
 		});
 		

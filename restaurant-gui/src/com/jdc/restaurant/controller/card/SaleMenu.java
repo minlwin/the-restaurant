@@ -11,6 +11,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.SVGPath;
@@ -19,11 +20,13 @@ public class SaleMenu extends StackPane {
 
 	private IntegerProperty count;
 	
-	private VBox menuBox;
+	private Pane menuBox;
 	private VBox saleBox;
 	
 	public SaleMenu(Menu menu, BiConsumer<Menu, Integer> listener,  ReadOnlyDoubleProperty widthProp) {
 		
+		prefWidthProperty().bind(widthProp);
+
 		count = new SimpleIntegerProperty(1);
 		count.addListener((a,b,c) -> {
 			if(c.intValue()  == 0) {
@@ -31,22 +34,26 @@ public class SaleMenu extends StackPane {
 			}
 		});
 
-		menuBox = new VBox(10);
-		menuBox.setPadding(new Insets(10));
+		menuBox = new MenuCard(menu);
+		menuBox.setOnMouseEntered(e -> switchView(true));
 		
-		Label menuTitle = new Label(menu.getName());
-		menuTitle.getStyleClass().add("title");
+		getChildren().add(menuBox);
 		
-		Label size = new Label(menu.getSize());
-		Label price = new Label(menu.getPrice() + " MMK");
-		
-		menuBox.getChildren().addAll(menuTitle, size, price);
-		
-		menuBox.setOnMouseEntered(event -> switchView(true));
-		
+		initSaleBox(menu, listener);
+	}
+	
+	private void initSaleBox(Menu menu, BiConsumer<Menu, Integer> listener) {
 		
 		saleBox = new VBox(10);
 		saleBox.setPadding(new Insets(10));
+		saleBox.getStyleClass().add("control-view");
+
+		saleBox.setOnMouseExited(event -> {
+			if(count.get() == 1) {
+				switchView(false);
+			}
+		});
+		
 			
 		Label saleTitle = new Label(menu.getName());
 		saleTitle.getStyleClass().add("title");
@@ -66,28 +73,14 @@ public class SaleMenu extends StackPane {
 		
 		countBox.getChildren().addAll(minusBox, countLabel, plusBox);
 		
-		Label takeOrder = new Label("Take Order");
-		HBox actionBox = new HBox();
-		
-		actionBox.getChildren().add(takeOrder);
+		HBox actionBox = new HBox(new Label("Take Order"));
+
 		actionBox.setOnMouseClicked(event -> {
 			listener.accept(menu, count.get());
 			switchView(false);
 		});
 		
 		saleBox.getChildren().addAll(saleTitle, countBox, actionBox);
-		prefWidthProperty().bind(widthProp);
-		
-		getChildren().add(menuBox);
-		
-		saleBox.setOnMouseExited(event -> {
-			if(count.get() == 1) {
-				switchView(false);
-			}
-		});
-		
-		getStyleClass().add("sale-menu");
-		getStyleClass().add("card");
 	}
 	
 	private void switchView(boolean menu) {

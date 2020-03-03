@@ -8,12 +8,11 @@ import com.jdc.restaurant.RestaurantAppException;
 import com.jdc.restaurant.client.dto.Category;
 import com.jdc.restaurant.client.dto.Menu;
 import com.jdc.restaurant.controller.card.EditMenuCard;
-import com.jdc.restaurant.controller.card.MenuCard;
+import com.jdc.restaurant.controller.card.EditMenuCard.Action;
 import com.jdc.restaurant.model.CategoryModel;
 import com.jdc.restaurant.model.MenuModel;
 import com.jdc.restaurant.utils.AutoCompleteUtils;
 import com.jdc.restaurant.utils.CardWidthUtils;
-import com.jdc.restaurant.utils.Icons;
 import com.jdc.restaurant.utils.ModalUtils;
 import com.jdc.restaurant.utils.StringUtils;
 
@@ -66,7 +65,7 @@ public class MenuManagement {
     	});
 
     	AutoCompleteUtils.attach(schCategory, 
-    			this::searchCategory, c -> this.category.set(c), 1);
+    			this::searchCategory, c -> this.category.set(c));
     	
     	schName.textProperty().addListener((a,b,c) -> search());
     	
@@ -74,6 +73,7 @@ public class MenuManagement {
     	
     	search();
     }
+    
 
     @FXML
     private void addNew() {
@@ -89,7 +89,7 @@ public class MenuManagement {
 
     	DoubleProperty cardWidth = CardWidthUtils.getWidth(container.widthProperty(), 280.0, 10.0);
     	
-    	list.stream().map(m -> new EditMenuCard(m, cardWidth))
+    	list.stream().map(m -> new EditMenuCard(m, cardWidth, this::cardAction))
     		.forEach(container.getChildren()::add);
     }
 
@@ -112,6 +112,15 @@ public class MenuManagement {
 		}
     	
     	
+    }
+    
+    private void cardAction(Action action, Menu menu) {
+    	
+    	if(action == Action.Edit)  {
+    		ModalUtils.show(MenuEdit.class, menu, this::save);
+    	} else {
+			ImageEditView.show(menu);
+    	}
     }
     
     private void save(Menu menu) {

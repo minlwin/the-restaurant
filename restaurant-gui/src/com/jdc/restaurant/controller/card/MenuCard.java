@@ -1,7 +1,9 @@
 package com.jdc.restaurant.controller.card;
 
 import com.jdc.restaurant.client.dto.Menu;
+import com.jdc.restaurant.utils.ImageUtils;
 import com.jdc.restaurant.utils.MMKFormatter;
+import com.jdc.restaurant.utils.StringUtils;
 
 import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.scene.control.Label;
@@ -25,7 +27,9 @@ public class MenuCard extends HBox {
 
 	public MenuCard(Menu menu, ReadOnlyDoubleProperty widthProp) {
 		
-		ImageView imageView = new ImageView(defaultImage);
+		ImageView imageView = StringUtils.isEmpty(menu.getImage()) ? new ImageView(defaultImage) : 
+			new ImageView(ImageUtils.getImageUrl(menu.getImage()));
+		
 		imageView.setFitHeight(120);
 		imageView.setPreserveRatio(true);
 		

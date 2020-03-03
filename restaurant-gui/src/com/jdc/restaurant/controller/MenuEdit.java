@@ -98,6 +98,9 @@ public class MenuEdit implements ModalController<Menu>{
 			this.menu = new Menu();
 		} else {
 			title.setText("Edit Menu");
+			code.setText(data.getCode());
+			type.setValue(data.getCategory().getType());
+			category.setText(data.getCategory().getName());
 			name.setText(data.getName());
 			size.setValue(Size.valueOf(data.getSize()));
 			price.setText(String.valueOf(data.getPrice()));

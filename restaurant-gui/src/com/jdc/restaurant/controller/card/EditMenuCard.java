@@ -1,5 +1,7 @@
 package com.jdc.restaurant.controller.card;
 
+import java.util.function.BiConsumer;
+
 import com.jdc.restaurant.client.dto.Menu;
 
 import javafx.beans.property.ReadOnlyDoubleProperty;
@@ -14,10 +16,17 @@ public class EditMenuCard extends StackPane{
 
 	private HBox refView;
 	private VBox controlView;
+	private BiConsumer<Action, Menu> listener;
 	
-	public EditMenuCard(Menu menu, ReadOnlyDoubleProperty width) {
+	public enum Action {
+		Upload, Edit
+	}
+	
+	public EditMenuCard(Menu menu, ReadOnlyDoubleProperty width, BiConsumer<Action, Menu> listener) {
 
 		prefWidthProperty().bind(width);
+		
+		this.listener = listener;
 		
 		refView = new MenuCard(menu);
 		controlView = getControlView(menu);
@@ -44,7 +53,10 @@ public class EditMenuCard extends StackPane{
 		VBox.setVgrow(spacer, Priority.ALWAYS);
 		
 		Button image = new Button("Image Upload");
+		image.setOnAction(event -> listener.accept(Action.Upload, menu));
+		
 		Button edit = new Button("Edit");
+		edit.setOnAction(event -> listener.accept(Action.Edit, menu));
 		
 		buttons.getChildren().addAll(image, edit);
 		

@@ -51,7 +51,7 @@ public class SalesManager {
 	public void addOrder(Menu menu, int count) {
 		sale.addOrder(menu, count);
 		orders.clear();
-		orders.addAll(sale.getOrders());
+		orders.addAll(sale.getValidOrders());
 		
 		subTotal.set(sale.getSubTotal());
 		tax.set(sale.getTax());

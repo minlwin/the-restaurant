@@ -62,7 +62,7 @@ public class SaleManagement {
     	
     	List<Sale> vouchers = SaleModel.getModel().getActiveVoucher();
 
-    	DoubleProperty cardWidth = CardWidthUtils.getWidth(container.widthProperty(), 220.0, 10.0);
+    	DoubleProperty cardWidth = CardWidthUtils.getWidth(container.widthProperty(), 220.0, container.getHgap());
     	
     	vouchers.stream()
     		.map(v -> new VoucherCard(v, SaleDetails::show, cardWidth))

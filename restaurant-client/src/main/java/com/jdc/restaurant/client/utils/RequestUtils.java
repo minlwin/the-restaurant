@@ -10,6 +10,7 @@ public class RequestUtils {
 		try {
 			return call.execute().body();
 		} catch (IOException e) {
+			e.printStackTrace();
 			throw new RestaurantApiException();
 		}
 	}

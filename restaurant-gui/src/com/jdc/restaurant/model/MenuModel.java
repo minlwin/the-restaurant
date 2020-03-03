@@ -121,5 +121,9 @@ public class MenuModel {
 			}
 			
 		}
+	}
+
+	public void uploadPhoto(Menu menu, File file) {
+		client.upload(menu, file);
 	}	
 }

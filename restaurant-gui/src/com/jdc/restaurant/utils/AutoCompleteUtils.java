@@ -11,7 +11,7 @@ import javafx.scene.control.TextField;
 
 public class AutoCompleteUtils {
 
-    public static<T> void attach(TextField textField, Function<String, List<T>> mapper, Consumer<T> consumer,int suggestStartLength) {
+    public static<T> void attach(TextField textField, Function<String, List<T>> searcher, Consumer<T> consumer,int suggestStartLength) {
 
         ContextMenu suggestions = new ContextMenu();
         
@@ -34,7 +34,7 @@ public class AutoCompleteUtils {
 
                 suggestions.getItems().clear();
 
-                mapper.apply(textField.getText()).stream().limit(10).forEach(s -> {
+                searcher.apply(textField.getText()).stream().limit(10).forEach(s -> {
                     MenuItem item = new MenuItem(s.toString());
                     item.setUserData(s);
 

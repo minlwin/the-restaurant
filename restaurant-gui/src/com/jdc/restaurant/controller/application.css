@@ -223,8 +223,11 @@
 	-fx-background-color: primary-light;
 }
 
-.control-view .label{
+.control-view .label, 
+.control-view SVGPath
+ {
 	-fx-text-fill: primary-light;
+	-fx-fill: primary-light;
 }
 
 .menu-edit .form {

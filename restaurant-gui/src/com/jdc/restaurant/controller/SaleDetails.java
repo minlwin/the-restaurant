@@ -150,7 +150,7 @@ public class SaleDetails {
     
     private void loadMenus(List<Menu> list) {
     	
-    	DoubleProperty cardWidth = CardWidthUtils.getWidth(menus.widthProperty(), 186.0, 10.0);
+    	DoubleProperty cardWidth = CardWidthUtils.getWidth(menus.widthProperty(), 270.0, menus.getHgap());
     	
     	menus.getChildren().clear();
 
