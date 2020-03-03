@@ -30,6 +30,7 @@
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.0",
     "rxjs": "^6.5.4",
+    "rxjs-compat": "^6.5.4",
     "typeorm": "^0.2.22"
   },
   "devDependencies": {
@@ -38,6 +39,7 @@
     "@nestjs/testing": "^6.10.14",
     "@types/express": "^4.17.2",
     "@types/jest": "25.1.1",
+    "@types/multer": "^1.4.2",
     "@types/node": "^13.1.6",
     "@types/supertest": "^2.0.8",
     "@typescript-eslint/eslint-plugin": "^2.12.0",
