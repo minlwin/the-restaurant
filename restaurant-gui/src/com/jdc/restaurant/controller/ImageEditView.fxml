@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
@@ -9,6 +10,7 @@
    <children>
       <HBox styleClass="search-bar">
          <children>
+            <TextField fx:id="imageUrl" promptText="Image URL" styleClass="wid260" />
             <Button mnemonicParsing="false" onAction="#loadImage" text="LOAD IMAGE" />
             <Button layoutX="160.0" layoutY="30.0" mnemonicParsing="false" onAction="#crop" text="CROP IMAGE" />
             <Button layoutX="160.0" layoutY="30.0" mnemonicParsing="false" onAction="#save" text="SAVE" />
@@ -19,6 +21,6 @@
             </HBox>
          </children>
       </HBox>
-      <VBox fx:id="container" maxHeight="-Infinity" maxWidth="-Infinity" styleClass="center" VBox.vgrow="ALWAYS" />
+      <VBox fx:id="container" VBox.vgrow="ALWAYS" />
    </children>
 </VBox>

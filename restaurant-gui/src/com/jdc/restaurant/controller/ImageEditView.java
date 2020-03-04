@@ -8,6 +8,7 @@ import javax.imageio.ImageIO;
 import com.jdc.image.crop.ImageCropFactory;
 import com.jdc.image.crop.ImageCropper;
 import com.jdc.image.crop.Shape;
+import com.jdc.restaurant.RestaurantAppException;
 import com.jdc.restaurant.client.dto.Menu;
 import com.jdc.restaurant.model.MenuModel;
 import com.jdc.restaurant.utils.ImageUtils;
@@ -20,6 +21,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
@@ -30,6 +32,10 @@ public class ImageEditView {
 	
 	@FXML
 	private Label menuName;
+	
+	@FXML
+	private TextField imageUrl;
+	
 	private Group group;
 	
 	@FXML
@@ -76,19 +82,29 @@ public class ImageEditView {
 	private void loadImage() {
 		try {
 			
-			this.imageCropper = null;
+			String strUrl = imageUrl.getText();
 			
-			FileChooser fc = new FileChooser();
-			fc.setTitle("Image Upload");
-			fc.getExtensionFilters().add(new ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg"));
-			
-			File file = fc.showOpenDialog(menuName.getScene().getWindow());
-			
-			if(null != file) {
-				Image image = new Image(new FileInputStream(file));
+			if(!StringUtils.isEmpty(strUrl)) {
+				
+				Image image = new Image(strUrl, true);
 				loadCropper(image);
+				
+			} else {
+				
+				this.imageCropper = null;
+				
+				FileChooser fc = new FileChooser();
+				fc.setTitle("Image Upload");
+				fc.getExtensionFilters().add(new ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg"));
+				
+				File file = fc.showOpenDialog(menuName.getScene().getWindow());
+				
+				if(null != file) {
+					Image image = new Image(new FileInputStream(file));
+					loadCropper(image);
+				}
+				
 			}
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -98,17 +114,28 @@ public class ImageEditView {
 	private void save() {
 		try {
 			
+			if(null == imageCropper) {
+				throw new RestaurantAppException("Please select Image file.");
+			}
+			
 			Image image = imageCropper.getImage();
 			
 			File imageFolder = new File("temp");
-			imageFolder.mkdir();
+			if(!imageFolder.exists()) {
+				imageFolder.mkdir();
+			}
+
 			File imageFile = new File(imageFolder, String.format("%s.png", menu.getCode()));
 			
 			ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", imageFile);
 			
 			MenuModel.getModel().uploadPhoto(menu, imageFile);
+
+			imageFile.delete();
 			
 			MainFrame.getPageLoader().loadView(Page.Menus);
+		} catch (RestaurantAppException e) {
+			MessageDialog.show(e.getMessage());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}	
@@ -122,15 +149,16 @@ public class ImageEditView {
 	
 	private void loadCropper(Image image) {
 		ImageView imageView = new ImageView(image);				
-		imageView.setPreserveRatio(true);
 
 		group.getChildren().clear();
 		group.getChildren().add(imageView);
 		
 		container.applyCss();
 		
-		imageView.setFitHeight(container.prefHeight(-1));
-		imageView.setFitWidth(container.prefHeight(-1));
+		imageView.setFitWidth(container.getWidth());
+		imageView.setFitHeight(container.getHeight());
+		imageView.setPreserveRatio(true);
+		
 		
 		this.imageCropper = ImageCropFactory.getCropper(Shape.Square, imageView, group);
 	}

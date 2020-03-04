@@ -5,7 +5,7 @@ import java.util.function.Consumer;
 import com.jdc.restaurant.client.dto.Sale;
 import com.jdc.restaurant.utils.DateUtiles;
 import com.jdc.restaurant.utils.Icons;
-import com.jdc.restaurant.utils.MMKFormatter;
+import com.jdc.restaurant.utils.NumberFormatter;
 
 import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.scene.control.Label;
@@ -29,7 +29,7 @@ public class VoucherCard extends HBox {
 		title.getStyleClass().add("title");
 		
 		Label date = new Label(DateUtiles.getViewDateTime(voucher.getDate()));
-		Label charges = new Label(MMKFormatter.format(voucher.getTotal()));
+		Label charges = new Label(NumberFormatter.formatMMK(voucher.getTotal()));
 		
 		getChildren().addAll(icon, new VBox(title,  date, charges));
 		

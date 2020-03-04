@@ -55,6 +55,10 @@ public class MainFrame implements PageLoader{
 		title.setText(page.getTitle());
 		try {
 			
+			if(Page.Home != page) {
+				RestaurantHome.stopService();
+			}
+			
 			Parent view = FXMLLoader.load(getClass().getResource(page.getViewFile()));
 			loadView(view);
 			

@@ -14,7 +14,7 @@ public class MMKBinding extends StringBinding{
 
 	@Override
 	protected String computeValue() {
-		return MMKFormatter.format(prop.intValue());
+		return NumberFormatter.formatMMK(prop.intValue());
 	}
 
 }

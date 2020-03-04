@@ -4,6 +4,7 @@ import { FileInterceptor } from '@nestjs/platform-express'
 import { Product } from '../model/product.entity';
 import { ProductService } from '../model/product.service';
 import { diskStorage } from 'multer';
+import { IMAGE_HOME } from 'src/common/image.config';
 
 @Controller('products')
 export class ProductController extends BaseControllerMutable<Product> {
@@ -30,7 +31,7 @@ export class ProductController extends BaseControllerMutable<Product> {
     @Post('photo/:id')
     @UseInterceptors(FileInterceptor('photo', {
         storage: diskStorage({
-            destination: '/tmp/restaurant',
+            destination: IMAGE_HOME,
             filename: (req, file, cb) => {
                 return cb(null, `${file.originalname}.png`)
             }
@@ -44,6 +45,6 @@ export class ProductController extends BaseControllerMutable<Product> {
 
     @Get('photo/:image')
     getImage(@Param('image') image:string, @Res() res:any) {
-        return res.sendFile(image, {root : '/tmp/restaurant'})
+        return res.sendFile(image, {root : IMAGE_HOME})
     }
 }

@@ -1,5 +1,7 @@
 package com.jdc.restaurant;
 
+import com.jdc.restaurant.controller.RestaurantHome;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -12,6 +14,11 @@ public class RestaurantApplication extends Application{
 		
 		stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("controller/Login.fxml"))));
 		stage.show();
+	}
+	
+	@Override
+	public void stop() throws Exception {
+		RestaurantHome.stopService();
 	}
 	
 	public static void main(String[] args) {

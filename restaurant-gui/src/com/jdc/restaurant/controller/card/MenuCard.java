@@ -2,7 +2,7 @@ package com.jdc.restaurant.controller.card;
 
 import com.jdc.restaurant.client.dto.Menu;
 import com.jdc.restaurant.utils.ImageUtils;
-import com.jdc.restaurant.utils.MMKFormatter;
+import com.jdc.restaurant.utils.NumberFormatter;
 import com.jdc.restaurant.utils.StringUtils;
 
 import javafx.beans.property.ReadOnlyDoubleProperty;
@@ -27,8 +27,17 @@ public class MenuCard extends HBox {
 
 	public MenuCard(Menu menu, ReadOnlyDoubleProperty widthProp) {
 		
-		ImageView imageView = StringUtils.isEmpty(menu.getImage()) ? new ImageView(defaultImage) : 
-			new ImageView(ImageUtils.getImageUrl(menu.getImage()));
+		ImageView imageView = new ImageView(defaultImage);
+		
+		try {
+			if(!StringUtils.isEmpty(menu.getImage())) {
+				Image image = new Image(ImageUtils.getImageUrl(menu.getImage()), true);
+				imageView = new ImageView(image);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		imageView.setFitHeight(120);
 		imageView.setPreserveRatio(true);
@@ -47,7 +56,7 @@ public class MenuCard extends HBox {
 		// price
 		VBox rowBox = new VBox(
 				getRow("Size", menu.getSize()),
-				getRow("Price", MMKFormatter.format(menu.getPrice()))
+				getRow("Price", NumberFormatter.formatMMK(menu.getPrice()))
 		);
 		
 		rowBox.getStyleClass().add("bottom");
