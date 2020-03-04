@@ -22,4 +22,12 @@ export class TablesService extends BaseServiceMutable<Tables> {
     upload(tables:Tables[]) {
         return this.repo.save(tables)
     }
+
+    findActiveCount(ids:any[]) {
+        if(ids.length > 0)  {
+            return this.repo.createQueryBuilder().where('id not in (:...ids)', {ids : ids}).getCount()
+        }
+
+        return this.repo.count()
+    }
 }
