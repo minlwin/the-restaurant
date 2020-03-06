@@ -2,6 +2,7 @@ package com.jdc.restaurant.controller;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -19,11 +20,14 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
-import javafx.scene.chart.BarChart;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.XYChart.Data;
+import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 
 public class RestaurantHome {
 
@@ -52,7 +56,7 @@ public class RestaurantHome {
     private DatePicker dateTo;
 
     @FXML
-    private BarChart<String, Integer> chart;
+    private LineChart<String, Integer> chart;
     
     private ObjectProperty<Category> schCategory;
     
@@ -61,8 +65,16 @@ public class RestaurantHome {
     @FXML
     private void initialize() {
     	
+    	chart.getXAxis().setAnimated(false);
+    	
     	schCategory = new SimpleObjectProperty<>();
     	type.getItems().addAll(CategoryModel.getModel().types());
+    	
+    	type.setOnKeyPressed(e -> {
+    		if(e.getCode() == KeyCode.BACK_SPACE) {
+    			type.setValue(null);
+    		}
+    	});
     	
     	AutoCompleteUtils.attach(category, this::searchCategory, schCategory::set);
     	
@@ -70,6 +82,8 @@ public class RestaurantHome {
     	
     	type.valueProperty().addListener((a,b,c) -> {
     		category.clear();
+    		schCategory.set(null);
+    		loadChart();
     	});
     	
     	schCategory.addListener((a,b,c) -> {
@@ -79,7 +93,8 @@ public class RestaurantHome {
     	});
     	
     	category.textProperty().addListener((a,b,c) -> {
-    		if(!StringUtils.isEmpty(c)) {
+    		if(StringUtils.isEmpty(c)) {
+        		schCategory.set(null);
     			loadChart();
     		}
     	});
@@ -102,28 +117,30 @@ public class RestaurantHome {
     		service.start();
     		
     	}, 0, 5, TimeUnit.SECONDS);
-    	
-    	
+    	   	
+    	loadChart();
     }
     
     private void loadChart() {
     	
-//    	Map<String, Map<String, Integer>> data = SummaryModel.getModel().search(type.getValue(), schCategory.get(), dateFrom.getValue(), dateTo.getValue());
-//    	
-//    	for(String key : data.keySet()) {
-//    		
-//    		Series<String, Integer> series = new Series<String, Integer>();
-//    		series.setName(key);
-//    		
-//    		Map<String, Integer> map = data.get(key);
-//    		
-//    		for(String dataKey : map.keySet()) {
-//    			Data<String, Integer> chartData = new Data<>(dataKey, map.get(dataKey));
-//    			series.getData().add(chartData);
-//    		}
-//    		
-//    		chart.getData().add(series);
-//    	}
+    	chart.getData().clear();
+    	
+    	Map<String, Map<String, Integer>> data = SummaryModel.getModel().search(type.getValue(), schCategory.get(), dateFrom.getValue(), dateTo.getValue());
+    	
+    	for(String key : data.keySet()) {
+    		
+    		Series<String, Integer> series = new Series<String, Integer>();
+    		series.setName(key);
+    		
+    		Map<String, Integer> map = data.get(key);
+    		
+    		for(String dataKey : map.keySet()) {
+    			Data<String, Integer> chartData = new Data<>(dataKey, map.get(dataKey));
+    			series.getData().add(chartData);
+    		}
+    		
+    		chart.getData().add(series);
+    	}
     	
     }
     

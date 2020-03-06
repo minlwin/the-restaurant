@@ -14,6 +14,7 @@ import com.jdc.restaurant.RestaurantAppException;
 import com.jdc.restaurant.client.CategoryClent;
 import com.jdc.restaurant.client.dto.Category;
 import com.jdc.restaurant.client.dto.CategoryDto;
+import com.jdc.restaurant.utils.StringUtils;
 
 public class CategoryModel {
 
@@ -57,8 +58,14 @@ public class CategoryModel {
 
 	public List<Category> search(String type, String name) {
 		Map<String, String> query = new HashMap<String, String>();
-		query.put("type", type);
-		query.put("name", name);
+		
+		if(!StringUtils.isEmpty(type)) {
+			query.put("type", type);
+		}
+
+		if(!StringUtils.isEmpty(name)) {
+			query.put("name", name);
+		}
 		return client.search(query);
 	}
 

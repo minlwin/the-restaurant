@@ -32,7 +32,9 @@ public class SummaryModel {
 		
 		Map<String, String> query = new HashMap<>();
 		
-		query.put("type", type);
+		if(null != type) {
+			query.put("type", type);
+		}
 		
 		if(null != category) {
 			query.put("category", String.valueOf(category.getId()));
