@@ -2,6 +2,7 @@ package com.jdc.restaurant.client.dto;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.jdc.restaurant.client.utils.DateDeSerializer;
@@ -14,6 +15,7 @@ public class Employee {
 	private String role;
 	private String email;
 	private String phone;
+	@JsonIgnore
 	private String password;
 	@JsonSerialize(using = DateSerializer.class)
 	@JsonDeserialize(using =  DateDeSerializer.class)
