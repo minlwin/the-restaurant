@@ -10,6 +10,7 @@ import { SummaryController } from './controller/summary.controller';
 import { SummaryService } from './model/summary.service';
 import { Tables } from 'src/master/model/tables.entity';
 import { MasterModule } from 'src/master/master.module';
+import { ChartService } from './model/chart.service';
 
 @Module({
     imports: [
@@ -28,7 +29,8 @@ import { MasterModule } from 'src/master/master.module';
     providers: [
         SaleService,
         SaleDetailsService,
-        SummaryService
+        SummaryService,
+        ChartService
     ],
 })
 export class SalesModule {}

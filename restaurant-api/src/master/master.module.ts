@@ -25,7 +25,9 @@ import { TablesService } from './model/tables.service';
         TablesService
     ],
     exports: [
-        TablesService
+        TablesService,
+        CategoryService,
+        ProductService
     ]
 })
 export class MasterModule {}

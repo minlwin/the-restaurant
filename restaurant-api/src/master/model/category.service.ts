@@ -15,12 +15,14 @@ export class CategoryService extends BaseServiceMutable<Category> {
         }
 
     search(type:string, name:string) {
-        return this.repo.createQueryBuilder()
-            .where('type = :type and LOWER(name) like :name', { 
-                type: type,
-                name : `${name.toLocaleLowerCase()}%`
-            })
-            .getMany()
+
+        let query = this.repo.createQueryBuilder().where('type = :type', {type : type})
+
+        if(name) {
+            query = query.andWhere('LOWER(name) like :name', {name : `${name.toLocaleLowerCase()}%`})
+        }
+
+        return query.getMany()
     }
     
     searchWithMenuCount(type:string, name:string):Promise<CategoryDTO[]> {

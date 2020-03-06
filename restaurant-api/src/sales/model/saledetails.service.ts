@@ -43,6 +43,8 @@ export class SaleDetailsService extends BaseService<SaleDetails> {
 
         let sale = await this.saleService.findById(saleId)
 
+        sale.status = 'Active'
+
         for (let index = 0; index < details.length; index++) {
             const d = details[index];
 

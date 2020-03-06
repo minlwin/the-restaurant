@@ -1,10 +1,12 @@
-import { Injectable, Inject, forwardRef } from '@nestjs/common';
-import { SummaryDTO } from './summary.dto';
-import { Repository, Table } from 'typeorm';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { currentDateEnd, currentDateStart } from 'src/common/date.utils';
+import { TablesService } from 'src/master/model/tables.service';
+import { Repository } from 'typeorm';
 import { Sale } from './sale.entity';
 import { SaleDetails } from './saledetails.entity';
-import { TablesService } from 'src/master/model/tables.service';
+import { SummaryDTO } from './summary.dto';
+import moment = require('moment');
 
 @Injectable()
 export class SummaryService {
@@ -46,12 +48,11 @@ export class SummaryService {
 
     private async getSaleForToday():Promise<number> {
 
-        let today = new Date()
-        
-        let sales = await this.saleRepo.createQueryBuilder().where('saleDate >= :from and saleDate <= :to', {
-            from : today.setHours(0, 0, 0, 0),
-            to: today.setHours(23, 59, 59, 999)
-        }).getMany()
+        let sales = await this.saleRepo.createQueryBuilder()
+            .where('saleDate >= :from and saleDate <= :to', {
+                from : currentDateStart(),
+                to: currentDateEnd()
+            }).getMany()
 
         return sales.map(s => s.subTotal + s.tax).reduce((a, b) => a + b, 0)
     }

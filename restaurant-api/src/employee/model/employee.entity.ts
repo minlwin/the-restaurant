@@ -1,7 +1,8 @@
-import { PrimaryGeneratedColumn, Entity, Column, CreateDateColumn, UpdateDateColumn } from "typeorm"
+import { PrimaryGeneratedColumn, Entity, Column, CreateDateColumn, UpdateDateColumn, BeforeInsert } from "typeorm"
 import { IdEnable } from "src/common/id.enable"
 import { Transform } from "class-transformer"
 import moment = require("moment")
+import bcrypt = require("bcrypt")
 
 @Entity()
 export class Employee implements IdEnable{
@@ -12,7 +13,7 @@ export class Employee implements IdEnable{
     name:string
     @Column()
     role:string
-    @Column()
+    @Column({nullable: false, unique: true})
     email:string
     @Column()
     phone:string
@@ -24,4 +25,9 @@ export class Employee implements IdEnable{
     @UpdateDateColumn()
     @Transform(d => moment(d).format())
     modification:Date
-}
+
+    @BeforeInsert()
+    async beforeInsert() {
+        this.password = await bcrypt.hash(this.password, 10)
+    }
+} 
