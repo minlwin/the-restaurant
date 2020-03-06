@@ -2,6 +2,7 @@ package com.jdc.restaurant.controller;
 
 import java.io.IOException;
 
+import com.jdc.restaurant.utils.ApplicationContext;
 import com.jdc.restaurant.utils.Page;
 import com.jdc.restaurant.utils.PageLoader;
 
@@ -33,6 +34,8 @@ public class MainFrame implements PageLoader{
 	private void initialize() {
 		loadView(Page.Home);
 		pageLoader = this;
+		
+		loginUserName.setText(ApplicationContext.getLoginUser().getName());
 	}
 	
 
