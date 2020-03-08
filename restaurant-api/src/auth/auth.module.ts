@@ -13,8 +13,7 @@ import { LocalStrategy } from './model/local.strategy';
         EmployeeModule,
         PassportModule,
         JwtModule.register({
-            secret: jwtConstants.secret,
-            signOptions: { expiresIn: '6000s' }
+            secret: jwtConstants.secret
         })
     ],
     controllers: [
