@@ -49,7 +49,6 @@ export class ProductController extends BaseControllerMutable<Product> {
     }
 
     @Get('photo/:image')
-    @UseGuards(JwtAuthGuard)
     getImage(@Param('image') image:string, @Res() res:any) {
         return res.sendFile(image, {root : IMAGE_HOME})
     }

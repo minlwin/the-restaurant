@@ -2,6 +2,7 @@ package com.jdc.restaurant.controller;
 
 import com.jdc.restaurant.client.LoginClient;
 import com.jdc.restaurant.client.dto.Employee;
+import com.jdc.restaurant.client.utils.RestaurantApiException;
 import com.jdc.restaurant.utils.ApplicationContext;
 
 import javafx.fxml.FXML;
@@ -45,6 +46,8 @@ public class Login {
     		
     		close();
 			
+		} catch (RestaurantApiException e) {
+    		message.setText(e.getMessage());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -43,6 +43,7 @@ public class MainFrame implements PageLoader{
 
 		Stage stage = new Stage();
 		stage.setScene(new Scene(FXMLLoader.load(MainFrame.class.getResource("MainFrame.fxml"))));
+		stage.setMaximized(true);
 		stage.show();
 	}
 	

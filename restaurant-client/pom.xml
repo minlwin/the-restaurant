@@ -38,6 +38,11 @@
 			<version>2.5.1</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>com.jdc</groupId>
+			<artifactId>commons-utils</artifactId>
+			<version>1.0</version>
+		</dependency>
 	</dependencies>
 	
 	<build>
