@@ -26,6 +26,13 @@ export class SaleService extends BaseService<Sale> {
         return this.repo.find({status : 'Active'})
     }
 
+    getActiveVouchersByTableId(id:number) {
+        return this.repo.find({
+            tables : {id : id},
+            status : 'Active'
+        })
+    }
+
     search(from?:string, to?:string, status?:string, tableNumber?:string) {
 
         let query = this.repo.createQueryBuilder('s').leftJoinAndSelect('s.tables' , 't').where('1 = 1')

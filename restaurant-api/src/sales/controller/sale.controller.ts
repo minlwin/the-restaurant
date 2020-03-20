@@ -1,4 +1,4 @@
-import { Controller, UseInterceptors, Get, Query, UseGuards } from '@nestjs/common';
+import { Controller, UseInterceptors, Get, Query, UseGuards, Param } from '@nestjs/common';
 import { BaseControllerMutable } from 'src/common/base.controller.mutable';
 import { ExcludeInterceptor } from 'src/common/exclude.interceptor';
 import { Sale } from '../model/sale.entity';
@@ -15,9 +15,14 @@ export class SaleController extends BaseControllerMutable<Sale> {
 
     @Get('actives')
     @UseGuards(JwtAuthGuard)
-    async getActives() {
-        let result = await this.saleService.getActiveVouchers()
-        return result
+    getActives() {
+        return this.saleService.getActiveVouchers()
+    }
+
+    @Get('actives/:table')
+    @UseGuards(JwtAuthGuard)
+    getActivesByTable(@Param('table') table:number) {
+        return this.saleService.getActiveVouchersByTableId(table)
     }
 
     @Get('search')
@@ -28,4 +33,6 @@ export class SaleController extends BaseControllerMutable<Sale> {
         @Query("tableNumber") tableNumber?:string) {
             return this.saleService.search(from, to, status, tableNumber)
     }
+
+
 }
