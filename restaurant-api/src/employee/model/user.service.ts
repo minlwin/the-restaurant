@@ -14,7 +14,7 @@ export class UserService implements OnModuleInit{
     async onModuleInit() {
         let admin = await this.findByLoginId('Admin')
 
-        if(admin) {
+        if(!admin) {
             admin = new Employee()
             admin.name = 'Admin'
             admin.email = 'Admin'

@@ -1,5 +1,6 @@
 package com.jdc.restaurant.api.service
 
+import android.util.Log
 import com.jdc.restaurant.api.ClientContext
 import com.jdc.restaurant.api.ClientFactory
 import com.jdc.restaurant.api.client.LoginClient
@@ -9,18 +10,20 @@ class LoginService {
 
     private val client = ClientFactory.generate(LoginClient::class.java)
 
-    suspend fun login(userName:String, password:String):Boolean {
+    suspend fun login(login: Login):Boolean {
 
-        try {
-            client.login(Login(userName, password)).execute().body()?.also {
-                ClientContext.loginUser = it.user
-                ClientContext.token = it.token
-            }
+        val response = client.login(login).execute()
 
-            return true
-        } catch (t:Throwable) {
-            t.printStackTrace()
+        if(!response.isSuccessful) {
+            Log.d("com.jdc.restaurant", response.errorBody()?.string())
+            return false
         }
-        return false
+
+        response.body()?.also {
+            ClientContext.loginUser = it.user
+            ClientContext.token = it.token
+        }
+
+        return true
     }
 }

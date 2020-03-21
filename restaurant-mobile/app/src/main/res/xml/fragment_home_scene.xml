@@ -13,95 +13,113 @@
 
     <ConstraintSet android:id="@+id/start">
         <Constraint
-            android:id="@+id/imageView"
+            android:id="@+id/recycler"
             motion:layout_constraintEnd_toEndOf="parent"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            motion:layout_constraintHorizontal_bias="0.497"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="1dp"
+            android:visibility="gone"
+            android:layout_marginEnd="1dp"
+            android:layout_marginStart="1dp"
             motion:layout_constraintTop_toTopOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="76dp" />
+            android:layout_marginTop="1dp" />
         <Constraint
-            android:id="@+id/textView3"
-            motion:layout_constraintEnd_toEndOf="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            motion:layout_constraintTop_toBottomOf="@+id/imageView"
-            motion:layout_constraintStart_toStartOf="@+id/imageView"
-            android:layout_marginTop="16dp" />
-        <Constraint
-            android:id="@+id/editTextTextPersonName2"
-            motion:layout_constraintEnd_toEndOf="@+id/textView3"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            motion:layout_constraintTop_toBottomOf="@+id/textView3"
-            motion:layout_constraintStart_toStartOf="@+id/textView3"
+            android:id="@+id/imageView"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_marginBottom="16dp"
+            motion:layout_constraintBottom_toTopOf="@+id/loginId"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="32dp" />
         <Constraint
-            android:id="@+id/editTextTextPassword"
-            motion:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            motion:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2"
-            motion:layout_constraintStart_toStartOf="@+id/editTextTextPersonName2"
-            android:layout_marginTop="16dp" />
-        <Constraint
             android:id="@+id/button"
-            motion:layout_constraintEnd_toEndOf="@+id/editTextTextPassword"
+            motion:layout_constraintEnd_toEndOf="@+id/password"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            motion:layout_constraintTop_toBottomOf="@+id/editTextTextPassword"
-            motion:layout_constraintStart_toStartOf="@+id/editTextTextPassword"
-            android:layout_marginTop="16dp" />
+            motion:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="32dp"
+            motion:layout_constraintTop_toBottomOf="@+id/password"
+            motion:layout_constraintStart_toStartOf="@+id/password" />
         <Constraint
-            android:id="@+id/recycler"
+            android:id="@+id/password"
+            motion:layout_constraintEnd_toEndOf="@+id/loginId"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toTopOf="@+id/button"
+            motion:layout_constraintTop_toBottomOf="@+id/loginId"
+            motion:layout_constraintStart_toStartOf="@+id/loginId" />
+        <Constraint
+            android:id="@+id/loginId"
+            motion:layout_constraintEnd_toEndOf="parent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            motion:layout_constraintTop_toBottomOf="parent" />
+            motion:layout_constraintBottom_toTopOf="@+id/password"
+            motion:layout_constraintTop_toBottomOf="@+id/imageView"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="16dp" />
     </ConstraintSet>
 
     <ConstraintSet android:id="@+id/end">
         <Constraint
-            android:id="@+id/imageView"
-            motion:layout_constraintEnd_toEndOf="parent"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            motion:layout_constraintHorizontal_bias="0.497"
-            motion:layout_constraintStart_toStartOf="parent"
-            motion:layout_constraintBottom_toTopOf="parent" />
-        <Constraint
-            android:layout_height="wrap_content"
-            motion:layout_constraintEnd_toEndOf="@+id/imageView"
+            android:id="@+id/button"
             android:layout_width="wrap_content"
-            android:id="@+id/textView3"
-            motion:layout_constraintStart_toStartOf="@+id/imageView"
-            motion:layout_constraintBottom_toTopOf="parent" />
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toBottomOf="parent"
+            motion:layout_editor_absoluteX="411dp" />
         <Constraint
-            android:id="@+id/editTextTextPersonName2"
+            android:id="@+id/password"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            motion:layout_editor_absoluteY="370dp"
-            motion:layout_constraintEnd_toStartOf="parent" />
-        <Constraint
-            android:id="@+id/editTextTextPassword"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            motion:layout_editor_absoluteY="430dp"
+            motion:layout_constraintBottom_toTopOf="@+id/button"
+            motion:layout_constraintTop_toBottomOf="@+id/loginId"
             motion:layout_constraintStart_toEndOf="parent" />
         <Constraint
-            android:id="@+id/button"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
-            motion:layout_constraintTop_toBottomOf="parent"
+            android:id="@+id/loginId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_editor_absoluteY="16dp"
+            motion:layout_constraintEnd_toStartOf="parent" />
+        <Constraint
+            android:id="@+id/imageView"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
             motion:layout_constraintStart_toStartOf="parent"
-            motion:layout_constraintEnd_toEndOf="parent" />
+            motion:layout_constraintBottom_toTopOf="parent" />
         <Constraint
             android:id="@+id/recycler"
             motion:layout_constraintEnd_toEndOf="parent"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             motion:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="1dp"
+            android:visibility="gone"
+            android:layout_marginEnd="1dp"
+            android:layout_marginStart="1dp"
             motion:layout_constraintTop_toTopOf="parent"
-            motion:layout_constraintStart_toStartOf="parent" />
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="1dp" />
+    </ConstraintSet>
+    <ConstraintSet
+        android:id="@+id/loginOK"
+        motion:deriveConstraintsFrom="@+id/end" >
+        <Constraint
+            android:id="@+id/recycler"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="1dp"
+            android:visibility="visible"
+            android:layout_marginEnd="1dp"
+            android:layout_marginStart="1dp"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="1dp">
+        </Constraint>
     </ConstraintSet>
 </MotionScene>
