@@ -13,7 +13,9 @@ import kotlinx.coroutines.withContext
 
 class HomeModel : ViewModel() {
 
+    var firstTime = true
     val alreadyLogin = MutableLiveData(false)
+
     val loginInfo = MutableLiveData(Login())
     val message = MutableLiveData("")
 

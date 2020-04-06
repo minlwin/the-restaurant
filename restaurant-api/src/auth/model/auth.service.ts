@@ -15,18 +15,17 @@ export class AuthService {
         let user = await this.userService.findByLoginId(userName)
 
         if(user && bcrypt.compareSync(pass, user.password)) {
-            const { password , ... results} = user
+            const { password , ... results } = user
             return results
         }
 
         return null
     }
 
-    async login(user:any) {
-        let payload = { username : user.email, sub : user.role }
+    async login(loginUser:any) {
         return {
-            user: user,
-            token : this.jwtService.sign(payload)
+            user: loginUser,
+            token : this.jwtService.sign({ username : loginUser.email, sub : loginUser.role })
         }
     }
 }

@@ -27,9 +27,10 @@
                     android:id="@+id/textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
                     android:text="@{table.tableNumber}"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -41,7 +42,6 @@
                     android:layout_marginBottom="8dp"
                     android:text="@{table.seats + ` Seats`}"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@+id/textView"
                     app:layout_constraintStart_toStartOf="@+id/textView"
                     app:layout_constraintTop_toBottomOf="@+id/textView" />
             </androidx.constraintlayout.widget.ConstraintLayout>

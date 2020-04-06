@@ -3,10 +3,37 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/navigation_home">
+    app:startDestination="@id/home">
     <fragment
-        android:id="@+id/navigation_home"
+        android:id="@+id/home"
         android:name="com.jdc.restaurant.ui.fragment.HomeFragment"
-        android:label="The Restaurant"
-        tools:layout="@layout/fragment_home" />
+        android:label="@string/the_restaurant" />
+    <fragment
+        android:id="@+id/vouchers"
+        android:name="com.jdc.restaurant.ui.fragment.VouchersFragment"
+        android:label="@string/vouchers"
+        tools:layout="@layout/fragment_vouchers" >
+        <action
+            android:id="@+id/action_vouchers_to_category"
+            app:destination="@id/category" />
+    </fragment>
+    <fragment
+        android:id="@+id/orders"
+        android:name="com.jdc.restaurant.ui.fragment.OrderFragment"
+        android:label="Orders"
+        tools:layout="@layout/fragment_order" />
+    <fragment
+        android:id="@+id/category"
+        android:name="com.jdc.restaurant.ui.fragment.CategoryFragment"
+        android:label="Categories"
+        tools:layout="@layout/fragment_category" >
+        <action
+            android:id="@+id/action_category_to_product"
+            app:destination="@id/product" />
+    </fragment>
+    <fragment
+        android:id="@+id/product"
+        android:name="com.jdc.restaurant.ui.fragment.ProductFragment"
+        android:label="Products"
+        tools:layout="@layout/fragment_product" />
 </navigation>

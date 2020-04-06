@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
@@ -13,6 +14,7 @@ import com.jdc.restaurant.R
 import com.jdc.restaurant.databinding.FragmentHomeBinding
 import com.jdc.restaurant.ui.adapter.TableAdapter
 import com.jdc.restaurant.ui.model.HomeModel
+import com.jdc.restaurant.ui.utils.NextTransition
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment() {
@@ -46,8 +48,18 @@ class HomeFragment : Fragment() {
 
         model.alreadyLogin.observe(viewLifecycleOwner, Observer {
             if(it) {
-                homeMotion.transitionToEnd()
-                homeMotion.transitionToState(R.id.loginOK)
+                if(model.firstTime) {
+                    homeMotion.setTransitionListener(NextTransition {
+                        homeMotion.transitionToState(R.id.loginOK)
+                    })
+
+                    homeMotion.transitionToEnd()
+                    model.firstTime = false
+                } else {
+                    homeMotion.setTransitionListener(NextTransition{})
+                    homeMotion.setTransition(R.id.hideLoginView, R.id.loginOK)
+                    homeMotion.transitionToEnd()
+                }
             } else {
                 homeMotion.transitionToStart()
             }
@@ -57,5 +69,7 @@ class HomeFragment : Fragment() {
             adapter.submitList(it)
         })
     }
+
+
 
 }
