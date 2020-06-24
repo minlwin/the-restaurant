@@ -1,1 +1,1 @@
-export const IMAGE_HOME = '/tmp/restaurant'
+export const IMAGE_HOME = '/var/restaurant'
