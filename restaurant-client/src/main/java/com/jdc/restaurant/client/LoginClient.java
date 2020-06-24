@@ -2,7 +2,6 @@ package com.jdc.restaurant.client;
 
 import java.io.IOException;
 
-import com.jdc.commons.utils.StringsUtils;
 import com.jdc.restaurant.client.api.LoginApi;
 import com.jdc.restaurant.client.dto.Employee;
 import com.jdc.restaurant.client.dto.LoginDto;
@@ -25,11 +24,11 @@ public class LoginClient {
 		
 		try {
 			
-			if(StringsUtils.isEmpty(email)) {
+			if(null == email || email.isEmpty()) {
 				throw new RestaurantApiException("Please enter yor email as login id.");
 			}
 			
-			if(StringsUtils.isEmpty(password)) {
+			if(null == password || password.isEmpty()) {
 				throw new RestaurantApiException("Please enter password.");
 			}
 			

@@ -3,6 +3,10 @@ package com.jdc.restaurant.client.dto;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.jdc.restaurant.client.utils.DateDeSerializer;
+import com.jdc.restaurant.client.utils.DateSerializer;
 import com.jdc.restaurant.client.utils.DateUtiles;
 
 public class OrderDto {
@@ -17,6 +21,8 @@ public class OrderDto {
 
 	private String status;
 	private int remind;
+	@JsonSerialize(using = DateSerializer.class)
+	@JsonDeserialize(using =  DateDeSerializer.class)
 	private Date orderTime;
 	
 	public String getOrderTimeStr() {

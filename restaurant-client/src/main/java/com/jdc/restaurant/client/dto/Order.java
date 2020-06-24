@@ -4,6 +4,10 @@ import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.jdc.restaurant.client.utils.DateDeSerializer;
+import com.jdc.restaurant.client.utils.DateSerializer;
 import com.jdc.restaurant.client.utils.DateUtiles;
 
 public class Order {
@@ -19,6 +23,8 @@ public class Order {
 
 	private String status;
 	private int remind;
+	@JsonSerialize(using = DateSerializer.class)
+	@JsonDeserialize(using =  DateDeSerializer.class)
 	private Date orderTime;
 	
 	public Order() {
