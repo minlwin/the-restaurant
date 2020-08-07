@@ -27,7 +27,7 @@
     "@nestjs/platform-express": "^6.10.14",
     "@nestjs/typeorm": "^6.2.0",
     "bcrypt": "^4.0.1",
-    "class-transformer": "^0.2.3",
+    "class-transformer": "^0.3.1",
     "moment": "^2.24.0",
     "mysql": "^2.18.1",
     "passport": "^0.4.1",
